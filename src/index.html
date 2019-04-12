@@ -2,24 +2,25 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>lucsoft</title>
+    <title>lucsoft - Developer & Designer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="lucsoft - Homepage">
     <meta property="og:url" content="https://lucsoft.de">
-
-    <meta property="og:title" content="lucsoft Homepage">
+    <meta property="og:title" content="lucsoft - Developer & Designer">
     <meta property="og:site_name" content="lucsoft.de">
     <meta property="og:url" content="https://lucsoft.de">
     <meta property="og:image" content="https://lucsoft.de/imgs/lucsoft.de">
     <meta property="article:author" content="lucsoft">
-    <meta name="description" content="Hi, I'm lucsoft and I'm a Web-/Developer & System Administrator (Debian, Win)">
-    <meta name="og:description" content="Hi, I'm lucsoft and I'm a Web-/Developer & System Administrator (Debian, Win)">
-
+    <meta property="author" content="lucsoft">
+    <link rel="shortcut icon" href="https://lucsoft.de/img/3D_dark_lucsoft.ico" type="image/x-icon">
+    <meta name="robots" content="all">
+    <meta name="description" content="Hi, I'm lucsoft and I'm a Developer, Designer & System Administrator (Debian, Win)">
+    <meta name="og:description" content="Hi, I'm lucsoft and I'm a Developer, Designer & System Administrator (Debian, Win)">
+    <meta name="keywords" content="Developer" />
     <meta name="robots" content="index, follow">
     <meta name="msvalidate.01" content="F08399C994EFE24C0FA95C42AB2B94AE" />
     <script type="application/ld+json">
-        { "@context": "http://schema.org/", "@type": "Person", "name": "lucsoft", "url": "https://lucsoft.de", "image": "https://lucsoft.de/imgs/avatar", "sameAs": [ "https://twitter.com/lucsoft_", "https://www.instagram.com/lucsoft_/", "https://github.com/lucsoft/" ], "jobTitle": "Web-/Developer" }
+        { "@context": "http://schema.org/", "@type": "Person", "name": "lucsoft", "url": "https://lucsoft.de", "image": "https://lucsoft.de/imgs/avatar", "sameAs": [ "https://twitter.com/lucsoft_", "https://www.instagram.com/lucsoft_/", "https://github.com/lucsoft/" ], "jobTitle": "Developer & Designer" }
     </script>
     <script src="https://api.lucsoft.de/flatweb/beta/webgen"></script>
     <script src="https://api.lucsoft.de/flatweb/beta/jquery.js"></script>
@@ -27,7 +28,7 @@
     <link rel="stylesheet" href="https://api.lucsoft.de/flatweb/beta/init.php">
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <theme>
-        <link rel="stylesheet" href="https://api.lucsoft.de/flatweb/beta/css/dark.css">
+        <link rel="stylesheet" href="https://api.lucsoft.de/flatweb/beta/css/white.css">
     </theme>
 </head>
 
@@ -41,7 +42,7 @@
                 },
                 {
                     "title":"My Projects",
-                    "fun":"loadProjects();"
+                    "fun":"loadProjects();godown();$('nav').toggleClass('mobileshow');"
                 },
                 {
                     "title":"Contact",
@@ -51,52 +52,51 @@
                     "title":"Imprint",
                     "fun":"openInNewTab('https://lucsoft.de/pages/imprint')"
                 }
-            ]`, "style_nobox");
+            ]`, "style_nobox white");
 
         loadGoogleAnalys("UA-84116510-1");
     </script>
-
-    <div id="particles-js">
-        <canvas class="particles-js-canvas-el" width="1366" height="308" style="width: 100%; height: 100%;"></canvas>
-    </div>
+    <script>
+        addDefaultParticles();
+        addLayout("fulllanding");
+    </script>
     <article id="page" class="padding">
-        <h1 class="hide">lucsoft - Homepage</h1>
-        <a class="hide" href="https://lucsoft.de/pages/FlatWeb">FlatWeb</a>
+        <h1 class="hide">lucsoft - Developer & Designer</h1>
         <a class="hide" href="https://www.instagram.com/lucsoft_/">Instagram</a>
         <a class="hide" href="https://github.com/lucsoft">GitHub</a>
         <a class="hide" href="https://lucsoft.de/pages/imprint">Imprint</a>
         <a class="hide" href="https://lucsoft.de/pages/privacy_policy">Privacy Policy</a>
         <a class="hide" href="https://api.lucsoft.de/flatweb/beta/">FlatWeb</a>
-
         <script>
+            var titelw = {
+                withImg: true,
+                imgUrl: "https://lucsoft.de/avatar.svg",
+                title: "Hi, I'm lucsoft",
+                subtitle: "Developer (NodeJS,PHP,C#,C++)<br>System Administrator (Debian, Win)",
+                subtitleposx: "0"
+            };
+            var linkbuttons = {
+                big: true,
+                list: [{
+                    text: " GitHub ",
+                    onclick: "openInNewTab('https://github.com/lucsoft')"
+                }, {
+                    text: " Twitter ",
+                    onclick: "openInNewTab('https://twitter.com/lucsoft_')"
+                }, {
+                    text: " Email ",
+                    onclick: "openInNewTab('mailto:mail@lucsoft.de')"
+                }, {
+                    text: " Discord ",
+                    onclick: "openInNewTab('https://discordapp.com/invite/9GHYtuu')"
+                }, {
+                    text: " Toggle Dark White ",
+                    onclick: "toggleDarkWhite(() => {});"
+                }]
+            };
+
             function loadProjects() {
                 clearElements();
-                loadParticlesDefault();
-                addElement("titlew", {
-                    withImg: true,
-                    imgUrl: "https://lucsoft.de/avatar.svg",
-                    title: "Hi, I'm lucsoft",
-                    subtitle: "Developer (NodeJS,PHP,C#,C++)<br>System Administrator (Debian, Win)",
-                    subtitleposx: "0"
-                }, () => {});
-                addElement("buttons", {
-                    big: true,
-                    list: [{
-                            text: " GitHub ",
-                            onclick: "openInNewTab('https://github.com/lucsoft')"
-                        }, {
-                            text: " Twitter ",
-                            onclick: "openInNewTab('https://twitter.com/lucsoft_')"
-                        }, {
-                            text: " Email ",
-                            onclick: "openInNewTab('mailto:mail@lucsoft.de')"
-                        }, {
-                            text: " Discord ",
-                            onclick: "openInNewTab('https://discordapp.com/invite/9GHYtuu')"
-                        },
-
-                    ]
-                }, () => {});
                 addElement("titles", {
                     title: "In Development",
                 }, () => {});
@@ -116,7 +116,7 @@
                         title: "EasyI2C"
                     }]
                 }, () => {});
-                godown();
+
                 addElement("titles", {
                     title: "More Projects",
                 }, () => {});
@@ -140,33 +140,12 @@
                     }]
                 }, () => {});
             }
+            addElement("titlew", titelw, () => {}, "#fulllanding");
+            addElement("buttons", linkbuttons, () => {}, "#fulllanding");
 
             function loadIndex() {
                 clearElements();
-                loadParticlesDefault();
-                addElement("titlew", {
-                    withImg: true,
-                    imgUrl: "https://lucsoft.de/avatar.svg",
-                    title: "Hi, I'm lucsoft",
-                    subtitle: "Developer (NodeJS,PHP,C#,C++)<br>System Administrator (Debian, Win)",
-                    subtitleposx: "0"
-                }, () => {});
-                addElement("buttons", {
-                    big: true,
-                    list: [{
-                        text: " GitHub ",
-                        onclick: "openInNewTab('https://github.com/lucsoft')"
-                    }, {
-                        text: " Twitter ",
-                        onclick: "openInNewTab('https://twitter.com/lucsoft_')"
-                    }, {
-                        text: " Email ",
-                        onclick: "openInNewTab('mailto:mail@lucsoft.de')"
-                    }, {
-                        text: " Discord ",
-                        onclick: "openInNewTab('https://discordapp.com/invite/9GHYtuu')"
-                    }, ]
-                }, () => {});
+
                 addElement("cardlist", {
                     small: false,
                     grid_columns: 3,
@@ -250,7 +229,6 @@
                 newline();
                 newline();
                 newline();
-
                 addElement("titles", {
                     title: "Projects made with FlatWeb"
                 }, () => {});

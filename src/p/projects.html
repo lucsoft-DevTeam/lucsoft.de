@@ -1,0 +1,144 @@
+<html>
+    <head>
+        <meta charset="UTF-8"><title>lucsoft - Developer & Designer | My Projects</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:type" content="article">
+        <meta property="og:url" content="https://lucsoft.de/p/projects">
+        <meta property="og:title" content="lucsoft - Developer & Designer | My Projects">
+        <meta property="og:site_name" content="lucsoft.de | My Projects">
+        <meta property="og:image" content="https://lucsoft.de/img/3D_dark_lucsoft.png">
+        <meta property="article:author" content="lucsoft">
+        <meta property="author" content="lucsoft">
+        <link rel="shortcut icon" href="https://lucsoft.de/img/3D_dark_lucsoft.ico" type="image/x-icon">
+        <meta name="robots" content="all">
+        <meta name="description" content="Hi, I'm lucsoft and I'm a Developer, Designer & System Administrator (Debian, Win)">
+        <meta name="og:description" content="Hi, I'm lucsoft and I'm a Developer, Designer & System Administrator (Debian, Win)">
+        <meta name="keywords" content="Developer" />
+        <meta name="robots" content="index, follow">
+        <meta name="msvalidate.01" content="F08399C994EFE24C0FA95C42AB2B94AE" />
+        <script type="application/ld+json">
+            {
+              "@context": "http://schema.org",
+              "@type": "Corporation",
+              "name": "lucsoft",
+              "url": "https://lucsoft.de",
+              "logo": "https://lucsoft.de/img/3D_dark_lucsoft.png",
+              "sameAs": [
+                "https://twitter.com/lucsoft_",
+                "https://www.instagram.com/lucsoft_/",
+                "https://www.youtube.com/lucsoft",
+                "https://github.com/lucsoft/"
+              ]
+            }
+            </script>
+        <script src="https://api.lucsoft.de/flatweb/beta/webgen"></script>
+        <script src="https://api.lucsoft.de/flatweb/beta/jquery.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Material+Icons|Roboto:100,200,300" rel="stylesheet">
+        <link rel="stylesheet" href="https://api.lucsoft.de/flatweb/beta/init.php">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <theme><link rel="stylesheet" href="https://api.lucsoft.de/flatweb/beta/css/dark.css"></theme>
+        <script>ChangeBGofLanding("https://lucsoft.de/imgs/code.png");</script>
+    </head>
+    <body class="FlatWeb">
+        <script>
+            createNav(`[
+                {
+                    "title":"lucsoft",
+                    "fun":"openInSameTab('https://lucsoft.de')",
+                    "style":"left"
+                },
+                {
+                    "title":"My Projects",
+                    "fun":"openInSameTab('https://lucsoft.de/p/projects')"
+                },
+                {
+                    "title":"Contact",
+                    "fun":"openInNewTab('mailto:mail@lucsoft.de')"
+                },
+                {
+                    "title":"Imprint",
+                    "fun":"openInSameTab('https://lucsoft.de/p/imprint')"
+                }
+            ]`, "style_nobox white");
+            
+            loadGoogleAnalys("UA-84116510-1");
+            addDefaultParticles();
+            addLayout("fulllanding");
+        </script>
+        <article id="page" class="padding">
+            <h1 class="hide">lucsoft - My Projects</h1> 
+            <a class="hide" href="https://www.instagram.com/lucsoft_/">Instagram</a>
+            <a class="hide" href="https://github.com/lucsoft">GitHub</a>
+            <a class="hide" href="https://lucsoft.de/p/projects">My Projects</a>
+            <a class="hide" href="https://lucsoft.de/p/imprint">Imprint</a>
+            <a class="hide" href="https://lucsoft.de/pages/privacy_policy">Privacy Policy</a>
+            <script>
+                var titelw = {
+                        title: "My Projects",
+                        subtitle:"Background: Code from WebGen",
+                        subtitleposx: "0"
+                };
+                var linkbuttons = {
+                    big: true,
+                    list:[
+                        {text: " GitHub ", onclick: "openInNewTab('https://github.com/lucsoft')"},
+                        {text: " Twitter ", onclick: "openInNewTab('https://twitter.com/lucsoft_')"},
+                        {text: " Email ", onclick: "openInNewTab('mailto:mail@lucsoft.de')"},
+                        {text: " Discord ", onclick: "openInNewTab('https://discordapp.com/invite/9GHYtuu')"},                            
+                        {text: " Toggle Dark White ", onclick: "toggleDarkWhite(() => {});"}    
+                    ]
+                };
+                addElement("titlew", titelw, () => {}, "#fulllanding");
+                addElement("buttons",linkbuttons, () => {}, "#fulllanding");
+                changeSpaceing(1,1);
+                
+                clearElements();
+                newline();
+                addElement("titles", {
+                        title: "In Development",
+                    }, () => {});
+                    
+                    addElement("cardlist",{
+                        small: true,
+                        grid_columns: 3,
+                        cardtype: "lline",
+                        max_width: true,
+                        cards:[
+                            {title: "lucsoft.de"},
+                            {title: "HomeSYS"},
+                            {title: "FlatWeb/WebGen"},
+                            {title: "EasyI2C"},
+                            {title: "WANTARO UNIVERS"}
+                        ]
+                    }, () => {});
+                    
+                    addElement("titles", {
+                        title: "More Projects",
+                    }, () => {});
+                    addElement("cardlist",{
+                        small: true,
+                        grid_columns: 3,
+                        cardtype: "lline",
+                        max_width: true,
+                        cards:[
+                            {title: "DRK Punktesystem Furtwangen", subtitle:"DONE"},
+                            {title: "RubiconWeb",subtitle:"DONE"},
+                            {title: "libEntitiesControl", subtitle:"DONE"},
+                            {title: "lsMainLib", subtitle:"CLOSED"}
+                        ]
+                    }, () => {});
+                newline();
+                newline();
+                $('#page').append(`<ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-6640157523989531"
+                    data-ad-slot="1745603735"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                `);
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                newline();
+            </script>
+        </article>
+    </body>
+</html>

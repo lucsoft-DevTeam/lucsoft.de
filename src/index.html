@@ -49,7 +49,7 @@
                     "style":"left"
                 },
                 {
-                    "title":"My Projects",
+                    "title":"Projects",
                     "fun":"openInSameTab('https://lucsoft.de/p/projects')"
                 },
                 {
@@ -70,7 +70,7 @@
             <a class="hide" href="https://www.instagram.com/lucsoft_/">Instagram</a>
             <a class="hide" href="https://github.com/lucsoft">GitHub</a>
             <a class="hide" href="https://lucsoft.de/p/imprint">Imprint</a>
-            <a class="hide" href="https://lucsoft.de/p/projects">My Projects</a>
+            <a class="hide" href="https://lucsoft.de/p/projects">Projects</a>
             <a class="hide" href="https://lucsoft.de/pages/privacy_policy">Privacy Policy</a>
             
             <script>
@@ -78,8 +78,8 @@
                         withImg:true,
                         imgUrl: "https://lucsoft.de/avatar.svg",
                         title: "Hi, I'm lucsoft",
-                        subtitle: "Developer (NodeJS,PHP,C#,C++)<br>System Administrator (Debian, Win)",
-                        subtitleposx: "0"
+                        subtitle: "Developer (Javascript,PHP,C#,C++, Lua)<br>System Administrator (Debian, Win)",
+                        subtitleposx: "0" 
                 };
                 var linkbuttons = {
                     big: true,
@@ -98,7 +98,7 @@
                     grid_columns: 3,
                     cardtype: "lline",
                     max_width: true,
-                    effect: true,
+                    effect: false,
                     cards:[
                         {title: "4", subtitle: "ACTIVE PROJECTS"},
                         {title: "9", subtitle: "PROJECTS"},
@@ -108,6 +108,7 @@
                 addElement("imglist", {
                 max_width: true,
                 grid_columns: 2,
+                tilt: true,
                 imgs: [
                     {
                         nohover: false,
@@ -128,7 +129,7 @@
                     grid_columns: 4,
                     cardtype: "lline",
                     max_width: true,
-                    effect: true,
+                    effect: false,
                     cards:[
                         {title: "lucsoft.de", subtitle: "INDEV"},
                         {title: "HomeSYS", subtitle: "Main-INDEV"},
@@ -147,7 +148,7 @@
                     grid_columns: 3,
                     cardtype: "lline",
                     max_width: true,
-                    effect: true,
+                    effect: false,
                     cards:[
                         {title: "Themes", subtitle: "Customise you Website"},
                         {title: "Generator", subtitle: "GENERATE A WEBSITE"},

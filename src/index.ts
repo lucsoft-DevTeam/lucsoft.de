@@ -232,9 +232,10 @@ customStyle.innerHTML = `
                 padding: 1rem 0.5rem 0.5rem;
             }
             #opener div {
-                width: auto;
+                width: unset;
                 margin-bottom: 1rem;
                 transform: scale(0.7) translate(0, -4rem);
+                justify-self: center;
             }
             #skills-area {
                 margin: .5rem 1rem 3rem;

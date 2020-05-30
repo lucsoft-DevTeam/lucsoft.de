@@ -45,7 +45,7 @@ customStyle.innerHTML = `
             max-width: 65.3rem;
             margin: 8rem auto 0;
             grid-template-columns: auto max-content;
-            animation: flowIn 1500ms ease;
+            animation: flowIn 700ms ease;
         }
 
         #image-left {
@@ -91,7 +91,7 @@ customStyle.innerHTML = `
             animation: flowIn 1500ms ease;
             margin: 0.75rem;
         }
-        #skills-area {
+        .skills-area {
             width: 70.5rem;
             margin: 4rem auto 10rem;
             display: grid;
@@ -100,7 +100,9 @@ customStyle.innerHTML = `
             font-size: 8rem;
             font-weight: 600;
             width: 28rem;
+            margin: 0;
             margin-bottom: 2rem;
+            text-align:left;
         }
         .skills {
             font-size: 5rem;
@@ -146,7 +148,7 @@ customStyle.innerHTML = `
                 padding: 1.2rem;
                 margin: 0.6rem
             }
-            card.modern span.subtitle {
+            card.modern .subtitle {
                 font-size: 1rem;
             }
             card.modern img {
@@ -156,13 +158,13 @@ customStyle.innerHTML = `
                 float: left;
                 position: relative;
             }
-            card.modern span.description {
+            card.modern .description {
                 font-size: 1.1rem;
             }
-            card.modern span.title {
+            card.modern .title {
                 font-size: 2.5rem;
             }
-            #skills-area {
+            .skills-area {
                 max-width: 57rem;
                 width: unset;
             }
@@ -186,7 +188,7 @@ customStyle.innerHTML = `
             #opener {
                 margin: 4rem 2.2rem 0;
             }
-            #opener span {
+            #opener #opener-text {
                 font-size: 2.7rem;
                 width: 29rem;
                 padding-right: 2rem;
@@ -197,7 +199,7 @@ customStyle.innerHTML = `
             cardlist {
                 margin-top: 3rem !important;
             }
-            #skills-area {
+            .skills-area {
                 margin: 4rem 3rem 3rem;
             }
             .my-skills {
@@ -215,7 +217,7 @@ customStyle.innerHTML = `
             }
         }
         @media(max-width: 785px) {
-            #opener span {
+            #opener #opener-text {
                 padding-right: 1rem;
             }
             #opener div {
@@ -237,7 +239,7 @@ customStyle.innerHTML = `
                 transform: scale(0.7) translate(0, -4rem);
                 justify-self: center;
             }
-            #skills-area {
+            .skills-area {
                 margin: .5rem 1rem 3rem;
             }
             .my-skills {
@@ -248,7 +250,7 @@ customStyle.innerHTML = `
                 font-size: 2rem;
                 max-width: 81vw;
             }
-            #opener span {
+            #opener #opener-text {
                 width: auto;
                 padding: 0;
             }
@@ -285,8 +287,8 @@ imageRight.id = 'image-right';
 imageContainer.append(imageLeft, imageRight);
 opener.append(imageContainer);
 
-const openerText = document.createElement('span');
-openerText.innerText = "17 years young developer & designer creating Software and Hardware with ❤️";
+const openerText = document.createElement('h1');
+openerText.innerText = "17 years young developer & designer creating software and hardware with ❤️";
 openerText.id = "opener-text";
 opener.append(openerText);
 
@@ -355,16 +357,16 @@ const cards = web.elements.body()
 cards.last.style.marginTop = "9rem";
 const title = cards.last.querySelectorAll('card')[ 2 ]?.querySelector?.('.title') as HTMLSpanElement | undefined;
 if (title)
-    title.style.letterSpacing = "-0.15rem";
+    title.style.letterSpacing = "-0.1rem";
 
-const skillsArea = document.createElement('div');
-skillsArea.id = "skills-area";
-const mySkills = document.createElement('span');
+const skillsArea = document.createElement('section');
+skillsArea.classList.add("skills-area");
+const mySkills = document.createElement('h2');
 mySkills.classList.add('my-skills')
 const skills = document.createElement('span');
 skills.classList.add('skills');
 mySkills.innerText = "MY SKILLS";
-skills.innerText = `CSS UI UX TYPESCRIPT JAVASCIPRT PHP C# JAVA LUA SWIFT NODE.JS WEBSOCKET SQL NOSQL SWT WEBCOMPONENTS ARDUINO LIT-HTML REDUX C++ RASBERRY PI FIGMA`;
+skills.innerText = `CSS UI UX TYPESCRIPT JAVASCRIPT PHP C# JAVA LUA SWIFT NODE.JS WEBSOCKET SQL NOSQL SWT WEBCOMPONENTS ARDUINO LIT-HTML REDUX C++ UBUNTU RASBERRY PI FIGMA`;
 skillsArea.append(mySkills, skills);
 
 const footer = document.createElement('span');
@@ -372,7 +374,7 @@ footer.id = "footer";
 const left = document.createElement('span');
 left.innerText = "lucsoft.de – Copyright 2020"
 const right = document.createElement('span');
-right.innerHTML = `<a href="https://hmsys.de/">HmSYS</a><a href="https://github.com/lucsoft">GitHub</a><a href="https://twitter.com/lucsoft">Twitter</a><a href="https://lucsoft.de/p/imprint">Imprint</a>`
+right.innerHTML = `<a href="https://hmsys.de/">HmSYS</a><a href="https://github.com/lucsoft">GitHub</a><a href="https://twitter.com/lucsoft_">Twitter</a><a href="https://lucsoft.de/p/imprint">Imprint</a>`
 footer.append(left, right);
 cards.custom({ element: skillsArea }).custom({ element: footer });
 

@@ -348,9 +348,15 @@ const cards = web.elements.body()
             },
             {
                 align: "right",
-                title: "DRK PSYS",
+                title: "DRK PSYS ",
                 subtitle: "PHP – WebGen 2018/19",
                 description: "Punktesystem is a small tool for DRK OV Furtwangen"
+            },
+            {
+                align: "right",
+                title: "PSYS 2.0",
+                subtitle: "Typescript – WebGen",
+                description: "PSYS 2.0 is the new version with better UI and UX for DRK OV Furtwangen"
             }
         ]
     })

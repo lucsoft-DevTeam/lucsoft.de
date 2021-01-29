@@ -2,14 +2,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 const path = require('path');
 
 module.exports = {
     entry: {
         main: "./src/index.ts"
     },
-    mode: "development",
-    devtool: 'inline-source-map',
+    mode: "production",
     output: {
         filename: '[name].js',
         chunkFilename: '[name].bundle.js',
@@ -68,6 +68,6 @@ module.exports = {
     ],
     optimization: {
         minimize: true,
-        minimizer: [ new CssMinimizerPlugin() ]
+        minimizer: [ new TerserPlugin(), new CssMinimizerPlugin() ]
     }
 };

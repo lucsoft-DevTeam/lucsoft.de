@@ -4,8 +4,8 @@
     "description": "Currenty website of lucsoft.de",
     "main": "index.ts",
     "scripts": {
-        "start": "webpack-dev-server",
-        "build": "webpack"
+        "start": "webpack serve",
+        "build": "webpack --config webpack.prod.js"
     },
     "repository": {
         "type": "git",
@@ -27,20 +27,22 @@
     },
     "homepage": "https://github.com/lucsoft-DevTeam/lucsoft.de#readme",
     "dependencies": {
-        "@lucsoft/webgen": "^1.9.0-beta.11",
-        "mini-css-extract-plugin": "^0.9.0",
-        "optimize-css-assets-webpack-plugin": "^5.0.3"
+        "@lucsoft/webgen": "^1.10.1",
+        "@webpack-cli/serve": "^1.2.2",
+        "clean-webpack-plugin": "^3.0.0",
+        "css-loader": "^5.0.1",
+        "css-minimizer-webpack-plugin": "^1.2.0",
+        "html-webpack-plugin": "^4.5.1",
+        "mini-css-extract-plugin": "^1.3.4",
+        "style-loader": "^2.0.0",
+        "ts-loader": "^8.0.14",
+        "typescript": "^4.1.3",
+        "url-loader": "^4.1.1",
+        "webpack": "^5.17.0",
+        "webpack-cli": "^4.4.0"
     },
     "devDependencies": {
-        "clean-webpack-plugin": "^3.0.0",
-        "css-loader": "^3.5.3",
-        "html-webpack-plugin": "^4.3.0",
-        "style-loader": "^1.2.1",
-        "ts-loader": "^7.0.5",
-        "typescript": "^3.9.3",
-        "url-loader": "^4.1.0",
-        "webpack": "^4.43.0",
-        "webpack-cli": "^3.3.11",
-        "webpack-dev-server": "^3.11.0"
+        "terser-webpack-plugin": "^5.1.1",
+        "webpack-dev-server": "^3.11.2"
     }
 }

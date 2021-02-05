@@ -2,14 +2,28 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 const path = require('path');
+
+const createPage = (pagePath, chunks = [], template = "./src/index.html") =>
+    new HtmlWebpackPlugin({
+        inject: 'body',
+        chunks: chunks,
+        template: template,
+        filename: pagePath,
+        minify: {
+            minifyCSS: true,
+            minifyJS: true,
+            removeComments: true,
+            collapseWhitespace: true
+        }
+    })
 
 module.exports = {
     entry: {
         main: "./src/index.ts"
     },
-    mode: "development",
-    devtool: 'inline-source-map',
+    mode: "production",
     output: {
         filename: '[name].js',
         chunkFilename: '[name].bundle.js',
@@ -22,11 +36,7 @@ module.exports = {
         rules: [
             {
                 test: /\.(png|jpe?g|gif)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                    },
-                ],
+                use: 'file-loader'
             },
             {
                 test: /\.ts$/,
@@ -43,7 +53,7 @@ module.exports = {
             },
             {
                 test: /\.svg$/i,
-                use: [ 'url-loader' ]
+                use: 'url-loader'
             }
         ]
     },
@@ -58,16 +68,11 @@ module.exports = {
             chunkFilename: '[id].css'
         }),
         new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            inject: 'body',
-            chunks: [ 'main' ],
-            template: './src/index.html',
-            filename: 'index.html',
-            minify: { minifyCSS: true, minifyJS: true, removeComments: true }
-        }),
+        createPage('index.html', [ 'main' ]),
+        createPage('/p/imprint.html', [], './src/p/imprint.html')
     ],
     optimization: {
         minimize: true,
-        minimizer: [ new CssMinimizerPlugin() ]
+        minimizer: [ new TerserPlugin(), new CssMinimizerPlugin() ]
     }
 };

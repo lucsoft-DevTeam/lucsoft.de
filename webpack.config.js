@@ -26,7 +26,7 @@ module.exports = (_, mode) =>
         entry: {
             main: "./src/index.ts",
             './p/hangman': "./src/p/hangman/index.ts",
-            './p/hmsys': "./src/p/hmsys/index.ts",
+            // './p/hmsys': "./src/p/hmsys/index.ts",
 
         },
         mode: isProduction ? "production" : "development",

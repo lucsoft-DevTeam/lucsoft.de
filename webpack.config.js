@@ -69,7 +69,7 @@ module.exports = {
         }),
         new CleanWebpackPlugin(),
         createPage('index.html', [ 'main' ]),
-        createPage('/p/imprint.html', [], './src/p/imprint.html')
+        createPage('./p/imprint.html', [], './src/p/imprint.html')
     ],
     optimization: {
         minimize: true,

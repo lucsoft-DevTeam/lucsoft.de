@@ -11,7 +11,7 @@ const navigationElements = [
 
 export function renderNavigation(body: WebGenElements)
 {
-    const nav = document.createElement('ul')
+    const nav = document.createElement('div')
     nav.classList.add('nav')
     navigationElements.forEach((x) =>
     {

@@ -30,8 +30,6 @@ export const handleGameUpdate = (game: gameData, web: WebGenElements, requestDra
             form
         ]
     }), ...extraCards);
-
-    input.focus();
 };
 
 export const checkNewChar = (game: gameData, input: HTMLInputElement, requestDraw: () => void) =>

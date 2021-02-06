@@ -19,23 +19,22 @@ jobs:
     steps:
     - name: Pull Project
       uses: actions/checkout@v2
-      
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    
+
     - name: Preparing Project
       run: npm i
-    
+
     - name: Building lucsoft.de
       run: npm run build
-    
+
     - name: Publish to lucsoft.de
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
         server: lucsoft.de
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./dist/ 
-        dry-run: true
+        local-dir: ./dist/

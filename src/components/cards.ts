@@ -16,10 +16,9 @@ export function renderCards(body: WebGenElements)
         }),
         cards.modernCard({
             align: "right",
-            icon: digiifyLogo,
-            title: 'Digiify',
-            subtitle: "SWIFT – HmSYS",
-            description: "Digiify is a prototype for analysing and fetching data"
+            title: 'WA-D2',
+            subtitle: "Typescript – Node.JS",
+            description: "A native client for WhatsApp Web"
         }),
         cards.modernCard({
             align: "right",
@@ -30,16 +29,23 @@ export function renderCards(body: WebGenElements)
         }),
         cards.modernCard({
             align: "right",
+            title: 'WebGen',
+            subtitle: "Typescript – NPM",
+            description: "WebGen is a UI/Rest/Websocket lib to create Webtools or Websites, like this one"
+        }),
+        cards.modernCard({
+            align: "right",
+            icon: digiifyLogo,
+            title: 'Digiify',
+            subtitle: "SWIFT – HmSYS",
+            description: "Digiify is a prototype for analysing and fetching data"
+        }),
+        cards.modernCard({
+            align: "right",
             icon: homesysLogo,
             title: 'HomeSYS',
             subtitle: "Typescript – HmSYS",
             description: "HomeSYS is a Project that aims to provide a easy to use Platfrom for you Smart Home Devices "
-        }),
-        cards.modernCard({
-            align: "right",
-            title: 'WebGen',
-            subtitle: "Typescript – NPM",
-            description: "WebGen is a UI/Rest/Websocket lib to create Webtools or Websites, like this one"
         }),
         cards.modernCard({
             align: "right",

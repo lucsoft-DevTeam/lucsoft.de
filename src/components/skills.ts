@@ -8,7 +8,7 @@ const skillsData = [
     'LUA', 'SWIFT', 'NODE.JS', 'WEBSOCKET',
     'SQL', 'NOSQL', 'SWT', 'WEBCOMPONENTS',
     'ARDUINO', 'LIT-HTML', 'REDUX', 'C++',
-    'UBUNTU', 'RASBERRY', 'PI', 'FIGMA'
+    'UBUNTU', 'RASBERRYPI', 'FIGMA'
 ]
 
 export function renderSkills(body: WebGenElements)

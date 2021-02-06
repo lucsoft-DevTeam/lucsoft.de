@@ -3,7 +3,7 @@
     display: grid;
 }
 .my-skills {
-    font-size: 7rem;
+    font-size: 6.5rem;
     font-weight: 600;
     width: 10rem;
     margin: 0;
@@ -11,7 +11,7 @@
     text-align:left;
 }
 .skills {
-    font-size: 4.8rem;
+    font-size: 4.5rem;
     font-weight: 600;
     text-align: right;
     justify-self: right;

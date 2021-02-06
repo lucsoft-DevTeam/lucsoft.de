@@ -25,11 +25,13 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     
-    - name: Building lucsoft.de
+    - name: Preparing Project
     - run: npm i
+    
+    - name: Building lucsoft.de
     - run: npm run build
     
-    - name: Publish
+    - name: Publish to lucsoft.de
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
         server: lucsoft.de

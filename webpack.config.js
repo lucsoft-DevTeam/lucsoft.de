@@ -21,11 +21,13 @@ const createPage = (pagePath, chunks = [], template = "./src/index.html") =>
 
 module.exports = (_, mode) =>
 {
-    const isProduction = (typeof mode.production === "boolean" && mode.production);
+    const isProduction = (typeof mode.env.production === "boolean" && mode.env.production);
     return {
         entry: {
             main: "./src/index.ts",
-            './p/hangman': "./src/p/hangman/index.ts"
+            './p/hangman': "./src/p/hangman/index.ts",
+            './p/hmsys': "./src/p/hmsys/index.ts",
+
         },
         mode: isProduction ? "production" : "development",
         output: {

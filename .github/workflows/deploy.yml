@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-
+    name: Update lucsoft.de
     runs-on: ubuntu-latest
 
     strategy:
@@ -18,7 +18,7 @@ jobs:
 
     steps:
     - name: Pull Project
-    - uses: actions/checkout@v2
+      uses: actions/checkout@v2
       
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
@@ -26,10 +26,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
     
     - name: Preparing Project
-    - run: npm i
+      run: npm i
     
     - name: Building lucsoft.de
-    - run: npm run build
+      run: npm run build
     
     - name: Publish to lucsoft.de
       uses: SamKirkland/FTP-Deploy-Action@4.0.0

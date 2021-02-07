@@ -26,7 +26,7 @@ module.exports = (_, mode) =>
         entry: {
             main: "./src/index.ts",
             './p/hangman': "./src/p/hangman/index.ts",
-            // './p/hmsys': "./src/p/hmsys/index.ts",
+            './p/hmsys': "./src/p/hmsys/index.ts",
 
         },
         mode: isProduction ? "production" : "development",
@@ -71,7 +71,8 @@ module.exports = (_, mode) =>
             }),
             createPage('index', [ 'main' ]),
             createPage('./p/imprint', [], './src/p/imprint.html'),
-            createPage('./p/hangman', [ './p/hangman' ])
+            createPage('./p/hangman', [ './p/hangman' ]),
+            createPage('./p/hmsys', [ './p/hmsys' ]),
         ],
         optimization: isProduction ? {
             minimize: true,

@@ -5,6 +5,7 @@
     font-size: 3.9rem;
     width: 43rem;
     text-align-last: right;
+    color: var(--on-card-text);
 }
 
 #opener {

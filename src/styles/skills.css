@@ -1,6 +1,7 @@
 .skills-area {
     margin: 2rem auto 5rem;
     display: grid;
+    color: var(--on-card-text);
 }
 .my-skills {
     font-size: 6.5rem;

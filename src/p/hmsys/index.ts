@@ -78,7 +78,7 @@ web.ready = async () =>
                         },
                         {
                             left: 'Uptime (Host)',
-                            right: span(new Date(entry.host.uptime).toLocaleString())
+                            right: span(new Date((new Date().getTime()) - entry.host.uptime).toLocaleString())
                         },
                         {
                             left: 'Events since Restart',

@@ -1,4 +1,4 @@
-import { WebGen, cards, SupportedThemes } from '@lucsoft/webgen';
+import { WebGen, richCard, SupportedThemes } from '@lucsoft/webgen';
 import { renderNavigation } from '../../components/navigation';
 
 import { selectWord } from './components/svgRender';
@@ -14,7 +14,7 @@ const body = web.elements.body({ maxWidth: "80rem" });
 
 renderNavigation(body);
 const shellElement = document.createElement('div');
-body.custom({ element: shellElement });
+body.custom(shellElement);
 var shell = web.elements.custom(shellElement);
 const draw = () =>
 {
@@ -22,7 +22,7 @@ const draw = () =>
     console.log(game);
     if (game == undefined)
     {
-        shell.cards({ maxWidth: "40rem" }, cards.richCard({
+        shell.cards({ maxWidth: "40rem" }, richCard({
             title: 'Start new Game!',
             content: 'Press the button to state a new Game of Hangman',
             buttons: [

@@ -1,10 +1,10 @@
-import { cards } from '@lucsoft/webgen';
+import { richCard } from "@lucsoft/webgen";
 import { checkNewChar } from '../game';
 import { gameData } from '../types';
 
 export function generateCheatCard(ai: { availableWords: string[]; winningChance: number; highestProbability: { char: any; count: any; procent: number; }[]; }, input: HTMLInputElement, game: gameData, requestDraw: () => void): any
 {
-    return cards.richCard({
+    return richCard({
         title: 'Hangman AI',
         content: [
             `CharProbabilityHighest: ${ai.highestProbability[ 0 ].char}`,

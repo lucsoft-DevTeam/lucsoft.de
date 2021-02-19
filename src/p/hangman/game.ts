@@ -1,4 +1,4 @@
-import { WebGenElements, cards } from '@lucsoft/webgen';
+import { WebGenElements, richCard } from '@lucsoft/webgen';
 
 import { getData } from './ai/chardectect';
 import { generateCheatCard } from './components/cheatCard';
@@ -21,7 +21,7 @@ export const handleGameUpdate = (game: gameData, web: WebGenElements, requestDra
     const extraCards = [];
     if (game.enableCheats)
         extraCards.push(generateCheatCard(ai, input, game, requestDraw))
-    web.cards({ maxWidth: !game.enableCheats ? '40rem' : undefined }, cards.richCard({
+    web.cards({ maxWidth: !game.enableCheats ? '40rem' : undefined }, richCard({
         title: 'Hangman',
         content: [
             renderHangman(game.failedAttemps),

@@ -20,5 +20,5 @@ export function renderNavigation(body: WebGenElements)
         label.href = x.url
         nav.append(label)
     })
-    body.custom({ element: nav })
+    body.custom(nav)
 }

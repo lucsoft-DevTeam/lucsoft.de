@@ -22,5 +22,5 @@ export function renderSkills(body: WebGenElements)
     mySkills.innerText = "MY SKILLS"
     skills.innerText = skillsData.join(' ');
     skillsArea.append(mySkills, skills)
-    body.custom({ element: skillsArea })
+    body.custom(skillsArea)
 }

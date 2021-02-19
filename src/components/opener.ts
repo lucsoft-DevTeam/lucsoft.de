@@ -26,5 +26,5 @@ export function renderOpener(body: WebGenElements)
     openerText.innerText = "18 years young developer & designer creating software and hardware with ❤️";
     openerText.id = "opener-text";
     opener.append(openerText);
-    body.custom({ element: opener })
+    body.custom(opener)
 }

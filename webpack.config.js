@@ -76,7 +76,15 @@ module.exports = (_, mode) =>
         ],
         optimization: isProduction ? {
             minimize: true,
-            minimizer: [ new TerserPlugin(), new CssMinimizerPlugin() ]
+            minimizer: [ new TerserPlugin(), new CssMinimizerPlugin() ],
+            splitChunks: {
+                chunks: 'async',
+                minSize: 20000,
+                maxAsyncRequests: 30,
+                maxInitialRequests: 30,
+                maxSize: 0,
+                minChunks: 1
+            }
         } : undefined
     }
 };

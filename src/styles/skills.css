@@ -1,6 +1,8 @@
 .skills-area {
-    margin: 2rem auto 5rem;
+    max-width: var(--max-width);
+    margin: var(--gap) auto;
     display: grid;
+    gap: var(--gap);
     color: var(--on-card-text);
 }
 .my-skills {
@@ -50,7 +52,7 @@
 
 @media(max-width: 729px) {
     .skills-area {
-        margin: .5rem 1rem 3rem;
+        margin: .5rem 2rem 3rem;
     }
     .my-skills {
         font-size: 3rem;

@@ -79,5 +79,5 @@ export function renderCards(body: WebGenElements)
             subtitle: "Typescript – WebGen",
             description: "PSYS 2.0 is the new version with better UI and UX for DRK OV Furtwangen"
         })
-    ).last.style.marginTop = "9rem";
+    )
 }

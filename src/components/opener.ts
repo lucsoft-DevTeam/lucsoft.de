@@ -14,10 +14,12 @@ export function renderOpener(body: WebGenElements)
     const imageLeft = document.createElement('img');
     imageLeft.src = WifiNode3;
     imageLeft.id = 'image-left';
+    imageLeft.height = 280;
 
     const imageRight = document.createElement('img');
     imageRight.src = WifiNode3;
     imageRight.id = 'image-right';
+    imageRight.height = 280;
 
     imageContainer.append(imageLeft, imageRight);
     opener.append(imageContainer);

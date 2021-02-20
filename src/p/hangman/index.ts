@@ -29,12 +29,12 @@ const draw = () =>
                 {
                     color: "normal",
                     action: () => startNewGame(true),
-                    text: 'Play Game (Cheats)'
+                    title: 'Play Game (Cheats)'
                 },
                 {
                     color: "normal",
                     action: () => startNewGame(false),
-                    text: 'Play Game'
+                    title: 'Play Game'
                 }
             ]
         }));

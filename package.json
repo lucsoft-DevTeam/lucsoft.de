@@ -28,7 +28,7 @@
     },
     "homepage": "https://github.com/lucsoft-DevTeam/lucsoft.de#readme",
     "dependencies": {
-        "@lucsoft/webgen": "^1.13.3",
+        "@lucsoft/webgen": "^1.13.4",
         "@webpack-cli/serve": "^1.3.0",
         "css-loader": "^5.0.2",
         "css-minimizer-webpack-plugin": "^1.2.0",

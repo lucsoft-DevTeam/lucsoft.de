@@ -16,7 +16,7 @@ export function generateCheatCard(ai: { availableWords: string[]; winningChance:
         buttons: [
             {
                 color: 'normal',
-                text: 'Predict Character',
+                title: 'Predict Character',
                 action: () =>
                 {
                     input.value = ai.highestProbability[ 0 ].char;

@@ -11,7 +11,7 @@ export const handleGameWin = (game: gameData, web: WebGenElements, resetGame: ()
             {
                 color: "red",
                 action: () => resetGame(),
-                text: 'Go back'
+                title: 'Go back'
             }
         ]
     }))

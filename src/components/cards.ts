@@ -17,6 +17,12 @@ export function renderCards(body: WebGenElements)
         }),
         modernCard({
             align: "right",
+            title: "bbn.one",
+            subtitle: "Typescript – WebGen",
+            description: "A website for the BigBotNetwork powered by WebGen"
+        }),
+        modernCard({
+            align: "right",
             title: 'WA-D2',
             subtitle: "Typescript – Node.JS",
             description: "A native client for WhatsApp Web"
@@ -63,6 +69,12 @@ export function renderCards(body: WebGenElements)
         }),
         modernCard({
             align: "right",
+            title: "PSYS 2.0",
+            subtitle: "Typescript – WebGen",
+            description: "PSYS 2.0 is the new version with better UI and UX for DRK OV Furtwangen"
+        }),
+        modernCard({
+            align: "right",
             title: "NCSwitch",
             subtitle: "Typescript – NPM",
             description: "a pi program that allowed to use local/wired protocols"
@@ -73,11 +85,6 @@ export function renderCards(body: WebGenElements)
             subtitle: "PHP – WebGen 2018/19",
             description: "Punktesystem is a small tool for DRK OV Furtwangen"
         }),
-        modernCard({
-            align: "right",
-            title: "PSYS 2.0",
-            subtitle: "Typescript – WebGen",
-            description: "PSYS 2.0 is the new version with better UI and UX for DRK OV Furtwangen"
-        })
+
     )
 }

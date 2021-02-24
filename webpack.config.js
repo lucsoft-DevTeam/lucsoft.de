@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 const path = require('path');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const createPage = (pagePath, chunks = [], template = "./src/index.html") =>
     new HtmlWebpackPlugin({
@@ -22,12 +23,13 @@ const createPage = (pagePath, chunks = [], template = "./src/index.html") =>
 module.exports = (_, mode) =>
 {
     const isProduction = (typeof mode.env.production === "boolean" && mode.env.production);
+    const generateProfile = (typeof mode.env.generateprofile === "boolean" && mode.env.generateprofile);
+
     return {
         entry: {
             main: "./src/index.ts",
             './p/hangman': "./src/p/hangman/index.ts",
             './p/hmsys': "./src/p/hmsys/index.ts",
-
         },
         mode: isProduction ? "production" : "development",
         output: {
@@ -65,6 +67,7 @@ module.exports = (_, mode) =>
             host: '0.0.0.0'
         },
         plugins: [
+            ...(generateProfile ? [ new BundleAnalyzerPlugin() ] : []),
             new MiniCssExtractPlugin({
                 filename: '[name].css',
                 chunkFilename: '[id].css'

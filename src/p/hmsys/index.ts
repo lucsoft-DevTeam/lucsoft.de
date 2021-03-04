@@ -36,8 +36,31 @@ statusCard.style.marginTop = "10%";
 let statusPage = [ richCard({
     title: 'HmSYS Status',
     content: span('Fetching Service...')
-
 }) ];
+function timeSince(date: number)
+{
+
+    var seconds = Math.floor(date);
+
+    var interval = seconds / 31536000;
+
+    interval = seconds / 86400;
+    if (interval > 1)
+    {
+        return Math.floor(interval) + " days";
+    }
+    interval = seconds / 3600;
+    if (interval > 1)
+    {
+        return Math.floor(interval) + " hours";
+    }
+    interval = seconds / 60;
+    if (interval > 1)
+    {
+        return Math.floor(interval) + " minutes";
+    }
+    return Math.floor(seconds) + " seconds";
+}
 action(statusCard, 'value', statusPage);
 services.then(async x =>
 {
@@ -73,11 +96,11 @@ services.then(async x =>
                     },
                     {
                         left: 'Uptime (HmSYS)',
-                        right: span(new Date(entry.uptime).toLocaleString())
+                        right: span(timeSince((new Date().getTime() - entry.uptime) / 1000))
                     },
                     {
                         left: 'Uptime (Host)',
-                        right: span(new Date((new Date().getTime()) - entry.host.uptime).toLocaleString())
+                        right: span(timeSince(entry.host.uptime))
                     },
                     {
                         left: 'Events since Restart',

@@ -1,6 +1,6 @@
 .skills-area {
     max-width: var(--max-width);
-    margin: var(--gap) auto;
+    margin: var(--gap) auto 2rem;
 }
 
 .my-skills {

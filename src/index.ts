@@ -1,4 +1,4 @@
-import { SupportedThemes, WebGen } from '@lucsoft/webgen';
+import { WebGen } from '@lucsoft/webgen';
 import { renderCards } from './components/cards';
 import { renderFooter } from './components/footer';
 import { renderNavigation } from './components/navigation';
@@ -14,5 +14,3 @@ renderOpener(page)
 renderCards(page)
 renderSkills(page)
 renderFooter(page)
-
-web.style.handleTheme(SupportedThemes.auto);

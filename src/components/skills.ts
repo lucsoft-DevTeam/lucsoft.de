@@ -1,11 +1,11 @@
-import { span, WebGenElements } from '@lucsoft/webgen';
+import { custom, span, WebGenElements } from '@lucsoft/webgen';
 
 import '../styles/skills.css';
 
 const skillProgressData: [ string, number ][] = [
-    [ "Web Development", 77 ],
-    [ "UI / UX", 50 ],
-    [ "Backend Development", 32 ],
+    [ "Web Development", 70 ],
+    [ "UI / UX", 45 ],
+    [ "Backend Development", 30 ],
     [ "Hardware/Firmware Development", 10 ],
     [ "Mobile Development", 8 ]
 ]
@@ -22,23 +22,17 @@ const skillsData = [
 
 export function renderSkills(body: WebGenElements)
 {
-    const skillsArea = document.createElement('section');
-    skillsArea.classList.add("skills-area")
-    const mySkills = document.createElement('h2')
-    mySkills.classList.add('my-skills')
-    mySkills.innerText = "MY SKILLS"
+    const skillsArea = custom('section', undefined, "skills-area");
+    const mySkills = custom('h2', "MY SKILLS", 'my-skills')
     const renderProgressBar = (name: string, progress: number) =>
     {
-        const background = document.createElement('div');
-        background.classList.add('skill-bar')
-        const foreground = document.createElement('div')
+        const background = custom('div', undefined, 'skill-bar');
+        const foreground = custom('div', span(name))
         foreground.style.width = `${progress}%`;
-        foreground.append(span(name))
         background.append(span(name), foreground)
         return background
     }
-    const skills = span(skillsData.join(' '))
-    skills.classList.add('skills')
+    const skills = span(skillsData.join(' '), 'skills')
     skillsArea.append(mySkills, ...skillProgressData.map(x => renderProgressBar(x[ 0 ], x[ 1 ])), skills)
     body.custom(skillsArea)
 }

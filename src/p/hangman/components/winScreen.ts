@@ -5,7 +5,7 @@ import type { gameData } from '../types';
 export const handleGameWin = (game: gameData, web: WebGenElements, resetGame: () => void) =>
 {
     web.cards({ maxWidth: '30rem' }, richCard({
-        title: 'You have Won!',
+        title: 'You Won!',
         content: `The word was ${game.word}. You made ${game.failedAttemps} mistakes`,
         buttons: [
             {

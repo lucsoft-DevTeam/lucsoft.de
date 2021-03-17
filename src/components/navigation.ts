@@ -1,4 +1,4 @@
-import { WebGenElements } from '@lucsoft/webgen';
+import { custom, WebGenElements } from '@lucsoft/webgen';
 
 import '../styles/navigation.css';
 
@@ -11,12 +11,10 @@ const navigationElements = [
 
 export function renderNavigation(body: WebGenElements)
 {
-    const nav = document.createElement('div')
-    nav.classList.add('nav')
+    const nav = custom('div', undefined, 'nav')
     navigationElements.forEach((x) =>
     {
-        const label = document.createElement('a')
-        label.innerText = x.title
+        const label = custom('a', x.title) as HTMLAnchorElement
         label.href = x.url
         nav.append(label)
     })

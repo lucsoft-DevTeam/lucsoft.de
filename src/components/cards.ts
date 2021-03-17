@@ -1,6 +1,5 @@
 import { modernCard, WebGenElements } from '@lucsoft/webgen';
 
-
 import digiifyLogo from '../imgs/digiify_logo.svg';
 import hmsysLogo from '../imgs/hmsys_logo.png';
 import homesysLogo from '../imgs/homesys_logo.svg';

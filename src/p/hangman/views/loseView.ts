@@ -2,8 +2,7 @@ import { richCard, WebGenElements } from '@lucsoft/webgen';
 
 import type { gameData } from '../types';
 
-export const handleGameLose = (game: gameData, web: WebGenElements, resetGame: () => void) =>
-{
+export const renderLoseView = (game: gameData, web: WebGenElements, resetGame: () => void) =>
     web.cards({ maxWidth: '30rem' }, richCard({
         title: 'You Lose!',
         content: `The word was ${game.word}. Hopefully you get it faster next round.`,
@@ -15,4 +14,3 @@ export const handleGameLose = (game: gameData, web: WebGenElements, resetGame: (
             }
         ]
     }))
-};

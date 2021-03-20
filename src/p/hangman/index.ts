@@ -1,12 +1,12 @@
-import { WebGen, richCard, SupportedThemes } from '@lucsoft/webgen';
+import { WebGen, richCard } from '@lucsoft/webgen';
 import { renderNavigation } from '../../components/navigation';
 
 import { selectWord } from './components/svgRender';
-import { handleGameUpdate } from './game';
+import { renderGameView } from './views/gameView';
 import { words } from './ai/lib';
 import { gameData } from './types';
-import { handleGameWin } from './components/winScreen';
-import { handleGameLose } from './components/loseScreen';
+import { renderWinView } from './views/winView';
+import { renderLoseView } from './views/loseView';
 
 const web = new WebGen();
 var game: gameData | undefined = undefined;
@@ -19,9 +19,7 @@ var shell = web.elements.custom(shellElement);
 const draw = () =>
 {
     shellElement.innerHTML = "";
-    console.log(game);
     if (game == undefined)
-    {
         shell.cards({ maxWidth: "40rem" }, richCard({
             title: 'Start new Game!',
             content: 'Press the button to state a new Game of Hangman',
@@ -38,14 +36,12 @@ const draw = () =>
                 }
             ]
         }));
-    }
-    else if (game.failedAttemps > 10)
-        handleGameLose(game, shell, () => { game = undefined; draw(); })
-    else if (game.wordLookUp.join('') === game.word)
-        handleGameWin(game, shell, () => { game = undefined; draw(); });
-    else
-        handleGameUpdate(game, shell, () => draw());
+
+    else if (game.failedAttemps > 10) renderLoseView(game, shell, () => { game = undefined; draw(); })
+    else if (game.wordLookUp.join('') === game.word) renderWinView(game, shell, () => { game = undefined; draw(); });
+    else renderGameView(game, shell, () => draw());
 };
+
 const startNewGame = (enableCheats: boolean) =>
 {
     const newWord = selectWord(words);
@@ -60,4 +56,3 @@ const startNewGame = (enableCheats: boolean) =>
 };
 
 draw();
-web.style.handleTheme(SupportedThemes.auto);

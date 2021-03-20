@@ -1,8 +1,9 @@
 import { richCard } from "@lucsoft/webgen";
-import { checkNewChar } from '../game';
+import { aiData } from "../ai/aiType";
 import { gameData } from '../types';
+import { checkNewChar } from "./checkNewChar";
 
-export function generateCheatCard(ai: { availableWords: string[]; winningChance: number; highestProbability: { char: any; count: any; procent: number; }[]; }, input: HTMLInputElement, game: gameData, requestDraw: () => void): any
+export function generateCheatCard(ai: aiData, input: HTMLInputElement, game: gameData, requestDraw: () => void): any
 {
     return richCard({
         title: 'Hangman AI',
@@ -20,7 +21,8 @@ export function generateCheatCard(ai: { availableWords: string[]; winningChance:
                 action: () =>
                 {
                     input.value = ai.highestProbability[ 0 ].char;
-                    checkNewChar(game, input, requestDraw);
+                    checkNewChar(game, input)
+                    requestDraw()
                 }
             }
         ]

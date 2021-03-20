@@ -53,9 +53,7 @@ module.exports = (_, mode) =>
                 {
                     test: /\.css$/i,
                     use: [
-                        {
-                            loader: MiniCssExtractPlugin.loader
-                        },
+                        MiniCssExtractPlugin.loader,
                         'css-loader'
                     ]
                 }
@@ -63,7 +61,7 @@ module.exports = (_, mode) =>
         },
         devServer: {
             contentBase: "./dist",
-            port: 80,
+            port: 82,
             host: '0.0.0.0'
         },
         plugins: [

@@ -1,18 +1,16 @@
-import { custom, WebGenElements } from '@lucsoft/webgen';
+import { custom, img, WebGenElements } from '@lucsoft/webgen';
 
 import WifiNode3 from '../imgs/wifinode3.svg';
 
 import '../styles/opener.css'
 
-export function renderOpener(body: WebGenElements)
-{
+export function renderOpener(body: WebGenElements) {
     const opener = custom('div', undefined, "opener");
 
     const imageContainer = document.createElement('div');
 
-    const images = [ 'image-left', 'image-right' ].map(x =>
-    {
-        const image = custom('img', undefined, x) as HTMLImageElement;
+    const images = [ 'image-left', 'image-right' ].map(x => {
+        const image = img('img', WifiNode3, x);
         image.src = WifiNode3;
         image.height = 280;
         image.width = 90;

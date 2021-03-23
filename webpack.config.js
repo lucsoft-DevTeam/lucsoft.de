@@ -20,8 +20,7 @@ const createPage = (pagePath, chunks = [], template = "./src/index.html") =>
         }
     })
 
-module.exports = (_, mode) =>
-{
+module.exports = (_, mode) => {
     const isProduction = (typeof mode.env.production === "boolean" && mode.env.production);
     const generateProfile = (typeof mode.env.generateprofile === "boolean" && mode.env.generateprofile);
 
@@ -44,7 +43,10 @@ module.exports = (_, mode) =>
             rules: [
                 {
                     test: /\.(png|jpe?g|gif|svg)$/i,
-                    use: 'file-loader'
+                    loader: 'file-loader',
+                    options: {
+                        name: '[hash:hex:5].[ext]',
+                    }
                 },
                 {
                     test: /\.ts$/,

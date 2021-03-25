@@ -1,7 +1,6 @@
 import { createElement } from "@lucsoft/webgen";
 
-export const getInputField = (onSuccess: () => void) =>
-{
+export const getInputField = (onSuccess: () => void) => {
     const input = createElement('input') as HTMLInputElement;
     input.maxLength = 1;
     input.style.maxWidth = "26.3rem";

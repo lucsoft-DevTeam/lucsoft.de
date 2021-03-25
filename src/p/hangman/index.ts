@@ -1,4 +1,4 @@
-import { WebGen, richCard } from '@lucsoft/webgen';
+import { WebGen, richCard, Card, CommonCard } from '@lucsoft/webgen';
 import { renderNavigation } from '../../components/navigation';
 
 import { selectWord } from './components/svgRender';
@@ -8,42 +8,47 @@ import { gameData } from './types';
 import { renderWinView } from './views/winView';
 import { renderLoseView } from './views/loseView';
 
-const web = new WebGen();
+const web = WebGen();
 var game: gameData | undefined = undefined;
-const body = web.elements.body({ maxWidth: "80rem" });
 
-renderNavigation(body);
-const shellElement = document.createElement('div');
-body.custom(shellElement);
-var shell = web.elements.custom(shellElement);
-const draw = () =>
-{
-    shellElement.innerHTML = "";
-    if (game == undefined)
-        shell.cards({ maxWidth: "40rem" }, richCard({
-            title: 'Start new Game!',
-            content: 'Press the button to state a new Game of Hangman',
-            buttons: [
-                {
-                    color: "normal",
-                    action: () => startNewGame(true),
-                    title: 'Play Game (Cheats)'
-                },
-                {
-                    color: "normal",
-                    action: () => startNewGame(false),
-                    title: 'Play Game'
-                }
-            ]
-        }));
+const selectCards = (state: (undefined | 'lose' | 'win' | 'active' | 'active-cheat')): CommonCard[] => {
+    switch (state) {
+        case 'active':
+        case 'active-cheat':
+            return renderGameView(game!, body.redraw)
 
-    else if (game.failedAttemps > 10) renderLoseView(game, shell, () => { game = undefined; draw(); })
-    else if (game.wordLookUp.join('') === game.word) renderWinView(game, shell, () => { game = undefined; draw(); });
-    else renderGameView(game, shell, () => draw());
-};
+        case 'lose':
+            return renderLoseView(game!, () => { game = undefined; body.redraw({ state: undefined }) })
+        case 'win':
+            return renderWinView(game!, () => { game = undefined; body.redraw({ state: undefined }) })
+        default:
+            return [ richCard({
+                title: 'Start new Game!',
+                content: 'Press the button to state a new Game of Hangman',
+                buttons: [
+                    {
+                        color: "normal",
+                        action: () => startNewGame(true),
+                        title: 'Play Game (Cheats)'
+                    },
+                    {
+                        color: "normal",
+                        action: () => startNewGame(false),
+                        title: 'Play Game'
+                    }
+                ]
+            }) ];
+    }
+}
 
-const startNewGame = (enableCheats: boolean) =>
-{
+const body = web.render.toBody({ maxWidth: "80rem" }, {
+    state: undefined as (undefined | 'lose' | 'win' | 'active' | 'active-cheat')
+}, () => [
+    renderNavigation(),
+    (_, { state }) => Card({ maxWidth: state === undefined ? "40rem" : (state === 'active-cheat' ? "70rem" : (state === 'active' ? "30rem" : "25rem")) }, ...selectCards(state))
+]);
+
+const startNewGame = (enableCheats: boolean) => {
     const newWord = selectWord(words);
     game = {
         word: newWord,
@@ -52,7 +57,5 @@ const startNewGame = (enableCheats: boolean) =>
         wordLookUp: newWord.split('').map(() => ''),
         enableCheats
     }
-    draw();
-};
-
-draw();
+    body.redraw({ state: enableCheats ? 'active-cheat' : 'active' })
+}

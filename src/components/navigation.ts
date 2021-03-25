@@ -1,4 +1,4 @@
-import { custom, WebGenElements } from '@lucsoft/webgen';
+import { custom, RenderElement } from '@lucsoft/webgen';
 
 import '../styles/navigation.css';
 
@@ -9,14 +9,14 @@ const navigationElements = [
     { title: 'Contact', url: 'mailto:mail@lucsoft.de' }
 ];
 
-export function renderNavigation(body: WebGenElements)
-{
-    const nav = custom('div', undefined, 'nav')
-    navigationElements.forEach((x) =>
-    {
-        const label = custom('a', x.title) as HTMLAnchorElement
-        label.href = x.url
-        nav.append(label)
-    })
-    body.custom(nav)
-}
+export const renderNavigation = (): RenderElement => ({
+    draw: () => {
+        const nav = custom('div', undefined, 'nav')
+        navigationElements.forEach((x) => {
+            const label = custom('a', x.title) as HTMLAnchorElement
+            label.href = x.url
+            nav.append(label)
+        })
+        return nav
+    }
+})

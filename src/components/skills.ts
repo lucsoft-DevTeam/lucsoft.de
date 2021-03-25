@@ -1,4 +1,4 @@
-import { custom, span, WebGenElements } from '@lucsoft/webgen';
+import { custom, RenderElement, span } from '@lucsoft/webgen';
 
 import '../styles/skills.css';
 
@@ -20,19 +20,19 @@ const skillsData = [
     'UBUNTU', 'RASPBERRY PI', 'FIGMA'
 ]
 
-export function renderSkills(body: WebGenElements)
-{
-    const skillsArea = custom('section', undefined, "skills-area");
-    const mySkills = custom('h2', "MY SKILLS", 'my-skills')
-    const renderProgressBar = (name: string, progress: number) =>
-    {
-        const background = custom('div', undefined, 'skill-bar');
-        const foreground = custom('div', span(name))
-        foreground.style.width = `${progress}%`;
-        background.append(span(name), foreground)
-        return background
+export const renderSkills = (): RenderElement => ({
+    draw: () => {
+        const skillsArea = custom('section', undefined, "skills-area");
+        const mySkills = custom('h2', "MY SKILLS", 'my-skills')
+        const renderProgressBar = (name: string, progress: number) => {
+            const background = custom('div', undefined, 'skill-bar');
+            const foreground = custom('div', span(name))
+            foreground.style.width = `${progress}%`;
+            background.append(span(name), foreground)
+            return background
+        }
+        const skills = span(skillsData.join(' '), 'skills')
+        skillsArea.append(mySkills, ...skillProgressData.map(x => renderProgressBar(x[ 0 ], x[ 1 ])), skills)
+        return skillsArea;
     }
-    const skills = span(skillsData.join(' '), 'skills')
-    skillsArea.append(mySkills, ...skillProgressData.map(x => renderProgressBar(x[ 0 ], x[ 1 ])), skills)
-    body.custom(skillsArea)
-}
+})

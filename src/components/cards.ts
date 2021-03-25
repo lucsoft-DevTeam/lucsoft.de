@@ -1,13 +1,12 @@
-import { modernCard, WebGenElements } from '@lucsoft/webgen';
+import { Card, modernCard } from '@lucsoft/webgen';
 
 import digiifyLogo from '../imgs/digiify_logo.svg';
 import hmsysLogo from '../imgs/hmsys_logo.png';
 import homesysLogo from '../imgs/homesys_logo.svg';
 import rubiconLogo from '../imgs/rubicon_logo.svg';
 
-export function renderCards(body: WebGenElements)
-{
-    body.cards({},
+export const renderCards = () =>
+    Card({},
         modernCard({
             align: "right",
             title: 'DataStoreDB',
@@ -83,7 +82,5 @@ export function renderCards(body: WebGenElements)
             title: "DRK PSYS ",
             subtitle: "PHP – WebGen 2018/19",
             description: "Punktesystem is a small tool for DRK OV Furtwangen"
-        }),
-
+        })
     )
-}

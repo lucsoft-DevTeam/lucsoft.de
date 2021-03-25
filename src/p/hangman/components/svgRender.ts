@@ -14,4 +14,4 @@ const svgPath = [
     "M397.5 300.3l40 114m-41-114l-40 114m40-113.8v-132m.1 75.4l-49-49m98-.8l-24.5 24.5-24.5 24.5M150.5 6.5v459M150 6h247m-95 574.5s-13.5-115-148-115-148 115-148 115m391.5-574v82M204.4 6.8l-54 59M437 128.5a40 40 0 11-80 0 40 40 0 0180 0z"
 ];
 
-export const renderHangman = (failedAttemps: number) => `<svg style="display: block; width: 35%; margin: 0 auto;" viewBox="0 0 452 587" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="${svgPath[ failedAttemps ]}" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+export const renderHangman = (failedAttemps: number) => `<svg style="display: block; width: 35%; margin: 0 auto;" viewBox="0 0 452 587" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="${svgPath[ failedAttemps ]}" stroke="var(--on-card-text)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></svg>`

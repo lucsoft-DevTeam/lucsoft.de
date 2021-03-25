@@ -9,6 +9,7 @@ import { renderWinView } from './views/winView';
 import { renderLoseView } from './views/loseView';
 
 const web = WebGen();
+
 var game: gameData | undefined = undefined;
 
 const selectCards = (state: (undefined | 'lose' | 'win' | 'active' | 'active-cheat')): CommonCard[] => {

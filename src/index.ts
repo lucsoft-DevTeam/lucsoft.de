@@ -5,12 +5,13 @@ import { renderNavigation } from './components/navigation';
 import { renderOpener } from './components/opener';
 import { renderSkills } from './components/skills';
 
-const web = new WebGen();
+const web = WebGen();
 
-const page = web.elements.body({ maxWidth: '80rem' })
+web.render.toBody({ maxWidth: '80rem' }, {}, () => [
+    renderNavigation(),
+    renderOpener(),
+    renderCards(),
+    renderSkills(),
+    renderFooter()
 
-renderNavigation(page)
-renderOpener(page)
-renderCards(page)
-renderSkills(page)
-renderFooter(page)
+])

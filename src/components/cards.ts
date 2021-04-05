@@ -17,7 +17,7 @@ export const renderCards = () =>
             align: "right",
             title: "bbn.one",
             subtitle: "Typescript – WebGen",
-            description: "A website for the BigBotNetwork powered by WebGen"
+            description: "A website for BBN Holding powered by WebGen"
         }),
         modernCard({
             align: "right",

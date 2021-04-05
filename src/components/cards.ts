@@ -4,6 +4,7 @@ import digiifyLogo from '../imgs/digiify_logo.svg';
 import hmsysLogo from '../imgs/hmsys_logo.png';
 import homesysLogo from '../imgs/homesys_logo.svg';
 import rubiconLogo from '../imgs/rubicon_logo.svg';
+import bbnlogo from '../imgs/bbn-holding_logo.svg';
 
 export const renderCards = () =>
     Card({},
@@ -15,6 +16,7 @@ export const renderCards = () =>
         }),
         modernCard({
             align: "right",
+            icon: bbnlogo,
             title: "bbn.one",
             subtitle: "Typescript – WebGen",
             description: "A website for BBN Holding powered by WebGen"

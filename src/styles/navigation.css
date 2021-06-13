@@ -1,16 +1,17 @@
 .nav {
     padding: 0;
     margin: 0 auto;
-    max-width: 68.5rem;
+    max-width: 80rem;
     grid-template-columns: auto max-content max-content max-content;
     opacity: 0.6;
     display: grid;
+    gap: 3.2rem;
     animation: flowIn 1500ms ease;
 }
 
 .nav a {
     font-size: 1.7rem;
-    padding: 1.6rem;
+    padding: 1.6rem 0;
     display: inline-block;
     cursor: pointer;
     color: var(--on-card-text);

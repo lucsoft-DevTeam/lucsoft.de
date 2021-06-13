@@ -5,3 +5,7 @@ export type gameData = {
     checkedChars: string[];
     enableCheats: boolean;
 };
+
+export type ViewOptionsGame = {
+    state: 'lose' | 'win' | 'active' | 'active-cheat';
+};

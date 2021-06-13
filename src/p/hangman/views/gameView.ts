@@ -4,9 +4,9 @@ import { getData } from '../ai/chardectect';
 import { checkNewChar } from "../components/checkNewChar";
 import { renderHangman } from '../components/svgRender';
 import { getInputField } from "../input/inputField";
-import { gameData } from '../types';
+import { gameData, ViewOptionsGame } from '../types';
 
-export const renderGameView = (game: gameData, requestDraw: (data?: Partial<{ state: "lose" | "win" | "active" | undefined; }>) => void) => {
+export const renderGameView = (game: gameData, update: (data: Partial<ViewOptionsGame>) => void) => {
     const form = document.createElement('form');
     const input = getInputField(() => {
         checkNewChar(game, input);
@@ -32,8 +32,8 @@ export const renderGameView = (game: gameData, requestDraw: (data?: Partial<{ st
             `${ai.highestProbability.slice(0, 5).map(char => `<span style="width:6rem;display: inline-block;text-align:right; margin-right: .4rem;">${char.procent.toFixed(2)}%</span> ${char.char} (used ${char.count} times)`).join('<br>')}`
         ].join('<br>')
 
-        if (game.failedAttemps > 10) requestDraw({ state: "lose" })
-        if (game.wordLookUp.join('') === game.word) requestDraw({ state: "win" });
+        if (game.failedAttemps > 10) update({ state: "lose" })
+        if (game.wordLookUp.join('') === game.word) update({ state: "win" });
     }
     const cheatData = span("");
     if (game.enableCheats) extraCards.push(richCard({

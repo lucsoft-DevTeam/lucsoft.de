@@ -1,17 +1,19 @@
-import { WebGen } from '@lucsoft/webgen';
+import { View, WebGen } from '@lucsoft/webgen';
 import { renderCards } from './components/cards';
 import { renderFooter } from './components/footer';
 import { renderNavigation } from './components/navigation';
 import { renderOpener } from './components/opener';
 import { renderSkills } from './components/skills';
 
-const web = WebGen();
+WebGen();
 
-web.render.toBody({ maxWidth: '80rem' }, {}, () => [
-    renderNavigation(),
-    renderOpener(),
-    renderCards(),
-    renderSkills(),
-    renderFooter()
 
-])
+View(({ draw }) => {
+    draw(renderNavigation())
+    draw(renderOpener())
+    draw(renderCards())
+    draw(renderSkills())
+    draw(renderFooter())
+})
+    .setMaxWidth('80rem')
+    .appendOn(document.body)

@@ -1,55 +1,52 @@
-import { WebGen, richCard, Card, CommonCard } from '@lucsoft/webgen';
+import { WebGen, richCard, Card, CommonCard, View } from '@lucsoft/webgen';
 import { renderNavigation } from '../../components/navigation';
 
 import { selectWord } from './components/svgRender';
 import { renderGameView } from './views/gameView';
 import { words } from './ai/lib';
-import { gameData } from './types';
+import { gameData, ViewOptionsGame } from './types';
 import { renderWinView } from './views/winView';
 import { renderLoseView } from './views/loseView';
 
-const web = WebGen();
+WebGen();
 
 var game: gameData | undefined = undefined;
 
-const selectCards = (state: (undefined | 'lose' | 'win' | 'active' | 'active-cheat')): CommonCard[] => {
-    switch (state) {
+View<ViewOptionsGame>(({ state, update, draw }) => {
+    draw(renderNavigation());
+    const drawC = (data: CommonCard[]) => draw(Card({ maxWidth: findMaxWidthFromState(state) }, ...data));
+    switch (state.state) {
         case 'active':
         case 'active-cheat':
-            return renderGameView(game!, body.redraw)
+            return drawC(renderGameView(game!, update))
 
         case 'lose':
-            return renderLoseView(game!, () => { game = undefined; body.redraw({ state: undefined }) })
+            return drawC(renderLoseView(game!, () => { game = undefined; update({ state: undefined }) }))
         case 'win':
-            return renderWinView(game!, () => { game = undefined; body.redraw({ state: undefined }) })
+            return drawC(renderWinView(game!, () => { game = undefined; update({ state: undefined }) }))
         default:
-            return [ richCard({
+            return drawC([ richCard({
                 title: 'Start new Game!',
                 content: 'Press the button to state a new Game of Hangman',
                 buttons: [
                     {
                         color: "normal",
-                        action: () => startNewGame(true),
+                        action: () => startNewGame(true, update),
                         title: 'Play Game (Cheats)'
                     },
                     {
                         color: "normal",
-                        action: () => startNewGame(false),
+                        action: () => startNewGame(false, update),
                         title: 'Play Game'
                     }
                 ]
-            }) ];
+            }) ]);
     }
-}
+})
+    .setMaxWidth("80rem")
+    .appendOn(document.body);
 
-const body = web.render.toBody({ maxWidth: "80rem" }, {
-    state: undefined as (undefined | 'lose' | 'win' | 'active' | 'active-cheat')
-}, () => [
-    renderNavigation(),
-    (_, { state }) => Card({ maxWidth: state === undefined ? "40rem" : (state === 'active-cheat' ? "70rem" : (state === 'active' ? "30rem" : "25rem")) }, ...selectCards(state))
-]);
-
-const startNewGame = (enableCheats: boolean) => {
+const startNewGame = (enableCheats: boolean, update: (data: Partial<ViewOptionsGame>) => void) => {
     const newWord = selectWord(words);
     game = {
         word: newWord,
@@ -58,5 +55,16 @@ const startNewGame = (enableCheats: boolean) => {
         wordLookUp: newWord.split('').map(() => ''),
         enableCheats
     }
-    body.redraw({ state: enableCheats ? 'active-cheat' : 'active' })
+    update({ state: enableCheats ? 'active-cheat' : 'active' })
+}
+
+function findMaxWidthFromState({ state }: Partial<ViewOptionsGame>): string | undefined {
+    if (state == undefined)
+        return "40rem";
+    else if (state === 'active-cheat')
+        return "70rem";
+    else if (state === 'active')
+        return "30rem";
+    else
+        return "25rem";
 }

@@ -1,8 +1,8 @@
 import { custom, img } from '@lucsoft/webgen';
 
-import WifiNode3 from '../imgs/wifinode3.svg';
+import WifiNode3 from '../../imgs/wifinode3.svg';
 
-import '../styles/opener.css'
+import '../../styles/opener.css'
 
 export const renderOpener = () => ({
     draw: () => {

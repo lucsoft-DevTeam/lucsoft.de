@@ -1,6 +1,6 @@
 import { custom, RenderElement, span } from '@lucsoft/webgen';
 
-import '../styles/skills.css';
+import '../../styles/skills.css';
 
 const skillProgressData: [ string, number ][] = [
     [ "Web Development", 70 ],

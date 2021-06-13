@@ -1,10 +1,10 @@
 import { Card, modernCard } from '@lucsoft/webgen';
 
-import digiifyLogo from '../imgs/digiify_logo.svg';
-import hmsysLogo from '../imgs/hmsys_logo.png';
-import homesysLogo from '../imgs/homesys_logo.svg';
-import rubiconLogo from '../imgs/rubicon_logo.svg';
-import bbnlogo from '../imgs/bbn-holding_logo.svg';
+import digiifyLogo from '../../imgs/digiify_logo.svg';
+import hmsysLogo from '../../imgs/hmsys_logo.png';
+import homesysLogo from '../../imgs/homesys_logo.svg';
+import rubiconLogo from '../../imgs/rubicon_logo.svg';
+import bbnlogo from '../../imgs/bbn-holding_logo.svg';
 
 export const renderCards = () =>
     Card({},

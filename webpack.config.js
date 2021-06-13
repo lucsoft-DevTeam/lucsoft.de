@@ -26,7 +26,7 @@ module.exports = (_, mode) => {
 
     return {
         entry: {
-            main: "./src/index.ts",
+            main: "./src/pages/landing/index.ts",
             './p/hangman': "./src/pages/hangman/index.ts",
             './p/hmsys': "./src/pages/hmsys/index.ts",
         },

@@ -29,6 +29,7 @@ module.exports = (_, mode) => {
             main: "./src/pages/landing/index.ts",
             './p/hangman': "./src/pages/hangman/index.ts",
             './p/hmsys': "./src/pages/hmsys/index.ts",
+            './p/imprint': "./src/pages/imprint/index.ts"
         },
         mode: isProduction ? "production" : "development",
         output: {
@@ -73,7 +74,7 @@ module.exports = (_, mode) => {
                 chunkFilename: '[id].css'
             }),
             createPage('index', [ 'main' ]),
-            createPage('./p/imprint', [], './src/pages/imprint.html'),
+            createPage('./p/imprint', [ './p/imprint' ]),
             createPage('./p/hangman', [ './p/hangman' ]),
             createPage('./p/hmsys', [ './p/hmsys' ]),
         ],

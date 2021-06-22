@@ -1,4 +1,4 @@
-import { richCard } from '@lucsoft/webgen';
+import { Color, richCard } from '@lucsoft/webgen';
 
 import type { gameData } from '../types';
 
@@ -8,7 +8,7 @@ export const renderLoseView = (game: gameData, resetGame: () => void) => [
         content: `The word was ${game.word}. Hopefully you get it faster next round.`,
         buttons: [
             {
-                color: "red",
+                color: Color.Critical,
                 action: () => resetGame(),
                 title: 'Go back'
             }

@@ -30,12 +30,10 @@ View<ViewOptionsGame>(({ state, update, draw }) => {
                 content: 'Press the button to state a new Game of Hangman',
                 buttons: [
                     {
-                        color: "normal",
                         action: () => startNewGame(true, update),
                         title: 'Play Game (Cheats)'
                     },
                     {
-                        color: "normal",
                         action: () => startNewGame(false, update),
                         title: 'Play Game'
                     }

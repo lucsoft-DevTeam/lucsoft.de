@@ -1,13 +1,16 @@
-import { createElement } from "@lucsoft/webgen";
+import { draw, Input } from "@lucsoft/webgen";
+
+export function getInputFromComponent(input: HTMLElement) {
+    return input.querySelector("input")!;
+}
 
 export const getInputField = (onSuccess: () => void) => {
-    const input = createElement('input') as HTMLInputElement;
+    const shell = draw(Input({
+        placeholder: "Type a character"
+    }));
+    const input = getInputFromComponent(shell);
     input.maxLength = 1;
-    input.style.maxWidth = "26.3rem";
-    input.style.margin = "0.8rem auto";
-    input.classList.add('maxWidth', 'default');
-    input.placeholder = "Type a character";
     input.addEventListener("keyup", (event) => { if (event.key.match(/^[a-zA-Z]$/)) onSuccess(); else input.value = "" });
 
-    return input;
+    return shell;
 }

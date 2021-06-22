@@ -1,4 +1,4 @@
-import { richCard } from '@lucsoft/webgen';
+import { Color, richCard } from '@lucsoft/webgen';
 
 import type { gameData } from '../types';
 
@@ -8,7 +8,7 @@ export const renderWinView = (game: gameData, resetGame: () => void) => [
         content: `The word was ${game.word}. You made ${game.failedAttemps} mistakes`,
         buttons: [
             {
-                color: "red",
+                color: Color.Colored,
                 action: () => resetGame(),
                 title: 'Go back'
             }

@@ -1,9 +1,9 @@
-import { createElement, richCard, span } from '@lucsoft/webgen';
+import { createElement, draw, richCard, span, Vertical } from '@lucsoft/webgen';
 
 import { getData } from '../ai/chardectect';
 import { checkNewChar } from "../components/checkNewChar";
 import { renderHangman } from '../components/svgRender';
-import { getInputField } from "../input/inputField";
+import { getInputField, getInputFromComponent } from "../input/inputField";
 import { gameData, ViewOptionsGame } from '../types';
 
 export const renderGameView = (game: gameData, update: (data: Partial<ViewOptionsGame>) => void) => {
@@ -11,7 +11,6 @@ export const renderGameView = (game: gameData, update: (data: Partial<ViewOption
     const input = getInputField(() => {
         checkNewChar(game, input);
         microRerender()
-
     });
     form.append(input);
     form.onsubmit = (e) => e.preventDefault();
@@ -20,7 +19,7 @@ export const renderGameView = (game: gameData, update: (data: Partial<ViewOption
 
     let ai = getData(game);
     function microRerender() {
-        input.value = "";
+        getInputFromComponent(input).value = "";
         contentThing.innerHTML = `<center style="font-size: 3rem; font-weight: 100;padding-bottom: 0.8rem;">${game.wordLookUp.map((real) => real.toUpperCase() == "" ? '_' : real).join(' ')}</center>`
         hangman.innerHTML = renderHangman(game.failedAttemps)
         attemps.innerText = game.checkedChars.join(' ');
@@ -43,10 +42,9 @@ export const renderGameView = (game: gameData, update: (data: Partial<ViewOption
         ],
         buttons: [
             {
-                color: 'normal',
                 title: 'Predict Character',
                 action: () => {
-                    input.value = ai.highestProbability[ 0 ].char;
+                    getInputFromComponent(input).value = ai.highestProbability[ 0 ].char;
                     checkNewChar(game, input)
                     microRerender()
                 }
@@ -65,7 +63,10 @@ export const renderGameView = (game: gameData, update: (data: Partial<ViewOption
             hangman,
             contentThing,
             attemps,
-            form
+            draw(Vertical({
+                margin: "1rem 0 0",
+                align: "center"
+            }, form))
         ]
     }), ...extraCards ];
 };

@@ -1,4 +1,4 @@
-import { WebGen, list, span, Custom, Card, CommonCard, richCard, View } from '@lucsoft/webgen';
+import { WebGen, list, span, Custom, Card, CommonCard, richCard, View, Grid } from '@lucsoft/webgen';
 import { timeSince } from "../../commons/time";
 import { renderNavigation } from '../../components/navigation';
 import './animation.css';
@@ -24,21 +24,21 @@ background.style.zIndex = "-1";
 
 background.innerHTML = `<svg viewBox="0 0 5019 4492" fill="none" xmlns="http://www.w3.org/2000/svg">${svgElements.map(x => `<rect width="${x[ 0 ]}" height="${x[ 0 ]}" transform="matrix(${x[ 1 ]})" fill="${x[ 2 ]}" ${typeof x[ 3 ] !== "undefined" ? `class="mv ${x[ 3 ]}"` : ''}/>`)}</svg>`;
 
-View<{ statusPage: CommonCard[] }>(({ draw, state, update }) => {
+View<{ statusPage: CommonCard[] }>(({ use, state, update }) => {
 
-    draw(renderNavigation());
-    draw(Custom(background))
+    use(renderNavigation());
+    use(Custom(background))
 
     if (state.statusPage === undefined)
         fetchData(update)
 
     if (!state.statusPage || state.statusPage.length == 0)
-        draw(Card({ maxWidth: "50rem" }, richCard({
+        use(Grid({ maxWidth: "50rem" }, richCard({
             title: 'HmSYS Status',
             content: span('Fetching Service...')
         })))
     else
-        draw(Card({ maxWidth: "50rem" }, ...state.statusPage))
+        use(Grid({ maxWidth: "50rem" }, ...state.statusPage))
 
 }).appendOn(document.body)
 

@@ -1,4 +1,4 @@
-import { WebGen, richCard, Card, CommonCard, View } from '@lucsoft/webgen';
+import { WebGen, richCard, CommonCard, View, Grid } from '@lucsoft/webgen';
 import { renderNavigation } from '../../components/navigation';
 
 import { selectWord } from './components/svgRender';
@@ -12,9 +12,9 @@ WebGen();
 
 var game: gameData | undefined = undefined;
 
-View<ViewOptionsGame>(({ state, update, draw }) => {
-    draw(renderNavigation());
-    const drawC = (data: CommonCard[]) => draw(Card({ maxWidth: findMaxWidthFromState(state) }, ...data));
+View<ViewOptionsGame>(({ state, update, use }) => {
+    use(renderNavigation());
+    const drawC = (data: CommonCard[]) => use(Grid({ maxWidth: findMaxWidthFromState(state) }, ...data));
     switch (state.state) {
         case 'active':
         case 'active-cheat':

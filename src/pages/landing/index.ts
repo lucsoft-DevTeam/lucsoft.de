@@ -7,12 +7,12 @@ import { renderSkills } from './skills';
 
 WebGen();
 
-View(({ draw }) => {
-    draw(renderNavigation())
-    draw(renderOpener())
-    draw(renderCards())
-    draw(renderSkills())
-    draw(renderFooter())
+View(({ use }) => {
+    use(renderNavigation())
+    use(renderOpener())
+    use(renderCards())
+    use(renderSkills())
+    use(renderFooter())
 })
     .setMaxWidth('80rem')
     .appendOn(document.body)

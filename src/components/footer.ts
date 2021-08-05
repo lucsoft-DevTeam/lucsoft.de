@@ -1,13 +1,19 @@
-import { span } from '@lucsoft/webgen';
+import { custom, Horizontal, span } from '@lucsoft/webgen';
 
 import '../styles/footer.css';
 
-export const renderFooter = () => ({
-    draw: () => {
-        const footer = span(undefined, 'footer');
-        const right = span(undefined);
-        right.innerHTML = `<a href="https://hmsys.de/">HmSYS</a><a href="https://github.com/lucsoft">GitHub</a><a href="https://twitter.com/lucsoft">Twitter</a><a href="https://lucsoft.de/p/imprint">Imprint</a>`
-        footer.append(span("lucsoft.de – Copyright 2021"), right);
-        return footer;
-    }
-})
+export const renderFooter = () => Horizontal({ align: "space-between", classes: [ "footer" ] },
+    span("lucsoft.de – Copyright 2021"),
+    Horizontal({ align: 'flex-end', gap: "2rem" },
+        ...[
+            [ "hmsys.de/", "HmSYS" ],
+            [ "github.com/lucsoft", "GitHub" ],
+            [ "twitter.com/lucsoft", "Twitter" ],
+            [ "lucsoft.de/p/imprint", "Imprint" ]
+        ].map(([ url, name ]) => {
+            const link = custom("a", name) as HTMLAnchorElement
+            link.href = "https://" + url;
+            return link
+        })
+    )
+)

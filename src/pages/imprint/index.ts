@@ -1,4 +1,4 @@
-import { WebGen } from "@lucsoft/webgen";
+import { draw, WebGen } from "@lucsoft/webgen";
 import { renderFooter } from "../../components/footer";
 import { renderNavigation } from "../../components/navigation";
 
@@ -29,6 +29,6 @@ document.body.innerHTML += `
 <p>Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
 </span>`;
 
-const footer = renderFooter().draw();
+const footer = draw(renderFooter());
 footer.style.marginTop = "5rem"
 document.body.append(footer);

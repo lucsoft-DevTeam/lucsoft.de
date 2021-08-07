@@ -28,7 +28,7 @@
     },
     "homepage": "https://github.com/lucsoft-DevTeam/lucsoft.de#readme",
     "dependencies": {
-        "@lucsoft/network-connector": "^0.4.3",
+        "@lucsoft/network-connector": "^0.4.4",
         "@lucsoft/webgen": "^1.19.4"
     },
     "devDependencies": {
@@ -37,13 +37,13 @@
         "css-minimizer-webpack-plugin": "^3.0.2",
         "file-loader": "^6.2.0",
         "html-webpack-plugin": "^5.3.2",
-        "mini-css-extract-plugin": "^2.1.0",
+        "mini-css-extract-plugin": "^2.2.0",
         "speed-measure-webpack-plugin": "^1.5.0",
         "style-loader": "^3.2.1",
         "terser-webpack-plugin": "^5.1.4",
-        "ts-loader": "^9.2.4",
+        "ts-loader": "^9.2.5",
         "typescript": "^4.3.5",
-        "webpack": "^5.47.1",
+        "webpack": "^5.50.0",
         "webpack-bundle-analyzer": "^4.4.2",
         "webpack-cli": "^4.7.2",
         "webpack-dev-server": "^3.11.2"

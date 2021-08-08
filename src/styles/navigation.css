@@ -5,6 +5,7 @@
     grid-template-columns: auto max-content max-content max-content;
     opacity: 0.6;
     display: grid;
+    width: 100%;
     gap: 3.2rem;
     animation: flowIn 1500ms ease;
 }
@@ -17,7 +18,8 @@
     color: var(--on-card-text);
     text-decoration: none;
 }
-@media (max-width: 1129px)  {
+
+@media (max-width: 1129px) {
     .nav a {
         font-size: 1.5rem;
         padding: 1.5rem;
@@ -26,11 +28,13 @@
         max-width: 59.5rem;
     }
 }
+
 @media(max-width: 957px) {
     .nav {
         margin: 0 1.4rem;
     }
 }
+
 @media(max-width: 729px) {
     .nav a {
         font-size: 1rem;

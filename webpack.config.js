@@ -33,6 +33,7 @@ module.exports = (_, mode) => {
         },
         mode: isProduction ? "production" : "development",
         output: {
+            publicPath: '/',
             filename: '[name].js',
             chunkFilename: '[name].bundle.js',
             path: path.resolve(__dirname, 'dist')
@@ -46,7 +47,7 @@ module.exports = (_, mode) => {
                     test: /\.(png|jpe?g|gif|svg)$/i,
                     loader: 'file-loader',
                     options: {
-                        name: '[hash:hex:5].[ext]',
+                        name: '[hash:hex:4].[ext]',
                     }
                 },
                 {

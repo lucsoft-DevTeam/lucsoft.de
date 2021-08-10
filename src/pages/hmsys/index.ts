@@ -7,12 +7,12 @@ import { svgElements } from './componets/svgRender';
 WebGen();
 
 const services = Promise.allSettled([
-    fetch("https://eu01.hmsys.de/stats"),
-    fetch("https://eu01.hmsys.de:444/stats")
+    fetch("https://hmsys.de/stats"),
+    fetch("https://dev.hmsys.de/stats")
 ]);
 const servicesName = [
-    "Europa Stable Server (eu01/stable)",
-    "Europa Development Server (eu01/dev)"
+    "Europa Stable Server (hmsys.de)",
+    "Europa Development Server (dev.hmsys.de)"
 ]
 
 const background = document.createElement('div');

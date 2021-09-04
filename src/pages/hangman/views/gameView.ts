@@ -11,7 +11,7 @@ export const renderGameView = (game: gameData, update: (data: Partial<ViewOption
     const input = getInputField(() => {
         checkNewChar(game, input);
         microRerender()
-    });
+    }) as HTMLInputElement;
     form.append(input);
     form.onsubmit = (e) => e.preventDefault();
 
@@ -51,6 +51,7 @@ export const renderGameView = (game: gameData, update: (data: Partial<ViewOption
             }
         ]
     }))
+    //@ts-ignore
     input.autofocus = true;
     const contentThing = createElement('div');
     input.focus();

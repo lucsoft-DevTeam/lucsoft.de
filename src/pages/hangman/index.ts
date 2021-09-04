@@ -19,7 +19,6 @@ View<ViewOptionsGame>(({ state, update, use }) => {
         case 'active':
         case 'active-cheat':
             return drawC(renderGameView(game!, update))
-
         case 'lose':
             return drawC(renderLoseView(game!, () => { game = undefined; update({ state: undefined }) }))
         case 'win':

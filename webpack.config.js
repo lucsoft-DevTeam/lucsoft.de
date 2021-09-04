@@ -29,7 +29,8 @@ module.exports = (_, mode) => {
             main: "./src/pages/landing/index.ts",
             './p/hangman': "./src/pages/hangman/index.ts",
             './p/hmsys': "./src/pages/hmsys/index.ts",
-            './p/imprint': "./src/pages/imprint/index.ts"
+            './p/imprint': "./src/pages/imprint/index.ts",
+            './p/account': "./src/pages/account/index.ts"
         },
         mode: isProduction ? "production" : "development",
         output: {
@@ -64,9 +65,8 @@ module.exports = (_, mode) => {
             ]
         },
         devServer: {
-            contentBase: "./dist",
-            port: 80,
-            host: '0.0.0.0'
+            port: 8080,
+            host: 'localhost'
         },
         plugins: [
             ...(generateProfile ? [ new BundleAnalyzerPlugin() ] : []),
@@ -78,6 +78,7 @@ module.exports = (_, mode) => {
             createPage('./p/imprint', [ './p/imprint' ]),
             createPage('./p/hangman', [ './p/hangman' ]),
             createPage('./p/hmsys', [ './p/hmsys' ]),
+            createPage('./p/account', [ './p/account' ]),
         ],
         optimization: isProduction ? {
             minimize: true,

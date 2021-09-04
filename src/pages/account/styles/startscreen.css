@@ -1,0 +1,84 @@
+.startscreen>.loading {
+    height: 7rem;
+    width: 7rem;
+}
+
+.startscreen .content {
+    min-width: 40rem;
+    min-height: 20rem;
+}
+
+.startscreen .content-title {
+    padding: 3px 0 0 0;
+    font-size: 33px;
+    margin: 0;
+}
+
+.startscreen grid {
+    margin: 0;
+}
+
+.content-page {
+    width: 100%;
+}
+
+.content-page card {
+    width: 100%;
+    overflow: hidden;
+}
+
+.options {
+    align-items: flex-start;
+    width: 100%;
+}
+
+.options .pagetitle {
+    margin: 0;
+    width: 100%;
+    padding: 10px 15px 0;
+    box-sizing: border-box;
+    font-size: 1.8rem;
+    font-weight: 400;
+}
+
+.options .description {
+    font-size: 0.9rem;
+    padding: 0 15px;
+    width: 100%;
+    box-sizing: border-box;
+    color: var(--on-card-subtext);
+}
+
+.options .list {
+    width: inherit;
+}
+
+.options .list .entry {
+    padding: 0.6rem 15px;
+    box-sizing: border-box;
+}
+
+.options .list .entry:not(.nohover) {
+    cursor: pointer;
+}
+
+.options .list .entry:not(.nohover):hover {
+    background: hsla(0deg, 0%, var(--color-grayscaled-lightness), 3%);
+}
+
+.options .list .entry .horizontal-stack {
+    display: grid;
+    grid-template-columns: 8rem max-content auto;
+    align-items: center;
+}
+
+.options .list .entry .label {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.update-container .winput {
+    max-width: 90vw;
+    width: 15rem;
+}

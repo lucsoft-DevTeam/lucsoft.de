@@ -5,6 +5,8 @@
         "module": "ESNext",
         "outDir": "bin",
         "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
         "typeRoots": [
             "./custom.d.ts",
             "./node_modules/@types"

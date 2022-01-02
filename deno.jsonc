@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "dom.asynciterable",
+            "deno.ns",
+            "https://raw.githubusercontent.com/lucsoft-DevTeam/lucsoft.de/master/custom.d.ts"
+        ]
+    },
+    "fmt": {
+        "options": {
+            "indentWidth": 4,
+            "lineWidth": 120
+        }
+    }
+}

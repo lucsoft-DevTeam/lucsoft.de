@@ -2,57 +2,66 @@ body {
     background-repeat: repeat-y;
     background-position: center;
 }
+
 .section {
     margin: 0 1rem;
 }
-h1 {
+
+:is(h1, h2, span.subtitle, span.note) {
     font-weight: bold;
-    font-size: 8rem;
-    margin: 0;
-}
-span.subtitle {
-    font-weight: bold;
-    font-size: 3.3rem;
-    margin: 0;
-}
-span.note {
-    font-weight: bold;
-    font-size: 1.6rem;
     margin: 0;
 }
 
+h1 {
+    font-size: clamp(1.5rem, 15vw, 8rem);
+}
+
+span.subtitle {
+    font-size: clamp(.8rem, 6vw, 3.3rem);
+}
+
+span.note {
+    font-size: clamp(.6rem, 4vw, 1.6rem);
+}
+
 h2 {
-    font-weight: bold;
-    font-size: 5.5rem;
+    font-size: clamp(0.8rem, 18vw, 5.5rem);
     margin: 0 0 1.5rem;
 }
+
 .main-projects {
     gap: 7.1rem;
 }
+
 .main-projects .project {
     align-items: center;
     width: unset;
     gap: 2.5rem;
     height: 100%;
     padding: 0.8rem 1rem;
-    margin:  -0.8rem -1rem;
+    margin: -0.8rem -1rem;
 }
+
 .main-projects a {
     text-decoration: none;
 }
+
 .main-projects .project span {
     font-weight: normal;
     font-size: 2.1rem;
     text-decoration: none;
 }
+
 .side-projects {
     margin: 3.2rem 0;
 }
-.side-projects .wbutton{
+
+.side-projects .wbutton {
     font-size: 2.2rem;
     font-weight: normal;
     padding: .8rem 1rem;
 }
+
 .max-width {
     width: 10rem;
 }
@@ -63,9 +72,11 @@ h2 {
     font-size: 1.5rem;
     margin: 4rem 0 5rem;
 }
+
 .skill-bar {
     display: grid;
 }
+
 .skill-bar span {
     display: block;
     font-weight: bold;
@@ -74,11 +85,28 @@ h2 {
     overflow: hidden;
     position: relative;
 }
-.skill-bar span:nth-child(1) { background-color: #3EFF8B; color: #454545;}
-.skill-bar span:nth-child(2) { background-color: #34D976;}
-.skill-bar span:nth-child(3) { background-color: #2BB361;}
-.skill-bar span:nth-child(4) { background-color: #228C4C;}
-.skill-bar span:nth-child(5) { background-color: #196638;}
+
+.skill-bar span:nth-child(1) {
+    background-color: #3EFF8B;
+    color: #454545;
+}
+
+.skill-bar span:nth-child(2) {
+    background-color: #34D976;
+}
+
+.skill-bar span:nth-child(3) {
+    background-color: #2BB361;
+}
+
+.skill-bar span:nth-child(4) {
+    background-color: #228C4C;
+}
+
+.skill-bar span:nth-child(5) {
+    background-color: #196638;
+}
+
 .skill-bar span:is(:nth-child(4), :nth-child(5))::after {
     content: '';
     position: absolute;
@@ -89,9 +117,11 @@ h2 {
     top: 0;
     filter: blur(.5rem);
 }
+
 .skill-bar span:nth-child(4)::after {
     background: #228C4C;
 }
+
 .skill-bar span:nth-child(5)::after {
     background: #196638;
 }
@@ -105,23 +135,28 @@ h2 {
 }
 
 @media (max-width: 1000px) {
-    .side-projects .wbutton{
+    .side-projects .wbutton {
         font-size: 1.7rem;
         padding: .5rem 1rem;
     }
+
     .main-projects .project img {
         width: 5rem;
     }
+
     .main-projects .project {
         gap: 1.5rem;
     }
-    .main-projects{
+
+    .main-projects {
         gap: 3rem;
     }
+
     .main-projects .project span {
         font-size: 1.9rem;
     }
-    .skill-bar span  {
+
+    .skill-bar span {
         font-size: 1.5rem;
         padding: 1rem 0 0.9rem .9rem;
 
@@ -129,47 +164,38 @@ h2 {
 }
 
 @media (max-width: 600px) {
-    .side-projects .wbutton{
+    .side-projects .wbutton {
         font-size: 1.2rem;
         padding: .5rem 1rem;
     }
-    .side-projects, .main-projects ,.welcome {
+
+    .side-projects, .main-projects, .welcome {
         display: flex;
         flex-wrap: wrap;
         display: flex;
         justify-content: flex-start;
         flex-wrap: wrap;
     }
-    .welcome :is(h1, span, .vertical-stack) {
-        flex-shrink: unset;
-    }
+
     .side-projects {
         margin: 2rem 0;
     }
+
     .skill-bar span {
         font-size: 1.1rem;
     }
+
     .main-projects, .welcome {
         width: unset;
     }
+
     :is(.side-projects, .main-projects, .welcome) .spacer {
         display: none;
     }
+
     .tech-names {
         font-size: 1.1rem;
         margin: 2rem 0 2rem;
-    }
-    h1 {
-        font-size: 6rem;
-    }
-    span.subtitle {
-        font-size: 2.7rem;
-    }
-    span.note {
-        font-size: 1.3rem;
-    }
-    h2 {
-        font-size: 4rem;
     }
 }
 
@@ -177,6 +203,7 @@ h2 {
     .tech-names {
         font-size: 0.9rem;
     }
+
     .skill-bar span {
         font-size: .8rem;
         padding: 1rem 0 0.9rem 0.5rem;

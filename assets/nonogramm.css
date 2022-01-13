@@ -16,7 +16,6 @@ body {
 }
 .vertical-stack {
     justify-content: center;
-
     height: 100vh;
 }
 canvas {

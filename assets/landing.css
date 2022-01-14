@@ -159,4 +159,26 @@ h2 {
         font-size: 1.1rem;
         margin: 2rem 0 2rem;
     }
+    h1 {
+        font-size: 6rem;
+    }
+    span.subtitle {
+        font-size: 2.7rem;
+    }
+    span.note {
+        font-size: 1.3rem;
+    }
+    h2 {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .tech-names {
+        font-size: 0.9rem;
+    }
+    .skill-bar span {
+        font-size: .8rem;
+        padding: 1rem 0 0.9rem 0.5rem;
+    }
 }

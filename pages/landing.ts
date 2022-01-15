@@ -13,7 +13,7 @@ import {
     Vertical,
     View,
     WebGen,
-} from "../../WebGen/src/webgen.ts";
+} from "../../WebGen/mod.ts";
 import "../assets/landing.css";
 import webgen from "../assets/webgen.svg";
 import hmsys from "../assets/hmsys.png";
@@ -71,19 +71,19 @@ View(() =>
         Horizontal(
             Button("DataStoreDB")
                 .setStyle(ButtonStyle.Inline)
-                .onClick("https://github.com/lucsoft/datastoredb-gui"),
+                .asLinkButton("https://github.com/lucsoft/datastoredb-gui"),
             Spacer(),
             Button("web_bson")
                 .setStyle(ButtonStyle.Inline)
-                .onClick("https://github.com/lucsoft/deno_bson/"),
+                .asLinkButton("https://github.com/lucsoft/deno_bson/"),
             Spacer(),
             Button("bbn.one")
                 .setStyle(ButtonStyle.Inline)
-                .onClick("https://bbn.one/"),
+                .asLinkButton("https://bbn.one/"),
             Spacer(),
             Button("remod.dev")
                 .setStyle(ButtonStyle.Inline)
-                .onClick("https://remod.dev/"),
+                .asLinkButton("https://remod.dev/"),
         ).addClass("side-projects"),
         Horizontal(
             PlainText("Skills", "h2"),

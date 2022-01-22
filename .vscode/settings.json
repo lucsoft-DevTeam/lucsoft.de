@@ -5,5 +5,8 @@
     "deno.config": "./deno.jsonc",
     "deno.suggest.imports.hosts": {
         "https://deno.land": true
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
     }
 }

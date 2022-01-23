@@ -5,7 +5,7 @@
             "dom.iterable",
             "dom.asynciterable",
             "deno.ns",
-            "https://raw.githubusercontent.com/lucsoft-DevTeam/lucsoft.de/master/custom.d.ts"
+            "deno.unstable"
         ]
     },
     "fmt": {

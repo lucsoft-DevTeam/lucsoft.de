@@ -1,7 +1,6 @@
 import { emptyDirSync } from "https://deno.land/std@0.122.0/fs/empty_dir.ts";
 import { copySync } from "https://deno.land/std@0.122.0/fs/copy.ts";
-
-import { BuildOptions } from "https://deno.land/x/esbuild@v0.14.12/mod.js";
+import { BuildOptions } from "https://deno.land/x/esbuild@v0.14.13/mod.js";
 import { httpImports } from "https://deno.land/x/esbuild_plugin_http_imports/index.ts";
 
 export const config: BuildOptions = {

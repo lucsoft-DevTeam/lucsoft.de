@@ -1,4 +1,4 @@
-import { createElement, Custom, PlainText, Vertical, View, WebGen } from "../../../WebGen/src/webgen.ts";
+import { createElement, Custom, PlainText, Vertical, View, WebGen } from "https://deno.land/x/webgen@v2.0.0-beta.0/mod.ts";
 import { chunk } from "https://deno.land/std@0.120.0/collections/chunk.ts";
 import { createNormilizer, rotatedNormalIndexArray, rotateMatrixN90D } from "../../helper/matrixMath.ts";
 import { getDefault } from "../../helper/rendering.ts";
@@ -7,7 +7,7 @@ import games from "./games.json";
 
 const wg = WebGen();
 // deno-fmt-ignore
-const template = games.mid["sugar cane"];
+const template = games.mid[ "sugar cane" ];
 // const template = [
 //     1, 1, 1, 1, 1, 1, 1, 1,
 //     1, 0, 1, 1, 1, 0, 1, 1,
@@ -24,7 +24,7 @@ const game = new Array(template.length).fill(0);
 const indexAsRotatedMartix = rotatedNormalIndexArray(template.length);
 
 const canvas = createElement("canvas");
-const view = View<{ health?: string}>(({ state }) => Vertical(
+const view = View<{ health?: string }>(({ state }) => Vertical(
     PlainText(state.health ?? "").addClass("health"),
     Custom(canvas)
 )).addClass("shell").appendOn(document.body)
@@ -66,20 +66,20 @@ function update() {
     topRow = rotateMatrixN90D(chunk(template, sqrtSize)).map((row, rowIndex) => combineRightWhile(row, rowIndex, true));
     leftRow.forEach((data, index) => {
         if (linesDoneLeft.includes(index) || !data.every(([ _, valid ]) => valid)) return;
-        console.log("Completed Line", index , "L!")
+        console.log("Completed Line", index, "L!")
         new Array(sqrtSize).fill(1).forEach((_, count) => game[ index * sqrtSize + count ] = 1)
         linesDoneLeft.push(index);
     })
 
     topRow.forEach((data, index) => {
         if (linesDoneTop.includes(index) || !data.every(([ _, valid ]) => valid)) return;
-        console.log("Completed Line", index , "T!")
+        console.log("Completed Line", index, "T!")
         new Array(sqrtSize).fill(1).forEach((_, count) => game[ denormalIndex(index * sqrtSize + count) ] = 1)
         linesDoneTop.push(index);
     })
 
     //Render
-    view.unsafeViewOptions().update({ health: health === 0 ? "You Lost!": "❤️".repeat(health) })
+    view.unsafeViewOptions().update({ health: health === 0 ? "You Lost!" : "❤️".repeat(health) })
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     template.forEach((grid, index) => {
         const x = (index % sqrtSize) * size * 1.1 + gapLength;
@@ -112,42 +112,42 @@ function update() {
 }
 update();
 
-function renderNumbers(ctx: CanvasRenderingContext2D, rotated = false): (value: [count: number, completed: boolean][], index: number, array: [count: number, completed: boolean][][]) => void {
-  return (row, rowIndex) => {
-      row.forEach(([count, valid], charIndex) => {
-        if (rotated) {
-            ctx.fillStyle = valid ? "gray" : getDefault(wg.theme);
-            ctx.fillText(
-                count.toString(),
-                gapLength + rowIndex * size * 1.1 + (size / 2) + 1,
-                gapHeight - 10 - 10 * charIndex,
-            );
-        } else {
-            ctx.textAlign = "right";
-            ctx.fillStyle = valid ? "gray" : getDefault(wg.theme);
-            ctx.fillText(
-                count.toString(),
-                gapLength - 10 - (charIndex * 8.5),
-                rowIndex * size * 1.1 + (size / 2) + 5 + gapHeight,
-            );
-        }
-    });
-  };
+function renderNumbers(ctx: CanvasRenderingContext2D, rotated = false): (value: [ count: number, completed: boolean ][], index: number, array: [ count: number, completed: boolean ][][]) => void {
+    return (row, rowIndex) => {
+        row.forEach(([ count, valid ], charIndex) => {
+            if (rotated) {
+                ctx.fillStyle = valid ? "gray" : getDefault(wg.theme);
+                ctx.fillText(
+                    count.toString(),
+                    gapLength + rowIndex * size * 1.1 + (size / 2) + 1,
+                    gapHeight - 10 - 10 * charIndex,
+                );
+            } else {
+                ctx.textAlign = "right";
+                ctx.fillStyle = valid ? "gray" : getDefault(wg.theme);
+                ctx.fillText(
+                    count.toString(),
+                    gapLength - 10 - (charIndex * 8.5),
+                    rowIndex * size * 1.1 + (size / 2) + 5 + gapHeight,
+                );
+            }
+        });
+    };
 }
 
-function combineRightWhile(row: number[], rowIndex: number, rotatedN90 = false): [count: number, completed: boolean][] {
-    const counter: number[] = [0];
+function combineRightWhile(row: number[], rowIndex: number, rotatedN90 = false): [ count: number, completed: boolean ][] {
+    const counter: number[] = [ 0 ];
     const offset = rowIndex * sqrtSize;
     const normi = createNormilizer(rotatedN90, indexAsRotatedMartix);
-    const completed: boolean[] = [!!game[normi(offset)]];
+    const completed: boolean[] = [ !!game[ normi(offset) ] ];
     row.forEach((x, itemIndex) => {
-        if (counter[counter.length - 1] !== 0) {
+        if (counter[ counter.length - 1 ] !== 0) {
             if (x) {
                 {
                     //AfterFirstElement
-                    counter[counter.length - 1]++;
-                    completed[completed.length - 1] = game[normi(offset + itemIndex)]
-                        ? completed[completed.length - 1]
+                    counter[ counter.length - 1 ]++;
+                    completed[ completed.length - 1 ] = game[ normi(offset + itemIndex) ]
+                        ? completed[ completed.length - 1 ]
                         : false;
                 }
             } else {
@@ -157,13 +157,13 @@ function combineRightWhile(row: number[], rowIndex: number, rotatedN90 = false):
             }
         } else {
             // firstElement
-            completed[completed.length - 1] = !!game[normi(offset + itemIndex)];
-            counter[counter.length - 1] = x;
+            completed[ completed.length - 1 ] = !!game[ normi(offset + itemIndex) ];
+            counter[ counter.length - 1 ] = x;
         }
     });
 
     if (!counter.at(-1)) {
         counter.pop();
     }
-    return counter.map((x, index): [count: number, completed: boolean] => [x, completed[index]]).reverse();
+    return counter.map((x, index): [ count: number, completed: boolean ] => [ x, completed[ index ] ]).reverse();
 }

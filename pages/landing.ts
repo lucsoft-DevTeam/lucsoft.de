@@ -13,7 +13,7 @@ import {
     Vertical,
     View,
     WebGen,
-} from "../../WebGen/mod.ts";
+} from "https://deno.land/x/webgen@v2.0.0-beta.0/mod.ts";
 import "../assets/landing.css";
 import webgen from "../assets/webgen.svg";
 import hmsys from "../assets/hmsys.png";
@@ -29,13 +29,13 @@ WebGen({
     },
 });
 
-const skillBar = (data: { [name in string]: number }) => {
+const skillBar = (data: { [ name in string ]: number }) => {
     const keys = Object.entries(data);
     const component = Horizontal(
-        ...keys.map(([name]) => PlainText(name)),
+        ...keys.map(([ name ]) => PlainText(name)),
     ).addClass("skill-bar").draw();
 
-    component.style.gridTemplateColumns = keys.map(([_, weight]) => `${weight}fr`).join(" ");
+    component.style.gridTemplateColumns = keys.map(([ _, weight ]) => `${weight}fr`).join(" ");
     return Custom(component);
 };
 
@@ -45,6 +45,7 @@ View(() =>
             Horizontal(
                 Spacer(),
                 Button("LOGIN")
+                    .asLinkButton("/login")
                     .setStyle(ButtonStyle.Secondary),
                 Button("DOCUMENTATION")
                     .setStyle(ButtonStyle.Secondary),

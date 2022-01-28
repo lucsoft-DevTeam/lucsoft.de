@@ -1,4 +1,4 @@
-import { createElement, Custom, PlainText, Vertical, View, WebGen } from "https://deno.land/x/webgen@v2.0.0-beta.0/mod.ts";
+import { createElement, Custom, PlainText, Vertical, View, WebGen } from "https://deno.land/x/webgen@v2.0.0-beta.1/mod.ts";
 import { chunk } from "https://deno.land/std@0.120.0/collections/chunk.ts";
 import { createNormilizer, rotatedNormalIndexArray, rotateMatrixN90D } from "../../helper/matrixMath.ts";
 import { getDefault } from "../../helper/rendering.ts";

@@ -13,7 +13,7 @@ import {
     Vertical,
     View,
     WebGen,
-} from "https://deno.land/x/webgen@v2.0.0-beta.0/mod.ts";
+} from "https://deno.land/x/webgen@v2.0.0-beta.1/mod.ts";
 import "../assets/landing.css";
 import webgen from "../assets/webgen.svg";
 import hmsys from "../assets/hmsys.png";

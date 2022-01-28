@@ -1,4 +1,4 @@
-import { WebGen } from "https://deno.land/x/webgen@v2.0.0-beta.0/mod.ts";
+import { WebGen } from "https://deno.land/x/webgen@v2.0.0-beta.1/mod.ts";
 
 WebGen();
 

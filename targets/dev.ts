@@ -1,9 +1,9 @@
 import { serve } from "https://deno.land/x/esbuild@v0.14.13/mod.js";
 import { config } from "./common.ts";
-console.log("🚀 WebServer @ http://localhost:8080");
+console.log("🚀 WebServer @ http://localhost:1337");
 
 serve({
-    port: 8080,
+    port: 1337,
     servedir: "dist",
     onRequest: ({ method, remoteAddress, path }) =>
         console.log("📦", method, `http://localhost${path} from ${remoteAddress}`),

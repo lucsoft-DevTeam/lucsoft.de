@@ -9,9 +9,14 @@
 }
 
 @keyframes dialogFlowIn {
-    from {
+    0% {
         transform: translate(0, 1rem);
-        opacity: 0.4;
+        opacity: 0;
+    }
+
+    30% {
+        transform: translate(0, 1rem);
+        opacity: 0;
     }
 }
 
@@ -39,4 +44,60 @@ body {
     gap: 0.6rem;
     width: 20rem;
     margin: 0 -0.5rem;
+}
+
+.dialog .connecting {
+    height: 16rem;
+    width: 19rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+.dialog .connecting .loading-wheel {
+    position: relative;
+}
+
+/*
+----------------------
+*/
+
+.sidebar {
+    width: 10rem;
+}
+
+.sidebar .title {
+    color: hsl(var(--color-critical-hue), var(--color-critical-saturation), var(--color-critical-lightness));
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+
+.sidebar .subtitle {
+    display: block;
+    font-weight: 500;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+    color: hsla(var(--color-critical-hue), var(--color-critical-saturation), var(--color-critical-lightness), 0.8);
+}
+
+.grid {
+    --background-card: hsla(181, 69%, 51%, 0.25);
+    --on-card-text: #2ED6D8;
+    display: grid;
+    grid-auto-rows: 5.6rem;
+    margin: 2.9rem 0;
+}
+
+.grid card {
+    display: block;
+}
+
+.font-big {
+    font-size: 2.3rem;
+    line-height: 1;
+    font-weight: 900;
+}
+
+.font-middle {
+    font-size: 0.88rem;
+    font-weight: 500;
 }

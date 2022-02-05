@@ -23,6 +23,7 @@ export const config: BuildOptions = {
                     copySync("templates/index.html", "dist/index.html");
                     copySync("templates/index.html", "dist/games/nonogramm/index.html")
                     copySync("templates/login.html", "dist/login.html")
+                    copySync("templates/hmsys.html", "dist/hmsys.html")
                     copySync("templates/imprint.html", "dist/p/imprint.html")
                 })
             }
@@ -33,6 +34,7 @@ export const config: BuildOptions = {
     entryPoints: {
         "entry": "./pages/landing.ts",
         "login": "./pages/login.ts",
+        "hmsys": "./pages/hmsys.ts",
         "p/imprint": "./pages/imprint.ts",
         "games/nonogramm/entry": "./pages/games/nonogramm.ts"
     },

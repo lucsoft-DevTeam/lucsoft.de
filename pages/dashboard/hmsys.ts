@@ -55,6 +55,7 @@ network.rawOn(EventTypes.LoginSuccessful, () => {
         Spacer(),
     )).appendOn(document.body);
     network.api.requestUserData("profile", "services", "groupe", "hmsys")
+        // deno-lint-ignore no-explicit-any
         .then(x => controller.unsafeViewOptions().update({ profile: (x as any).userData }));
 })
 network.rawOn(EventTypes.RawMessage, (data) => console.log(data.data))

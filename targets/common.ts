@@ -1,7 +1,7 @@
 import { emptyDirSync } from "https://deno.land/std@0.122.0/fs/empty_dir.ts";
 import { copySync } from "https://deno.land/std@0.122.0/fs/copy.ts";
-import { BuildOptions } from "https://deno.land/x/esbuild@v0.14.13/mod.js";
-import { httpImports } from "https://deno.land/x/esbuild_plugin_http_imports/index.ts";
+import { BuildOptions } from "https://deno.land/x/esbuild@v0.14.18/mod.js";
+import { httpImports } from "https://deno.land/x/esbuild_plugin_http_imports@v1.2.3/index.ts";
 
 export const config: BuildOptions = {
     metafile: true,
@@ -27,14 +27,12 @@ export const config: BuildOptions = {
                     copySync("templates/imprint.html", "dist/p/imprint.html")
                 })
             }
-        }, httpImports({
-            onCacheMiss: (path) => console.log("📡", "Loading", path),
-        }) ],
+        }, httpImports() ],
     bundle: true,
     entryPoints: {
         "entry": "./pages/landing.ts",
-        "login": "./pages/login.ts",
-        "hmsys": "./pages/hmsys.ts",
+        "login": "./pages/dashboard/login.ts",
+        "hmsys": "./pages/dashboard/hmsys.ts",
         "p/imprint": "./pages/imprint.ts",
         "games/nonogramm/entry": "./pages/games/nonogramm.ts"
     },

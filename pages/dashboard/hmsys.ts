@@ -1,6 +1,6 @@
 import { createLocalStorageProvider, EventTypes, HmSYSConnector } from "https://deno.land/x/hmsys_connector@v0.5.2/mod.ts";
 import { Button, ButtonStyle, Card, Color, Component, Horizontal, PlainText, Spacer, SupportedThemes, Vertical, View, WebGen, headless, Grid } from "https://deno.land/x/webgen@v2.0.0-beta.2/mod.ts";
-import '../assets/login.css';
+import '../../assets/login.css';
 type ProfileData = {
     accountType: string;
     groupes: string[];

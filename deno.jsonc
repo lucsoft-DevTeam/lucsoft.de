@@ -8,6 +8,11 @@
             "deno.unstable"
         ]
     },
+    "lint": {
+        "files": {
+            "exclude": ["old", "bin"]
+        }
+    },
     "fmt": {
         "options": {
             "indentWidth": 4,

@@ -97,4 +97,18 @@ body {
 
 .align-center-text {
     align-items: center;
+    padding: 0 1rem 0.3rem;
+    overflow: hidden;
+    place-content: start;
+}
+
+.align-center-text span:nth-child(2) {
+    text-overflow: ellipsis;
+    width: calc(100% - 1.5rem);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.align-center-text .webgen-icon {
+    font-size: .9rem;
 }

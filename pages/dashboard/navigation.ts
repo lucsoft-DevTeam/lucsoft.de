@@ -1,4 +1,4 @@
-import { Button, ButtonStyle, Color, Component, PlainText, Vertical } from "https://deno.land/x/webgen@v2.0.0-beta.2/mod.ts";
+import { Button, ButtonStyle, Color, Component, PlainText, Vertical } from "https://deno.land/x/webgen@2.0.0-beta.8/mod.ts";
 import { ProfileData } from "./types.ts";
 
 export function NavigationMenu(state: Partial<{ profile: ProfileData; }>): Component {

@@ -96,19 +96,27 @@ body {
 }
 
 .align-center-text {
-    align-items: center;
-    padding: 0 1rem 0.3rem;
-    overflow: hidden;
+    font-family: monospace;
     place-content: start;
-}
-
-.align-center-text span:nth-child(2) {
-    text-overflow: ellipsis;
-    width: calc(100% - 1.5rem);
     overflow: hidden;
-    white-space: nowrap;
 }
 
 .align-center-text .webgen-icon {
-    font-size: .9rem;
+    font-size: .6rem;
+}
+
+div.bottom-up {
+    overflow: hidden;
+    justify-content: flex-end;
+}
+
+.continer-system-view>div, .continer-system-view>div>article {
+    height: 100%;
+    display: flex;
+}
+
+.monistoring {
+    width: 100%;
+    grid-template-columns: 100%;
+    grid-template-rows: max-content auto;
 }

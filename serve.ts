@@ -1,7 +1,7 @@
-import { serve, build } from "https://deno.land/x/esbuild@v0.14.13/mod.js";
-import { emptyDirSync } from "https://deno.land/std@0.122.0/fs/empty_dir.ts";
-import { copySync } from "https://deno.land/std@0.122.0/fs/copy.ts";
-import { BuildOptions } from "https://deno.land/x/esbuild@v0.14.18/mod.js";
+import { serve, build } from "https://deno.land/x/esbuild@v0.14.25/mod.js";
+import { emptyDirSync } from "https://deno.land/std@0.128.0/fs/empty_dir.ts";
+import { copySync } from "https://deno.land/std@0.128.0/fs/copy.ts";
+import { BuildOptions } from "https://deno.land/x/esbuild@v0.14.25/mod.js";
 import { httpImports } from "https://deno.land/x/esbuild_plugin_http_imports@v1.2.3/index.ts";
 
 export const config: BuildOptions = {
@@ -23,8 +23,7 @@ export const config: BuildOptions = {
                     emptyDirSync("dist/p/");
                     copySync("templates/index.html", "dist/index.html");
                     copySync("templates/index.html", "dist/games/nonogramm/index.html")
-                    copySync("templates/login.html", "dist/login.html")
-                    copySync("templates/hmsys.html", "dist/hmsys.html")
+                    copySync("templates/account.html", "dist/account.html")
                     copySync("templates/imprint.html", "dist/p/imprint.html")
                 })
             }
@@ -32,8 +31,7 @@ export const config: BuildOptions = {
     bundle: true,
     entryPoints: {
         "entry": "./pages/landing.ts",
-        "login": "./pages/dashboard/login.ts",
-        "hmsys": "./pages/dashboard/hmsys.ts",
+        "account": "./pages/account/mod.ts",
         "p/imprint": "./pages/imprint.ts",
         "games/nonogramm/entry": "./pages/games/nonogramm.ts"
     },

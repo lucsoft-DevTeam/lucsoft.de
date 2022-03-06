@@ -1,7 +1,11 @@
 import { WebGen, Dialog, img, loadingWheel, Custom, Form, Vertical, Horizontal, PlainText, Input, Spacer, SupportedThemes } from "https://deno.land/x/webgen@2.0.0-beta.8/mod.ts";
-import { HmSYSConnector, EventTypes, createLocalStorageProvider } from "https://deno.land/x/hmsys_connector@v0.5.2/mod.ts";
+import { HmSYSConnector, EventTypes, createLocalStorageProvider } from "https://deno.land/x/hmsys_connector@v0.6.0/mod.ts";
 import hmsys from "../../assets/hmsys.png";
 import '../../assets/login.css';
+import { controller } from "./controller.ts";
+import { refresh } from "./stats.ts";
+import { ProfileData } from "./types.ts";
+import { SystemView } from "./sysmonitor.ts";
 
 WebGen({ theme: SupportedThemes.light })
 
@@ -37,7 +41,10 @@ const dialog = Dialog<{ type: 'login' | 'loading' | 'loggedIn' }>(({ state, upda
         return LoginDialogContent
     else if (state.type === "loggedIn") {
         dialog.close()
-        location.href = "/hmsys.html"
+        controller.appendOn(document.body);
+        refresh(network);
+        network.api.requestUserData("profile", "services", "groupe", "hmsys")
+            .then(x => controller.unsafeViewOptions().update({ profile: (x as { userData: ProfileData }).userData }));
     }
     else {
         network.rawOn(EventTypes.LoginFailed, () => update({ type: "login" }))
@@ -45,7 +52,12 @@ const dialog = Dialog<{ type: 'login' | 'loading' | 'loggedIn' }>(({ state, upda
         network.rawOn(EventTypes.LoginSuccessful, () => {
             update({ type: "loggedIn" })
         })
-        network.rawOn(EventTypes.RawMessage, (data) => console.log(data.data))
+        network.rawOn(EventTypes.RawMessage, ({ data }) => {
+            const view = SystemView.unsafeViewOptions();
+            if (data) view.update({
+                data: [ ...(view.state.data ?? []), data ]
+            })
+        })
         network.ready();
         return Vertical(
             Custom(loadingWheel() as Element as HTMLElement),

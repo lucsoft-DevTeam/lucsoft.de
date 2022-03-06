@@ -45,7 +45,7 @@ View(() =>
             Horizontal(
                 Spacer(),
                 Button("LOGIN")
-                    .asLinkButton("/login")
+                    .asLinkButton("/account.html")
                     .setStyle(ButtonStyle.Secondary),
                 Button("DOCUMENTATION")
                     .setStyle(ButtonStyle.Secondary),

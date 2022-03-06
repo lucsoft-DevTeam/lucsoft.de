@@ -1,5 +1,5 @@
 import { createElement, Custom, PlainText, Vertical, View, WebGen } from "https://deno.land/x/webgen@2.0.0-beta.8/mod.ts";
-import { chunk } from "https://deno.land/std@0.120.0/collections/chunk.ts";
+import { chunk } from "https://deno.land/std@0.128.0/collections/chunk.ts";
 import { createNormilizer, rotatedNormalIndexArray, rotateMatrixN90D } from "../../helper/matrixMath.ts";
 import { getDefault } from "../../helper/rendering.ts";
 import '../../assets/nonogramm.css';

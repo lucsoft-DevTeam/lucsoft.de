@@ -1,5 +1,5 @@
-import { WebGen, Dialog, img, loadingWheel, Custom, Form, Vertical, Horizontal, PlainText, Input, Spacer, SupportedThemes } from "https://deno.land/x/webgen@2.0.0-beta.8/mod.ts";
-import { HmSYSConnector, EventTypes, createLocalStorageProvider } from "https://deno.land/x/hmsys_connector@v0.6.0/mod.ts";
+import { WebGen, Dialog, img, loadingWheel, Custom, Form, Vertical, Horizontal, PlainText, Input, Spacer, SupportedThemes } from "https://deno.land/x/webgen@2.0.0-beta.9/mod.ts";
+import { HmSYSConnector, EventTypes, createLocalStorageProvider, HmResponse } from "https://deno.land/x/hmsys_connector@0.7.0/mod.ts";
 import hmsys from "../../assets/hmsys.png";
 import '../../assets/login.css';
 import { controller } from "./controller.ts";
@@ -9,7 +9,7 @@ import { SystemView } from "./sysmonitor.ts";
 
 WebGen({ theme: SupportedThemes.light })
 
-const network = new HmSYSConnector("localhost:5001", {
+export const network = new HmSYSConnector("localhost:5001", {
     store: createLocalStorageProvider(),
     AllowNonHTTPSConnection: true
 })
@@ -35,8 +35,7 @@ const LoginDialogContent = Vertical(
             location.reload();
     }).addClass("form")
 );
-
-const dialog = Dialog<{ type: 'login' | 'loading' | 'loggedIn' }>(({ state, update }) => {
+const dialog = Dialog<{ type: 'login' | 'loading' | 'loggedIn' }>(({ state }) => {
     if (state.type === "login")
         return LoginDialogContent
     else if (state.type === "loggedIn") {
@@ -44,21 +43,9 @@ const dialog = Dialog<{ type: 'login' | 'loading' | 'loggedIn' }>(({ state, upda
         controller.appendOn(document.body);
         refresh(network);
         network.api.requestUserData("profile", "services", "groupe", "hmsys")
-            .then(x => controller.unsafeViewOptions().update({ profile: (x as { userData: ProfileData }).userData }));
+            .then(x => controller.viewOptions().update({ profile: (x as { userData: ProfileData }).userData }));
     }
     else {
-        network.rawOn(EventTypes.LoginFailed, () => update({ type: "login" }))
-        network.rawOn(EventTypes.CredentialsRequired, () => update({ type: "login" }))
-        network.rawOn(EventTypes.LoginSuccessful, () => {
-            update({ type: "loggedIn" })
-        })
-        network.rawOn(EventTypes.RawMessage, ({ data }) => {
-            const view = SystemView.unsafeViewOptions();
-            if (data) view.update({
-                data: [ ...(view.state.data ?? []), data ]
-            })
-        })
-        network.ready();
         return Vertical(
             Custom(loadingWheel() as Element as HTMLElement),
             Spacer(),
@@ -69,3 +56,16 @@ const dialog = Dialog<{ type: 'login' | 'loading' | 'loggedIn' }>(({ state, upda
         ).addClass("connecting", "loading")
     }
 }).open()
+network.rawOn(EventTypes.Disconnected, () => dialog.open().viewOptions().update({ type: undefined }))
+network.rawOn(EventTypes.LoginFailed, () => dialog.viewOptions().update({ type: "login" }))
+network.rawOn(EventTypes.CredentialsRequired, () => dialog.viewOptions().update({ type: "login" }))
+network.rawOn(EventTypes.LoginSuccessful, () => {
+    dialog.viewOptions().update({ type: "loggedIn" })
+})
+network.rawOn(EventTypes.RawMessage, ({ data }) => {
+    const view = SystemView.viewOptions();
+    if (data) view.update({
+        data: [ ...(view.state.data ?? [] as HmResponse[]), data ]
+    })
+})
+network.ready();

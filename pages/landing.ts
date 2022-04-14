@@ -13,7 +13,7 @@ import {
     Vertical,
     View,
     WebGen,
-} from "https://deno.land/x/webgen@2.0.0-beta.8/mod.ts";
+} from "https://deno.land/x/webgen@2.0.0-beta.9/mod.ts";
 import "../assets/landing.css";
 import webgen from "../assets/webgen.svg";
 import hmsys from "../assets/hmsys.png";
@@ -61,9 +61,9 @@ View(() =>
             Spacer(),
         ).addClass("welcome").setMargin("15vh 1rem 0"),
         Horizontal(
-            PlainText("Projects", "h2"),
+            PlainText("Project", "h2"),
             Spacer(),
-        ).setMargin("9.3rem 1rem 0"),
+        ).setMargin("9.3rem 1rem 1rem"),
         Horizontal(
             ButtonBig(hmsys, "HmSYS", "https://hmsys.de"),
             ButtonBig(webgen, "webgen", "https://github.com/lucsoft/webgen"),

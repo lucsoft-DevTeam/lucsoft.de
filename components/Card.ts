@@ -1,4 +1,4 @@
-import { Card, Component, headless, Horizontal, PlainText, Spacer, Vertical } from "https://deno.land/x/webgen@2.0.0-beta.8/mod.ts";
+import { Card, Component, headless, Horizontal, PlainText, Spacer, Vertical } from "https://deno.land/x/webgen@2.0.0-beta.9/mod.ts";
 
 export function SmallCard(text = "--", description: string): Component {
     return Card(headless(Vertical(

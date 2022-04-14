@@ -1,4 +1,4 @@
-import { Card, Horizontal, Spacer, View, headless, Grid } from "https://deno.land/x/webgen@2.0.0-beta.8/mod.ts";
+import { Card, Horizontal, Spacer, View, headless, Grid } from "https://deno.land/x/webgen@2.0.0-beta.9/mod.ts";
 import { SmallCard } from "../../components/Card.ts";
 import { bytes, timeSince } from "../../helper/convert.ts";
 import { NavigationMenu } from "./navigation.ts";
@@ -22,7 +22,7 @@ export const controller = View<{ profile: ProfileData; stats: StatsType }>(({ st
         Spacer(),
         Spacer(),
         SmallCard("0", "Warnings"),
-        SmallCard("0", "Errors")
+        SmallCard("0", "Errors"),
     )
         .addClass("grid")
         .setGap("1.2rem")

@@ -1,5 +1,5 @@
-import { HmResponse } from "https://deno.land/x/hmsys_connector@v0.6.0/mod.ts";
-import { Component, Grid, Horizontal, Icon, PlainText, Spacer, Vertical, View } from "https://deno.land/x/webgen@2.0.0-beta.8/mod.ts";
+import { HmResponse } from "https://deno.land/x/hmsys_connector@0.7.0/mod.ts";
+import { Component, Grid, Horizontal, Icon, PlainText, Spacer, Vertical, View } from "https://deno.land/x/webgen@2.0.0-beta.9/mod.ts";
 
 const mapping: () => { [ type in HmResponse[ "type" ] ]: Component } = () => ({
     client: Icon("lightning-charge-fill"),

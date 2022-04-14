@@ -10,7 +10,11 @@
     },
     "lint": {
         "files": {
-            "exclude": ["old", "bin"]
+            "exclude": [
+                "old",
+                "bin",
+                "dist"
+            ]
         }
     },
     "fmt": {

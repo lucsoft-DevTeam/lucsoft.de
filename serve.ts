@@ -12,6 +12,8 @@ export const config: BuildOptions = {
         ".html": "file",
         ".svg": "file",
         ".png": "file",
+        ".xml": "file",
+        ".txt": "file",
     },
     plugins: [
         {

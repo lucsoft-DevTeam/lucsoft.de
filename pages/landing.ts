@@ -49,7 +49,12 @@ View(() =>
                     .setStyle(ButtonStyle.Secondary),
                 Button("DOCUMENTATION")
                     .setStyle(ButtonStyle.Secondary),
-                IconButton("github"),
+                // TODO: Add IconButton#asLinkButton
+                Custom((() => {
+                    const link = IconButton("github").draw() as HTMLAnchorElement;
+                    link.href = "https://github.com/lucsoft";
+                    return link;
+                })()),
             ).setGap("0.5rem"),
         ).setMargin("2rem 1rem 0"),
         Horizontal(

@@ -9,9 +9,9 @@ import { SystemView } from "./sysmonitor.ts";
 
 WebGen({ theme: SupportedThemes.light })
 
-export const network = new HmSYSConnector("localhost:5001", {
+export const network = new HmSYSConnector(location.hostname == "localhost" ? "localhost:5001" : "hmsys.dee", {
     store: createLocalStorageProvider(),
-    AllowNonHTTPSConnection: true
+    AllowNonHTTPSConnection: location.hostname == "localhost"
 })
 const LoginDialogContent = Vertical(
     Horizontal(

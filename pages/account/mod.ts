@@ -9,7 +9,7 @@ import { SystemView } from "./sysmonitor.ts";
 
 WebGen({ theme: SupportedThemes.light })
 
-export const network = new HmSYSConnector(location.hostname == "localhost" ? "localhost:5001" : "hmsys.dee", {
+export const network = new HmSYSConnector(location.hostname == "localhost" ? "localhost:5001" : "hmsys.de", {
     store: createLocalStorageProvider(),
     AllowNonHTTPSConnection: location.hostname == "localhost"
 })

@@ -63,6 +63,9 @@ body {
 
 .sidebar {
     width: 10rem;
+    --color-critical-hue: 348deg;
+    --color-critical-saturation: 70%;
+    --color-critical-lightness: 54%;
 }
 
 .sidebar .title {
@@ -82,9 +85,8 @@ body {
 .grid {
     --background-card: hsla(181, 69%, 51%, 0.25);
     --on-card-text: #2ED6D8;
-    display: grid;
     grid-auto-rows: 5.6rem;
-    margin: 2.9rem 0;
+    flex-shrink: 1 !important;
 }
 
 .grid card {

@@ -1,3 +1,8 @@
+export type ViewState = {
+    profile: ProfileData;
+    stats: StatsType;
+    menuState: number;
+};
 export type ProfileData = {
     accountType: string;
     groupes: string[];

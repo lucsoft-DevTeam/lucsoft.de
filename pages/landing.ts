@@ -16,7 +16,7 @@ import {
 } from "https://deno.land/x/webgen@2.0.0-beta.9/mod.ts";
 import "../assets/landing.css";
 import webgen from "../assets/webgen.svg";
-import hmsys from "../assets/hmsys.png";
+import hmsys from "../assets/hmsys.webp";
 import background from "../assets/background.svg";
 import backgroundWhite from "../assets/background_white.svg";
 

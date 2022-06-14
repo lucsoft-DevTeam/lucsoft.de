@@ -1,6 +1,6 @@
 import { WebGen, Dialog, img, loadingWheel, Custom, Form, Vertical, Horizontal, PlainText, Input, Spacer, SupportedThemes } from "https://deno.land/x/webgen@2.0.0-beta.9/mod.ts";
 import { HmSYSConnector, EventTypes, createLocalStorageProvider, HmResponse } from "https://deno.land/x/hmsys_connector@0.7.0/mod.ts";
-import hmsys from "../../assets/hmsys.png";
+import hmsys from "../../assets/hmsys.webp";
 import '../../assets/login.css';
 import { controller } from "./controller.ts";
 import { refresh } from "./stats.ts";

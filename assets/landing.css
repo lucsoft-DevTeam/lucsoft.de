@@ -134,6 +134,11 @@ h2 {
     overflow: hidden;
 }
 
+.main-projects .project img {
+    width: 6rem;
+    margin: 0.8rem -0.5rem 0.8rem 0;
+}
+
 @media (max-width: 1000px) {
     .side-projects .wbutton {
         font-size: 1.7rem;
@@ -169,7 +174,9 @@ h2 {
         padding: .5rem 1rem;
     }
 
-    .side-projects, .main-projects, .welcome {
+    .side-projects,
+    .main-projects,
+    .welcome {
         display: flex;
         flex-wrap: wrap;
         display: flex;
@@ -185,7 +192,8 @@ h2 {
         font-size: 1.1rem;
     }
 
-    .main-projects, .welcome {
+    .main-projects,
+    .welcome {
         width: unset;
     }
 

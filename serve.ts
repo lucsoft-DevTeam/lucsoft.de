@@ -6,5 +6,8 @@ serve({
         "account": "./pages/account/mod.ts",
         "p/imprint": "./pages/imprint.ts",
         "games/nonogramm/index": "./pages/games/nonogramm.ts"
+    },
+    extraLoaders: {
+        ".webp": "file"
     }
 })

@@ -97,16 +97,16 @@ View(() =>
         ).setMargin("7rem 1rem 0"),
         Vertical(
             skillBar({
-                webdev: 7,
-                "ui/ux": 5,
-                backend: 5,
+                frontend: 8,
+                "ui/ux": 6,
+                backend: 6,
                 hardware: 3,
                 app: 2,
             }),
         ).addClass("section"),
         Vertical(
             PlainText(
-                "CSS UI UX RUST JAVASCRIPT DENO PHP C# JAVA LUA SWIFT NODE.JS OPENAPI ASYNCAPI WEBCOMPONENTS ARDUINO LIT-HTML REDUX C++ FIGMA REACT LINUX DOCKER",
+                "CSS UI UX RUST JAVASCRIPT DENO PHP C# JAVA LUA SWIFT NODE.JS OPENAPI ASYNCAPI WEBCOMPONENTS ARDUINO LIT-HTML REDUX C++ FIGMA REACT LINUX DOCKER JAVAFX",
             ).addClass("themed", "tech-names"),
         ).addClass("section"),
     )

@@ -1,4 +1,4 @@
-import { HmSYSConnector, MessageType, SyncResponse } from "https://deno.land/x/hmsys_connector@0.7.0/mod.ts";
+import { HmSYSConnector, MessageType, SyncResponse } from "https://deno.land/x/hmsys_connector@0.9.0/mod.ts";
 import { controller } from "./controller.ts";
 import { StatsType } from "./types.ts";
 

@@ -1,5 +1,5 @@
-import { createElement, Custom, PlainText, Vertical, View, WebGen } from "https://deno.land/x/webgen@2.0.0-beta.9/mod.ts";
-import { chunk } from "https://deno.land/std@0.134.0/collections/chunk.ts";
+import { createElement, Custom, PlainText, Vertical, View, WebGen } from "https://raw.githubusercontent.com/lucsoft/WebGen/104bc41/mod.ts";
+import { chunk } from "https://deno.land/std@0.167.0/collections/chunk.ts";
 import { createNormilizer, rotatedNormalIndexArray, rotateMatrixN90D } from "../../helper/matrixMath.ts";
 import { getDefault } from "../../helper/rendering.ts";
 import '../../assets/nonogramm.css';
@@ -24,10 +24,10 @@ const game = new Array(template.length).fill(0);
 const indexAsRotatedMartix = rotatedNormalIndexArray(template.length);
 
 const canvas = createElement("canvas");
-const view = View<{ health?: string }>(({ state }) => Vertical(
+const view = View<{ health?: string; }>(({ state }) => Vertical(
     PlainText(state.health ?? "").addClass("health"),
     Custom(canvas)
-)).addClass("shell").appendOn(document.body)
+)).addClass("shell").appendOn(document.body);
 const gapLength = 50;
 const gapHeight = 50;
 const ctx = canvas.getContext("2d")!;
@@ -41,17 +41,17 @@ canvas.onmouseup = () => drag = false;
 canvas.onmousemove = (env) => drag ? canvas.onclick?.(env) : null;
 canvas.onclick = (env) => {
     if (health === 0) return;
-    const rect = canvas.getBoundingClientRect()
+    const rect = canvas.getBoundingClientRect();
     const x = Math.floor(env.clientX - rect.left - gapLength);
     const y = Math.floor(env.clientY - rect.top - gapHeight);
     if (x <= 0 || y <= 0) return;
-    const xIndex = Math.ceil(x / (size * 1.1))
-    const yIndex = Math.ceil(y / (size * 1.1))
+    const xIndex = Math.ceil(x / (size * 1.1));
+    const yIndex = Math.ceil(y / (size * 1.1));
     game[ (xIndex - 1) + (yIndex - 1) * sqrtSize ] = 1;
     if (template[ (xIndex - 1) + (yIndex - 1) * sqrtSize ] === 0)
         health--;
     update();
-}
+};
 ctx.fillStyle = getDefault(wg.theme);
 ctx.font = "10px Roboto";
 let leftRow = chunk(template, sqrtSize).map((row, rowIndex) => combineRightWhile(row, rowIndex));
@@ -59,27 +59,27 @@ let topRow = rotateMatrixN90D(chunk(template, sqrtSize)).map((row, rowIndex) => 
 const linesDoneLeft: number[] = [];
 const linesDoneTop: number[] = [];
 let health = 3;
-const denormalIndex = createNormilizer(true, indexAsRotatedMartix)
+const denormalIndex = createNormilizer(true, indexAsRotatedMartix);
 function update() {
     // Calculate Numbers
     leftRow = chunk(template, sqrtSize).map((row, rowIndex) => combineRightWhile(row, rowIndex));
     topRow = rotateMatrixN90D(chunk(template, sqrtSize)).map((row, rowIndex) => combineRightWhile(row, rowIndex, true));
     leftRow.forEach((data, index) => {
         if (linesDoneLeft.includes(index) || !data.every(([ _, valid ]) => valid)) return;
-        console.log("Completed Line", index, "L!")
-        new Array(sqrtSize).fill(1).forEach((_, count) => game[ index * sqrtSize + count ] = 1)
+        console.log("Completed Line", index, "L!");
+        new Array(sqrtSize).fill(1).forEach((_, count) => game[ index * sqrtSize + count ] = 1);
         linesDoneLeft.push(index);
-    })
+    });
 
     topRow.forEach((data, index) => {
         if (linesDoneTop.includes(index) || !data.every(([ _, valid ]) => valid)) return;
-        console.log("Completed Line", index, "T!")
-        new Array(sqrtSize).fill(1).forEach((_, count) => game[ denormalIndex(index * sqrtSize + count) ] = 1)
+        console.log("Completed Line", index, "T!");
+        new Array(sqrtSize).fill(1).forEach((_, count) => game[ denormalIndex(index * sqrtSize + count) ] = 1);
         linesDoneTop.push(index);
-    })
+    });
 
     //Render
-    view.unsafeViewOptions().update({ health: health === 0 ? "You Lost!" : "❤️".repeat(health) })
+    view.unsafeViewOptions().update({ health: health === 0 ? "You Lost!" : "❤️".repeat(health) });
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     template.forEach((grid, index) => {
         const x = (index % sqrtSize) * size * 1.1 + gapLength;
@@ -93,7 +93,7 @@ function update() {
             size,
         );
         if (game[ index ] && !grid) {
-            ctx.strokeStyle = "#2e78f0"
+            ctx.strokeStyle = "#2e78f0";
             ctx.lineWidth = 3.5;
             ctx.lineCap = "round";
             ctx.beginPath();
@@ -102,7 +102,7 @@ function update() {
             ctx.stroke();
             ctx.beginPath();
             ctx.moveTo(x + padding, y + (size - padding));
-            ctx.lineTo(x + size - padding, y + padding)
+            ctx.lineTo(x + size - padding, y + padding);
             ctx.stroke();
         }
     });

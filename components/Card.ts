@@ -1,4 +1,4 @@
-import { Card, Component, headless, Horizontal, PlainText, Spacer, Vertical } from "https://deno.land/x/webgen@2.0.0-beta.9/mod.ts";
+import { Card, Component, Horizontal, PlainText, Spacer, Vertical } from "https://raw.githubusercontent.com/lucsoft/WebGen/104bc41/mod.ts";
 
 export function SmallCard(text = "--", description: string): [ settings: {
     width?: number | undefined;
@@ -6,7 +6,7 @@ export function SmallCard(text = "--", description: string): [ settings: {
 }, element: Component ] {
     return [
         { width: 4, heigth: 1 },
-        Card(headless(Vertical(
+        Card(Vertical(
             Horizontal(
                 PlainText(text)
                     .setFont(2.3, 900)
@@ -19,6 +19,6 @@ export function SmallCard(text = "--", description: string): [ settings: {
                 Spacer()
             ).setMargin("0 1rem"),
             Spacer()
-        )))
+        ))
     ];
 }

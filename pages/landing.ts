@@ -13,7 +13,7 @@ import {
     Vertical,
     View,
     WebGen,
-} from "https://deno.land/x/webgen@2.0.0-beta.9/mod.ts";
+} from "https://raw.githubusercontent.com/lucsoft/WebGen/104bc41/mod.ts";
 import "../assets/landing.css";
 import webgen from "../assets/webgen.svg";
 import hmsys from "../assets/hmsys.webp";
@@ -44,9 +44,9 @@ View(() =>
         Vertical(
             Horizontal(
                 Spacer(),
-                Button("LOGIN")
-                    .asLinkButton("/account.html")
-                    .setStyle(ButtonStyle.Secondary),
+                // Button("LOGIN")
+                //     .asLinkButton("/account.html")
+                //     .setStyle(ButtonStyle.Secondary),
                 Button("DOCUMENTATION")
                     .setStyle(ButtonStyle.Secondary),
                 // TODO: Add IconButton#asLinkButton

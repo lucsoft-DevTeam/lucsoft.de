@@ -1,14 +1,14 @@
-import { HmResponse } from "https://deno.land/x/hmsys_connector@0.7.0/mod.ts";
-import { Component, Grid, Horizontal, Icon, PlainText, Spacer, Vertical, View } from "https://deno.land/x/webgen@2.0.0-beta.9/mod.ts";
+import { HmResponse } from "https://deno.land/x/hmsys_connector@0.9.0/mod.ts";
+import { Component, Grid, Horizontal, Icon, PlainText, Spacer, Vertical, View } from "https://raw.githubusercontent.com/lucsoft/WebGen/104bc41/mod.ts";
 
 const mapping: () => { [ type in HmResponse[ "type" ] ]: Component } = () => ({
     client: Icon("lightning-charge-fill"),
     profile: Icon("person-badge"),
     query: Icon("search"),
     sync: Icon("info-lg")
-})
+});
 
-export const SystemView = View<{ data: HmResponse[] }>(({ state }) => Grid(
+export const SystemView = View<{ data: HmResponse[]; }>(({ state }) => Grid(
     PlainText("System-Events Monitor")
         .setFont(0.88, 500)
         .setMargin("1rem 1rem"),

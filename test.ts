@@ -1,6 +1,6 @@
 // deno-lint-ignore-file no-explicit-any
 console.log("Checking...");
-import { red, green } from "https://deno.land/std@0.134.0/fmt/colors.ts";
+import { red, green } from "https://deno.land/std@0.167.0/fmt/colors.ts";
 const domains = [
     "db.qs-befunddaten.de",
     "pig.qualiproof.de",

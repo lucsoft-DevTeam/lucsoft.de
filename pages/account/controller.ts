@@ -1,4 +1,4 @@
-import { Card, Spacer, View, headless, Grid, Vertical, createElement, Custom, Component } from "https://deno.land/x/webgen@2.0.0-beta.9/mod.ts";
+import { Card, Spacer, View, Grid, Vertical, createElement, Custom, Component } from "https://raw.githubusercontent.com/lucsoft/WebGen/104bc41/mod.ts";
 import { SmallCard } from "../../components/Card.ts";
 import { bytes, timeSince } from "../../helper/convert.ts";
 import { NavigationMenu } from "./navigation.ts";
@@ -14,14 +14,14 @@ const cube = new IsometricCanvas(<IsometricCanvasProps>{
     width: 500,
     height: 320,
     backgroundColor: "transparent"
-})
-type IsometricBoxProps = Omit<IsometricRectangleProps, "planeView" | "width" | "height"> & { posX: number, posY: number };
+});
+type IsometricBoxProps = Omit<IsometricRectangleProps, "planeView" | "width" | "height"> & { posX: number, posY: number; };
 
 const Color = {
     RichLemon: { fillColor: "hsl(58deg 100% 50%)", strokeColor: "hsl(58deg 100% 45%)" },
     Red: { fillColor: "hsl(348deg 90% 54%)", strokeColor: "hsl(348deg 90% 43%)" }
-}
-function Box(size: { width: number, height: number, depth: number }, opts: IsometricBoxProps) {
+};
+function Box(size: { width: number, height: number, depth: number; }, opts: IsometricBoxProps) {
     const topPiece = new IsometricRectangle({
         ...opts,
         width: size.width,
@@ -62,14 +62,14 @@ cube
         posY: 0,
         ...Color.RichLemon,
         strokeWidth: 1.1
-    }))
-const container = SystemView.asComponent()
+    }));
+const container = SystemView.asComponent();
 
 export const controller = View<ViewState>(({ state, update, use }) => Vertical(
     NavigationMenu({ state, update, use }),
     [
         HomeContent(state),
-        Card(headless(Custom(canvas)))
+        Card(Custom(canvas))
             .addClass("grid")
             .setMargin("2.9rem 0")
     ][ state.menuState ?? 0 ],
@@ -77,7 +77,7 @@ export const controller = View<ViewState>(({ state, update, use }) => Vertical(
 ).setDirection("row")).change(({ update }) => {
     update({
         menuState: parseInt(new URLSearchParams(location.search).get("menuState") || "0")
-    })
+    });
 });
 
 function HomeContent(state: Partial<ViewState>): Component | (Component | null)[] | null {
@@ -89,7 +89,7 @@ function HomeContent(state: Partial<ViewState>): Component | (Component | null)[
         SmallCard(state.stats ? `${state.stats?.host[ "sysMem%" ]}%` : undefined, "Memory"),
         [
             { width: 4 * 5, heigth: 3 },
-            Card(headless(container)).addClass("continer-system-view")
+            Card(container).addClass("continer-system-view")
         ],
         SmallCard("0", "Warnings"),
         SmallCard("0", "Errors")

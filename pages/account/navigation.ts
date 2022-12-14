@@ -1,4 +1,4 @@
-import { Button, ButtonStyle, Color, Component, PlainText, Vertical, ViewOptions } from "https://deno.land/x/webgen@2.0.0-beta.9/mod.ts";
+import { Button, ButtonStyle, Color, Component, PlainText, Vertical, ViewOptions } from "https://raw.githubusercontent.com/lucsoft/WebGen/104bc41/mod.ts";
 import { ViewState } from "./types.ts";
 
 export function NavigationMenu({ state, update }: ViewOptions<ViewState>): Component {

@@ -106,7 +106,7 @@ View(() =>
         ).addClass("section"),
         Vertical(
             PlainText(
-                "CSS UI UX RUST JAVASCIPRT DENO PHP C# JAVA LUA SWIFT NODE.JS OPENAPI ASYNCAPI WEBCOMPONENTS ARDUINO LIT-HTML REDUX C++ FIGMA REACT LINUX DOCKER",
+                "CSS UI UX RUST JAVASCRIPT DENO PHP C# JAVA LUA SWIFT NODE.JS OPENAPI ASYNCAPI WEBCOMPONENTS ARDUINO LIT-HTML REDUX C++ FIGMA REACT LINUX DOCKER",
             ).addClass("themed", "tech-names"),
         ).addClass("section"),
     )

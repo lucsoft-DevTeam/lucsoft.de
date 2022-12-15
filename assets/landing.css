@@ -94,10 +94,12 @@ h2 {
 
 .skill-bar span:nth-child(2) {
     background-color: #34D976;
+    color: #454545;
 }
 
 .skill-bar span:nth-child(3) {
     background-color: #2BB361;
+    color: #202020;
 }
 
 .skill-bar span:nth-child(4) {
@@ -135,7 +137,7 @@ h2 {
     overflow: hidden;
 }
 
-.main-projects .project img {
+.main-projects .project .wimage {
     width: 6rem;
     margin: 0.8rem -0.5rem 0.8rem 0;
 }

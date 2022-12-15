@@ -8,7 +8,6 @@ import {
     IconButton,
     Image,
     ImageComponent,
-    img,
     PlainText,
     Spacer,
     SupportedThemes,

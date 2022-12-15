@@ -1,4 +1,4 @@
-import { WebGen } from "https://raw.githubusercontent.com/lucsoft/WebGen/104bc41/mod.ts";
+import { WebGen } from "webgen/mod.ts";
 
 WebGen();
 

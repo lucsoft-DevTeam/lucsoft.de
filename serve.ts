@@ -10,4 +10,4 @@ serve({
     extraLoaders: {
         ".webp": "file"
     }
-})
+});

@@ -1,4 +1,4 @@
-import { Button, ButtonStyle, Color, Component, PlainText, Vertical, ViewOptions } from "https://raw.githubusercontent.com/lucsoft/WebGen/104bc41/mod.ts";
+import { Button, ButtonStyle, Color, Component, PlainText, Vertical, ViewOptions } from "webgen/mod.ts";
 import { ViewState } from "./types.ts";
 
 export function NavigationMenu({ state, update }: ViewOptions<ViewState>): Component {

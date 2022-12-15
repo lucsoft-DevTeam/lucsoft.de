@@ -1,20 +1,4 @@
-import {
-    BootstrapIcons,
-    Button,
-    ButtonStyle,
-    createElement,
-    Custom,
-    Horizontal,
-    IconButton,
-    Image,
-    ImageComponent,
-    PlainText,
-    Spacer,
-    SupportedThemes,
-    Vertical,
-    View,
-    WebGen,
-} from "https://raw.githubusercontent.com/lucsoft/WebGen/104bc41/mod.ts";
+import { BootstrapIcons, Button, ButtonStyle, createElement, Custom, Horizontal, IconButton, Image, ImageComponent, PlainText, Spacer, SupportedThemes, Vertical, View, WebGen, } from "webgen/mod.ts";
 import "../assets/landing.css";
 import webgen from "../assets/webgen.svg";
 import hmsys from "../assets/hmsys.webp";
@@ -50,12 +34,8 @@ View(() =>
                 //     .setStyle(ButtonStyle.Secondary),
                 Button("DOCUMENTATION")
                     .setStyle(ButtonStyle.Secondary),
-                // TODO: Add IconButton#asLinkButton
-                Custom((() => {
-                    const link = IconButton("github").draw() as HTMLAnchorElement;
-                    link.href = "https://github.com/lucsoft";
-                    return link;
-                })()),
+                IconButton("github", "GitHub")
+                    .asLinkButton("https://github.com/lucsoft"),
             ).setGap("0.5rem"),
         ).setMargin("2rem 1rem 0"),
         Horizontal(

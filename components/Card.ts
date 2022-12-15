@@ -1,4 +1,4 @@
-import { Card, Component, Horizontal, PlainText, Spacer, Vertical } from "https://raw.githubusercontent.com/lucsoft/WebGen/104bc41/mod.ts";
+import { Card, Component, Horizontal, PlainText, Spacer, Vertical } from "webgen/mod.ts";
 
 export function SmallCard(text = "--", description: string): [ settings: {
     width?: number | undefined;

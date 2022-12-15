@@ -1,4 +1,4 @@
-import { WebGen, Dialog, img, loadingWheel, Custom, Form, Vertical, Horizontal, PlainText, TextInput, Spacer, SupportedThemes } from "https://raw.githubusercontent.com/lucsoft/WebGen/104bc41/mod.ts";
+import { WebGen, Dialog, img, loadingWheel, Custom, Form, Vertical, Horizontal, PlainText, TextInput, Spacer, SupportedThemes } from "webgen/mod.ts";
 import { HmSYSConnector, EventTypes, createLocalStorageProvider, HmResponse } from "https://deno.land/x/hmsys_connector@0.9.0/mod.ts";
 import hmsys from "../../assets/hmsys.webp";
 import '../../assets/login.css';

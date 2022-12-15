@@ -1,4 +1,4 @@
-import { Card, Spacer, View, Grid, Vertical, createElement, Custom, Component } from "https://raw.githubusercontent.com/lucsoft/WebGen/104bc41/mod.ts";
+import { Card, Spacer, View, Grid, Vertical, createElement, Custom, Component } from "webgen/mod.ts";
 import { SmallCard } from "../../components/Card.ts";
 import { bytes, timeSince } from "../../helper/convert.ts";
 import { NavigationMenu } from "./navigation.ts";

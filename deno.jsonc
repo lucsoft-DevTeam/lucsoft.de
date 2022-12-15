@@ -8,6 +8,7 @@
             "deno.unstable"
         ]
     },
+    "importMap": "import-map.json",
     "lint": {
         "files": {
             "exclude": [

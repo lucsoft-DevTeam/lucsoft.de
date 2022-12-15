@@ -6,6 +6,8 @@ import {
     Custom,
     Horizontal,
     IconButton,
+    Image,
+    ImageComponent,
     img,
     PlainText,
     Spacer,
@@ -70,8 +72,8 @@ View(() =>
             Spacer(),
         ).setMargin("9.3rem 1rem 1rem"),
         Horizontal(
-            ButtonBig(hmsys, "HmSYS", "https://hmsys.de"),
-            ButtonBig(webgen, "webgen", "https://github.com/lucsoft/webgen"),
+            ButtonBig(Image(hmsys, "An Icon of HmSYS"), "HmSYS", "https://hmsys.de"),
+            ButtonBig(Image(webgen, "An Icon of WebGen"), "WebGen", "https://github.com/lucsoft/webgen"),
             Spacer(),
         ).addClass("main-projects", "themed", "section"),
         Horizontal(
@@ -112,12 +114,12 @@ View(() =>
     )
 ).setMaxWidth("60rem").appendOn(document.body);
 
-function ButtonBig(imgUrl: string, title: string, href: string) {
+function ButtonBig(img: ImageComponent, title: string, href: string) {
     const link = createElement("a");
     link.href = href;
     link.append(
         Horizontal(
-            Custom(img(imgUrl)),
+            img,
             PlainText(title),
         ).addClass("project", "wbutton", "grayscaled", "inline").draw(),
     );

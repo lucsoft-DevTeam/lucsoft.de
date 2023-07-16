@@ -1,0 +1,14 @@
+//# Radio
+//> Radios simplify decision-making by offering distinct and exclusive options.
+import { Checkbox, Grid, MaterialIcons, View } from "webgen/mod.ts";
+
+new MaterialIcons();
+
+View(() =>
+    Grid(
+        Checkbox(true),
+        Checkbox(false)
+    )
+        .setGap()
+        .setEvenColumns(2)
+).appendOn(document.body);

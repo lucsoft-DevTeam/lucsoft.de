@@ -1,10 +1,10 @@
-import { Card, Spacer, View, Grid, Vertical, createElement, Custom, Component } from "webgen/mod.ts";
+import { IsometricCanvas, IsometricCanvasProps, IsometricRectangle, IsometricRectangleProps, PlaneView } from "https://cdn.jsdelivr.net/npm/@elchininet/isometric@3.2.1/esm/index.js";
+import { Card, Component, createElement, Custom, Grid, Spacer, Vertical, View } from "webgen/mod.ts";
 import { SmallCard } from "../../components/Card.ts";
 import { bytes, timeSince } from "../../helper/convert.ts";
 import { NavigationMenu } from "./navigation.ts";
 import { SystemView } from "./sysmonitor.ts";
 import { ViewState } from "./types.ts";
-import { IsometricCanvas, IsometricRectangle, IsometricCanvasProps, PlaneView, IsometricRectangleProps } from "https://cdn.jsdelivr.net/npm/@elchininet/isometric@3.2.1/esm/index.js";
 
 const canvas = createElement("div");
 

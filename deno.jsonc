@@ -1,4 +1,8 @@
 {
+    "imports": {
+        "webgen/": "https://raw.githubusercontent.com/lucsoft/WebGen/e05da47/"
+        // "webgen/": "../webgen/"
+    },
     "compilerOptions": {
         "lib": [
             "dom",
@@ -8,7 +12,9 @@
             "deno.unstable"
         ]
     },
-    "importMap": "import-map.json",
+    "tasks": {
+        "start": "deno run -A serve.ts"
+    },
     "lint": {
         "files": {
             "exclude": [

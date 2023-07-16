@@ -4,3 +4,5 @@ bin
 stats.json
 old
 .vscode
+deno.lock
+docs/searchables/index.json

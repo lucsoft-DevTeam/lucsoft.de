@@ -1,9 +1,9 @@
-import { BootstrapIcons, Button, ButtonStyle, createElement, Custom, Horizontal, IconButton, Image, ImageComponent, PlainText, Spacer, SupportedThemes, Vertical, View, WebGen, } from "webgen/mod.ts";
-import "../assets/landing.css";
-import webgen from "../assets/webgen.svg";
-import hmsys from "../assets/hmsys.webp";
+import { BootstrapIcons, Button, ButtonStyle, createElement, Custom, Horizontal, IconButton, Image, ImageComponent, PlainText, Spacer, SupportedThemes, Vertical, View, WebGen } from "webgen/mod.ts";
 import background from "../assets/background.svg";
 import backgroundWhite from "../assets/background_white.svg";
+import hmsys from "../assets/hmsys.webp";
+import "../assets/landing.css";
+import webgen from "../assets/webgen.svg";
 
 WebGen({
     icon: new BootstrapIcons(),
@@ -33,6 +33,7 @@ View(() =>
                 //     .asLinkButton("/account.html")
                 //     .setStyle(ButtonStyle.Secondary),
                 Button("DOCUMENTATION")
+                    .asLinkButton("/p/docs")
                     .setStyle(ButtonStyle.Secondary),
                 IconButton("github", "GitHub")
                     .asLinkButton("https://github.com/lucsoft"),
@@ -91,7 +92,9 @@ View(() =>
             ).addClass("themed", "tech-names"),
         ).addClass("section"),
     )
-).setMaxWidth("60rem").appendOn(document.body);
+)
+    .setMaxWidth("60rem")
+    .appendOn(document.body);
 
 function ButtonBig(img: ImageComponent, title: string, href: string) {
     const link = createElement("a");

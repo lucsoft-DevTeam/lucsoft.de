@@ -5,7 +5,8 @@ const mapping: () => { [ type in HmResponse[ "type" ] ]: Component } = () => ({
     client: Icon("lightning-charge-fill"),
     profile: Icon("person-badge"),
     query: Icon("search"),
-    sync: Icon("info-lg")
+    sync: Icon("info-lg"),
+    pub: Icon("info-lg")
 });
 
 export const SystemView = View<{ data: HmResponse[]; }>(({ state }) => Grid(

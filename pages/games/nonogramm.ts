@@ -1,8 +1,8 @@
-import { createElement, Custom, PlainText, Vertical, View, WebGen } from "webgen/mod.ts";
 import { chunk } from "https://deno.land/std@0.167.0/collections/chunk.ts";
+import { createElement, Custom, PlainText, Vertical, View, WebGen } from "webgen/mod.ts";
+import '../../assets/nonogramm.css';
 import { createNormilizer, rotatedNormalIndexArray, rotateMatrixN90D } from "../../helper/matrixMath.ts";
 import { getDefault } from "../../helper/rendering.ts";
-import '../../assets/nonogramm.css';
 import games from "./games.json";
 
 const wg = WebGen();

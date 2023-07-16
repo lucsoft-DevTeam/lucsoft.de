@@ -1,0 +1,72 @@
+body {
+    background: url("./bg_fast.webp"), radial-gradient(121.45% 78.92% at 9.24% 141.11%, rgba(16, 59, 102, 0.20) 0%, rgba(10, 38, 65, 0.04) 73.96%, rgba(10, 38, 65, 0.00) 100%), linear-gradient(321deg, #0A2641 0%, rgba(10, 38, 65, 0.22) 60.89%, rgba(10, 38, 65, 0.00) 100%), #05482F;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+.header {
+    grid-template-columns: 3.5rem max-content auto;
+    gap: 30px;
+    align-items: center;
+}
+
+.searchables {
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: var(--gap);
+    justify-content: center;
+}
+
+.item {
+    background-color: rgb(255 255 255 / 3%);
+    backdrop-filter: blur(1rem);
+    border: 1px solid rgb(255 255 255 / 5%);
+    border-radius: .5rem;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    max-width: 50rem;
+    width: 100%;
+    min-height: 15rem;
+}
+
+.item>.wggrid {
+    display: grid;
+    gap: 10px;
+    padding: 20px;
+    grid-template-rows: max-content max-content auto;
+}
+
+.item>.wggrid>.title {
+    font-weight: 900;
+    user-select: none;
+}
+
+.item>.wggrid>.description {
+    font-size: 14px;
+    user-select: none;
+    font-weight: 500;
+}
+
+.holder {
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+.item>.code {
+    font-family: monospace;
+    grid-column: 2;
+    grid-row: 1/-1;
+    margin: 0;
+    border-radius: 0 0.5rem 0.5rem 0;
+    overflow: hidden;
+}
+
+.item .code code {
+    height: 100%;
+    box-sizing: border-box;
+    background: rgba(1, 6, 4, 0.7);
+}

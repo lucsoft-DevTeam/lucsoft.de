@@ -1,11 +1,11 @@
-import { WebGen, Dialog, img, loadingWheel, Custom, Form, Vertical, Horizontal, PlainText, TextInput, Spacer, SupportedThemes } from "webgen/mod.ts";
-import { HmSYSConnector, EventTypes, createLocalStorageProvider, HmResponse } from "https://deno.land/x/hmsys_connector@0.9.0/mod.ts";
+import { createLocalStorageProvider, EventTypes, HmResponse, HmSYSConnector } from "https://deno.land/x/hmsys_connector@0.9.0/mod.ts";
+import { Custom, Dialog, Horizontal, img, loadingWheel, PlainText, Spacer, SupportedThemes, Vertical, WebGen } from "webgen/mod.ts";
 import hmsys from "../../assets/hmsys.webp";
 import '../../assets/login.css';
 import { controller } from "./controller.ts";
 import { refresh } from "./stats.ts";
-import { ProfileData } from "./types.ts";
 import { SystemView } from "./sysmonitor.ts";
+import { ProfileData } from "./types.ts";
 
 WebGen({ theme: SupportedThemes.light });
 
@@ -19,14 +19,14 @@ const LoginDialogContent = Vertical(
         Spacer()
     ),
     PlainText("Sign In", "h1"),
-    Form({
-        email: TextInput("email", "Email"),
-        password: TextInput("password", "Password")
-    }).onSubmit("Next", async (data) => {
-        await network.ready();
-        network.authorize(data.get("email") as string, data.get("password") as string);
-        location.reload();
-    }).addClass("form")
+    // Form({
+    //     email: TextInput("email", "Email"),
+    //     password: TextInput("password", "Password")
+    // }).onSubmit("Next", async (data) => {
+    //     await network.ready();
+    //     network.authorize(data.get("email") as string, data.get("password") as string);
+    //     location.reload();
+    // }).addClass("form")
 );
 const dialog = Dialog<{ type: 'login' | 'loading' | 'loggedIn'; }>(({ state }) => {
     if (state.type === "login")

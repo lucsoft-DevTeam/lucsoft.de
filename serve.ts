@@ -27,5 +27,8 @@ serve({
         "p/docs": "./docs/index.ts",
         "games/nonogramm/index": "./pages/games/nonogramm.ts",
         ...Object.fromEntries(items.map(it => [ "searchables/" + it.name.replace(".ts", ""), it.path ]))
-    }
+    },
+    poylfills: [
+        "https://unpkg.com/construct-style-sheets-polyfill@3.1.0",
+    ]
 });

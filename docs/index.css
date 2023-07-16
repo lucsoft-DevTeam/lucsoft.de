@@ -70,3 +70,14 @@ body {
     box-sizing: border-box;
     background: rgba(1, 6, 4, 0.7);
 }
+
+@media (max-width: 500px) {
+    .item {
+        grid-template-columns: 1fr;
+    }
+
+    .item>.code {
+        grid-column: unset;
+        grid-row: unset;
+    }
+}

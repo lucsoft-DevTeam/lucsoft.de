@@ -29,6 +29,7 @@ serve({
         ...Object.fromEntries(items.map(it => [ "searchables/" + it.name.replace(".ts", ""), it.path ]))
     },
     poylfills: [
-        "https://unpkg.com/construct-style-sheets-polyfill@3.1.0",
+        "https://unpkg.com/construct-style-sheets-polyfill",
+        "https://esm.sh/object.hasown/auto.js"
     ]
 });

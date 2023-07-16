@@ -42,7 +42,7 @@ View(() => Vertical(
     Grid(
         Image(webgen, "An Icon of WebGen"),
         Label("WebGen", "h1"),
-        TextInput("text", "Search WebGen Components or Templates...")
+        TextInput("text", "Search for Components...")
             .sync(state, "filter")
     ).addClass("header"),
     state.$filter.map(search =>

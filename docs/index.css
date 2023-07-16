@@ -8,7 +8,8 @@ body {
 
 .header {
     grid-template-columns: 3.5rem max-content auto;
-    gap: 30px;
+    gap: 0 30px;
+    margin: 0 0 1rem;
     align-items: center;
 }
 
@@ -79,5 +80,13 @@ body {
     .item>.code {
         grid-column: unset;
         grid-row: unset;
+    }
+
+    .header {
+        grid-template-columns: 3.5rem auto;
+    }
+
+    .header> :nth-child(3) {
+        grid-column: 2 span;
     }
 }

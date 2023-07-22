@@ -1,8 +1,6 @@
 //# Checkbox
 //> Checkboxes offer granular control over non-direct actions or conditional behaviors.
-import { Checkbox, MaterialIcons, View } from "webgen/mod.ts";
-
-new MaterialIcons();
+import { Checkbox, View } from "webgen/mod.ts";
 
 View(() =>
     Checkbox(true)

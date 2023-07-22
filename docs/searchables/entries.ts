@@ -1,8 +1,6 @@
 //# Entry
 //> Entry are rich row elements used for lists.
-import { Entry, Grid, MaterialIcons, View } from "webgen/mod.ts";
-
-new MaterialIcons();
+import { Entry, Grid, View } from "webgen/mod.ts";
 
 View(() =>
     Grid(

@@ -1,5 +1,5 @@
 import { chunk } from "https://deno.land/std@0.167.0/collections/chunk.ts";
-import { createElement, Custom, PlainText, Vertical, View, WebGen } from "webgen/mod.ts";
+import { createElement, Custom, Label, Vertical, View, WebGen } from "webgen/mod.ts";
 import '../../assets/nonogramm.css';
 import { createNormilizer, rotatedNormalIndexArray, rotateMatrixN90D } from "../../helper/matrixMath.ts";
 import { getDefault } from "../../helper/rendering.ts";
@@ -25,7 +25,7 @@ const indexAsRotatedMartix = rotatedNormalIndexArray(template.length);
 
 const canvas = createElement("canvas");
 const view = View<{ health?: string; }>(({ state }) => Vertical(
-    PlainText(state.health ?? "").addClass("health"),
+    Label(state.health ?? "").addClass("health"),
     Custom(canvas)
 )).addClass("shell").appendOn(document.body);
 const gapLength = 50;

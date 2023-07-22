@@ -1,9 +1,8 @@
 //# Switch
 //> Tags visually represent categories/topics for easy content scanning and relevance.
 import { delay } from "https://deno.land/std@0.191.0/async/delay.ts";
-import { asPointer, MaterialIcons, Switch, View } from "webgen/mod.ts";
+import { asPointer, Switch, View } from "webgen/mod.ts";
 
-new MaterialIcons();
 const selected = asPointer(false);
 
 View(() =>

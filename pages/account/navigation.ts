@@ -1,11 +1,11 @@
-import { Button, ButtonStyle, Color, Component, PlainText, Vertical, ViewOptions } from "webgen/mod.ts";
+import { Button, ButtonStyle, Color, Component, Label, Vertical, ViewOptions } from "webgen/mod.ts";
 import { ViewState } from "./types.ts";
 
 export function NavigationMenu({ state, update }: ViewOptions<ViewState>): Component {
     return Vertical(
-        PlainText("HmSYS")
+        Label("HmSYS")
             .addClass("title"),
-        PlainText(`@${state.profile?.profile.username}`)
+        Label(`@${state.profile?.profile.username}`)
             .addClass("subtitle"),
         ...[ "Home", "Services", "Security", "Administration" ]
             .map((entry, index) =>

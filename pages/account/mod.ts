@@ -1,5 +1,5 @@
 import { createLocalStorageProvider, EventTypes, HmResponse, HmSYSConnector } from "https://deno.land/x/hmsys_connector@0.9.0/mod.ts";
-import { Custom, Dialog, Horizontal, img, loadingWheel, PlainText, Spacer, SupportedThemes, Vertical, WebGen } from "webgen/mod.ts";
+import { Custom, Dialog, Horizontal, img, Label, loadingWheel, Spacer, SupportedThemes, Vertical, WebGen } from "webgen/mod.ts";
 import hmsys from "../../assets/hmsys.webp";
 import '../../assets/login.css';
 import { controller } from "./controller.ts";
@@ -18,7 +18,7 @@ const LoginDialogContent = Vertical(
         Custom(img(hmsys)),
         Spacer()
     ),
-    PlainText("Sign In", "h1"),
+    Label("Sign In", "h1"),
     // Form({
     //     email: TextInput("email", "Email"),
     //     password: TextInput("password", "Password")
@@ -44,7 +44,7 @@ const dialog = Dialog<{ type: 'login' | 'loading' | 'loggedIn'; }>(({ state }) =
             Spacer(),
             Spacer(),
             Spacer(),
-            PlainText("Connecting to HmSYS"),
+            Label("Connecting to HmSYS"),
             Spacer(),
         ).addClass("connecting", "loading");
     }

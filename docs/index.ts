@@ -1,6 +1,6 @@
 import { deferred } from "https://deno.land/std@0.194.0/async/deferred.ts";
 
-import { Box, Cache, Component, createElement, Custom, Grid, Image, Label, loadingWheel, MaterialIcons, State, SupportedThemes, TextInput, Vertical, View, WebGen } from "webgen/mod.ts";
+import { Box, Cache, Component, createElement, Custom, Grid, Image, Label, loadingWheel, State, SupportedThemes, TextInput, Vertical, View, WebGen } from "webgen/mod.ts";
 import webgen from "../assets/webgen.svg";
 import './index.css';
 // @deno-types="https://esm.sh/v128/highlight.js@11.8.0/types/index.d.ts"
@@ -10,7 +10,6 @@ import "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/es/languages/
 import "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/codepen-embed.min.css";
 import searchables from "./searchables/index.json" assert { type: "json" };
 WebGen({
-    icon: new MaterialIcons(),
     theme: SupportedThemes.dark
 });
 

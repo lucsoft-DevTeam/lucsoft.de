@@ -1,4 +1,4 @@
-import { BootstrapIcons, Button, ButtonStyle, createElement, Custom, Horizontal, IconButton, Image, ImageComponent, PlainText, Spacer, SupportedThemes, Vertical, View, WebGen } from "webgen/mod.ts";
+import { BIcon, Button, ButtonStyle, createElement, Custom, Horizontal, IconButton, Image, ImageComponent, Label, Spacer, SupportedThemes, Vertical, View, WebGen } from "webgen/mod.ts";
 import background from "../assets/background.svg";
 import backgroundWhite from "../assets/background_white.svg";
 import hmsys from "../assets/hmsys.webp";
@@ -6,7 +6,6 @@ import "../assets/landing.css";
 import webgen from "../assets/webgen.svg";
 
 WebGen({
-    icon: new BootstrapIcons(),
     events: {
         themeRefreshed: (data) => {
             document.body.style.backgroundImage = `url(${data === SupportedThemes.autoLight ? backgroundWhite : background})`;
@@ -17,7 +16,7 @@ WebGen({
 const skillBar = (data: { [ name in string ]: number }) => {
     const keys = Object.entries(data);
     const component = Horizontal(
-        ...keys.map(([ name ]) => PlainText(name)),
+        ...keys.map(([ name ]) => Label(name)),
     ).addClass("skill-bar").draw();
 
     component.style.gridTemplateColumns = keys.map(([ _, weight ]) => `${weight}fr`).join(" ");
@@ -35,20 +34,20 @@ View(() =>
                 Button("DOCUMENTATION")
                     .asLinkButton("/p/docs")
                     .setStyle(ButtonStyle.Secondary),
-                IconButton("github", "GitHub")
+                IconButton(BIcon("github"), "GitHub")
                     .asLinkButton("https://github.com/lucsoft"),
             ).setGap("0.5rem"),
         ).setMargin("2rem 1rem 0"),
         Horizontal(
             Vertical(
-                PlainText("lucsoft", "h1"),
-                PlainText("developer & designer", "span").addClass("subtitle", "themed"),
-                PlainText("software & hardware with love ❤️").addClass("note", "themed"),
+                Label("lucsoft", "h1"),
+                Label("developer & designer", "span").addClass("subtitle", "themed"),
+                Label("software & hardware with love ❤️").addClass("note", "themed"),
             ),
             Spacer(),
         ).addClass("welcome").setMargin("15vh 1rem 0"),
         Horizontal(
-            PlainText("Project", "h2"),
+            Label("Project", "h2"),
             Spacer(),
         ).setMargin("9.3rem 1rem 1rem"),
         Horizontal(
@@ -74,7 +73,7 @@ View(() =>
                 .asLinkButton("https://remod.dev/"),
         ).addClass("side-projects"),
         Horizontal(
-            PlainText("Skills", "h2"),
+            Label("Skills", "h2"),
             Spacer(),
         ).setMargin("7rem 1rem 0"),
         Vertical(
@@ -87,7 +86,7 @@ View(() =>
             }),
         ).addClass("section"),
         Vertical(
-            PlainText(
+            Label(
                 "CSS UI UX RUST JAVASCRIPT DENO PHP C# JAVA LUA SWIFT NODE.JS OPENAPI ASYNCAPI WEBCOMPONENTS ARDUINO LIT-HTML REDUX C++ FIGMA REACT LINUX DOCKER JAVAFX",
             ).addClass("themed", "tech-names"),
         ).addClass("section"),
@@ -102,7 +101,7 @@ function ButtonBig(img: ImageComponent, title: string, href: string) {
     link.append(
         Horizontal(
             img,
-            PlainText(title),
+            Label(title),
         ).addClass("project", "wbutton", "grayscaled", "inline").draw(),
     );
     return Custom(link);

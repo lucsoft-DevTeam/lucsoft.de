@@ -1,8 +1,7 @@
 //# Taglist
 //> Tags visually represent categories/topics for easy content scanning and relevance.
-import { asPointer, css, MaterialIcons, Taglist, View } from "webgen/mod.ts";
+import { asPointer, css, Taglist, View } from "webgen/mod.ts";
 
-new MaterialIcons();
 //HIDE-START
 document.adoptedStyleSheets.push(css`
     #taglist {

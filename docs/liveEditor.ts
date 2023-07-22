@@ -95,7 +95,7 @@
 // vscode.editor.create(codeshell, {
 //     value: [
 //         "View(() => ",
-//         '   PlainText("Hello World!")',
+//         '   Label("Hello World!")',
 //         ").appendOn(document.body);"
 //     ].join("\n"),
 //     language: 'typescript',

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "0.state",
+    "title": "State",
+    "description": "A object allows you to pass a recursively proxied object, where values can also be backed by an pointer. (Powered by ArrowJS)",
+    "code": "import { Body, Button, State, ref } from \"webgen/mod.ts\";\n\nconst state = State({\n    value: 0\n});\n\nBody(\n    Button(ref`Clicked: ${state.$value}`)\n        .onClick(() => {\n            state.value += 1;\n        })\n);"
+  },
+  {
+    "id": "1.button",
+    "title": "Button",
+    "description": "Buttons promote efficient and streamlined user workflows by enabling quick decision-making.",
+    "code": "import { sample } from \"https://deno.land/std@0.194.0/collections/sample.ts\";\nimport { Body, Button, ButtonStyle, asPointer } from \"webgen/mod.ts\";\n\nconst styles = [\n    ButtonStyle.Inline,\n    ButtonStyle.Normal,\n    ButtonStyle.Secondary,\n    ButtonStyle.Spinner,\n];\nconst style = asPointer(sample(styles)!);\nsetInterval(() => style.setValue(sample(styles)!), 1000);\n\nBody(\n    Button(\"BUTTON\")\n        .setStyle(style)\n);"
+  },
+  {
+    "id": "2.switch",
+    "title": "Switch",
+    "description": "Tags visually represent categories/topics for easy content scanning and relevance.",
+    "code": "import { delay } from \"https://deno.land/std@0.191.0/async/delay.ts\";\nimport { Body, Switch, asPointer } from \"webgen/mod.ts\";\n\nconst selected = asPointer(false);\n\nBody(\n    Switch(selected)\n        .onPromiseClick(async () => {\n            await delay(800);\n            selected.setValue(!selected.getValue());\n        })\n);"
+  },
+  {
+    "id": "basicLabel",
+    "title": "BasicLabel",
+    "description": "Radios simplify decision-making by offering distinct and exclusive options.",
+    "code": "import { BasicLabel, Body, css } from \"webgen/mod.ts\";\n//HIDE-START\ndocument.adoptedStyleSheets.push(css`\n    #basic-label {\n        width: 2rem;\n        height: 2rem;\n    }\n`);\n//HIDE-END\n\nBody(\n    BasicLabel({\n        title: \"Hello World\",\n        subtitle: \"This is some loooong text.\"\n    })\n//HIDE-START\n        .addClass(\"small\")\n        .setWidth(\"10rem\")\n    //HIDE-END\n);"
+  },
+  {
+    "id": "checkbox",
+    "title": "Checkbox",
+    "description": "Checkboxes offer granular control over non-direct actions or conditional behaviors.",
+    "code": "import { Body, Checkbox } from \"webgen/mod.ts\";\n\nBody(\n    Checkbox(true)\n        .onClick(() => {\n            console.log(\"Clicked\");\n        })\n);"
+  },
+  {
+    "id": "entries",
+    "title": "Entry",
+    "description": "Entry are rich row elements used for lists.",
+    "code": "import { Body, Entry, Grid } from \"webgen/mod.ts\";\n\nBody(\n    Grid(\n        Entry({\n            title: \"Rich Rows\"\n        })\n            .addClass(\"small\")\n            .onClick(() => alert(\"You did it!\")),\n        Entry({\n            title: \"With titles\",\n            subtitle: \"And subtitles\"\n        })\n            .addClass(\"small\")\n            .onClick(() => alert(\"You did it!\")),\n    )\n        .setWidth(\"100%\")\n        .setGap()\n\n);"
+  },
+  {
+    "id": "layer",
+    "title": "Layers",
+    "description": "Tags visually represent categories/topics for easy content scanning and relevance.",
+    "code": "import { Body, Box, Layer, SupportedThemes, WebGen, css } from \"webgen/mod.ts\";\n//HIDE-START\nWebGen({\n    theme: SupportedThemes.light\n});\ndocument.adoptedStyleSheets.push(css`\n    #box {\n        width: 4rem;\n        height: 4rem;\n        --color-overlay: 0;\n        --layer-shadow: 0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.3);\n    }\n`);\n//HIDE-END\n\nBody(\n    Box(\n        Layer(Box(), 5, \"shadow\")\n            .setBorderRadius(\"mid\")\n            .setId(\"box\")\n    )\n);"
+  },
+  {
+    "id": "taglist",
+    "title": "Taglist",
+    "description": "Tags visually represent categories/topics for easy content scanning and relevance.",
+    "code": "import { Body, Taglist, asPointer, css } from \"webgen/mod.ts\";\n\n//HIDE-START\ndocument.adoptedStyleSheets.push(css`\n    #taglist {\n        --color-colored-lightness: 100%;\n        --color-colored-font: #000000;\n        width: unset;\n    }\n`);\n//HIDE-END\n\nconst selected = asPointer(0);\n\nBody(\n    Taglist([\n        \"ACTION\",\n        \"ACTION\"\n    ], selected)\n        .setId(\"taglist\")\n);"
+  },
+  {
+    "id": "textinput",
+    "title": "TextInput",
+    "description": "TextInputs provide flexibility for users to enter variable-length input, such as short phrases or long paragraphs.",
+    "code": "import { Body, Label, State, TextInput, Vertical, ref } from \"webgen/mod.ts\";\n\nconst data = State({\n    example: \"\"\n});\n\nBody(\n    Vertical(\n        TextInput(\"text\", \"Placeholder\")\n            .sync(data, \"example\"),\n        Label(ref`Length: ${data.$example.map(it => it.length)}`)\n    ).setGap(\"0.5rem\")\n);"
+  },
+  {
+    "id": "z.pointers",
+    "title": "Pointers",
+    "description": "Pointers are box values that can have event listeners, mappers, getters and setters for your values.",
+    "code": "import { Body, Button, ButtonStyle, Grid, Label, asPointer, ref } from \"webgen/mod.ts\";\n\nconst value = asPointer(0);\n\nBody(\n    Grid(\n        Label(\"You clicked the Button this many times:\")\n            .setTextSize(\"sm\")\n            .setAlign(\"center\"),\n        Label(ref`${value}`)\n            .setTextSize(\"5xl\")\n            .setFontWeight(\"bold\"),\n        Button(\"Add one\")\n            .setStyle(ButtonStyle.Secondary)\n            .onClick(() => {\n                value.setValue(value.getValue() + 1);\n            })\n    )\n        .setGap(\"0.5rem\")\n        .setJustify(\"center\")\n        .setEvenColumns(1)\n);"
+  }
+]

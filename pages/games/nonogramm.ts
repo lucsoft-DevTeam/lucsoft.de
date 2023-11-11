@@ -1,9 +1,9 @@
 import { chunk } from "https://deno.land/std@0.167.0/collections/chunk.ts";
-import { createElement, Custom, Label, Vertical, View, WebGen } from "webgen/mod.ts";
+import { asPointer, Body, createElement, Custom, Label, Vertical, WebGen } from "webgen/mod.ts";
 import '../../assets/nonogramm.css';
 import { createNormilizer, rotatedNormalIndexArray, rotateMatrixN90D } from "../../helper/matrixMath.ts";
 import { getDefault } from "../../helper/rendering.ts";
-import games from "./games.json";
+import games from "./games.json" assert { type: "json" };
 
 const wg = WebGen();
 // deno-fmt-ignore
@@ -24,10 +24,11 @@ const game = new Array(template.length).fill(0);
 const indexAsRotatedMartix = rotatedNormalIndexArray(template.length);
 
 const canvas = createElement("canvas");
-const view = View<{ health?: string; }>(({ state }) => Vertical(
-    Label(state.health ?? "").addClass("health"),
+const healthValue = asPointer<string | undefined>(undefined);
+Body(Vertical(
+    Label(healthValue.map(it => it ?? "")).addClass("health"),
     Custom(canvas)
-)).addClass("shell").appendOn(document.body);
+)).addClass("shell");
 const gapLength = 50;
 const gapHeight = 50;
 const ctx = canvas.getContext("2d")!;
@@ -79,7 +80,7 @@ function update() {
     });
 
     //Render
-    view.unsafeViewOptions().update({ health: health === 0 ? "You Lost!" : "❤️".repeat(health) });
+    healthValue.setValue(health === 0 ? "You Lost!" : "❤️".repeat(health));
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     template.forEach((grid, index) => {
         const x = (index % sqrtSize) * size * 1.1 + gapLength;

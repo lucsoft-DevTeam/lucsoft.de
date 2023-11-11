@@ -1,6 +1,6 @@
 //# Taglist
 //> Tags visually represent categories/topics for easy content scanning and relevance.
-import { asPointer, css, Taglist, View } from "webgen/mod.ts";
+import { Body, Taglist, asPointer, css } from "webgen/mod.ts";
 
 //HIDE-START
 document.adoptedStyleSheets.push(css`
@@ -14,10 +14,10 @@ document.adoptedStyleSheets.push(css`
 
 const selected = asPointer(0);
 
-View(() =>
+Body(
     Taglist([
         "ACTION",
         "ACTION"
     ], selected)
         .setId("taglist")
-).appendOn(document.body);
+);

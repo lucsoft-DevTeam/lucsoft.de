@@ -1,17 +1,18 @@
 //# Pointers
 //> Pointers are box values that can have event listeners, mappers, getters and setters for your values.
-import { asPointer, Button, ButtonStyle, Grid, Label, ref, View } from "webgen/mod.ts";
+import { Body, Button, ButtonStyle, Grid, Label, asPointer, ref } from "webgen/mod.ts";
 
 const value = asPointer(0);
 
-View(() =>
+Body(
     Grid(
         Label("You clicked the Button this many times:")
-            .setFont(.8, 600)
+            .setTextSize("sm")
             .setAlign("center"),
         Label(ref`${value}`)
-            .setFont(2),
-        Button("The Clicker")
+            .setTextSize("5xl")
+            .setFontWeight("bold"),
+        Button("Add one")
             .setStyle(ButtonStyle.Secondary)
             .onClick(() => {
                 value.setValue(value.getValue() + 1);
@@ -20,4 +21,4 @@ View(() =>
         .setGap("0.5rem")
         .setJustify("center")
         .setEvenColumns(1)
-).appendOn(document.body);
+);

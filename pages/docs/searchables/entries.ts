@@ -1,8 +1,8 @@
 //# Entry
 //> Entry are rich row elements used for lists.
-import { Entry, Grid, View } from "webgen/mod.ts";
+import { Body, Entry, Grid } from "webgen/mod.ts";
 
-View(() =>
+Body(
     Grid(
         Entry({
             title: "Rich Rows"
@@ -19,4 +19,4 @@ View(() =>
         .setWidth("100%")
         .setGap()
 
-).appendOn(document.body);
+);

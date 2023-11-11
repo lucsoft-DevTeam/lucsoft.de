@@ -1,6 +1,6 @@
 //# BasicLabel
 //> Radios simplify decision-making by offering distinct and exclusive options.
-import { BasicLabel, css, View } from "webgen/mod.ts";
+import { BasicLabel, Body, css } from "webgen/mod.ts";
 //HIDE-START
 document.adoptedStyleSheets.push(css`
     #basic-label {
@@ -10,13 +10,13 @@ document.adoptedStyleSheets.push(css`
 `);
 //HIDE-END
 
-View(() =>
+Body(
     BasicLabel({
         title: "Hello World",
         subtitle: "This is some loooong text."
     })
-        //HIDE-START
+//HIDE-START
         .addClass("small")
         .setWidth("10rem")
     //HIDE-END
-).appendOn(document.body);
+);

@@ -1,6 +1,6 @@
 //# Layers
 //> Tags visually represent categories/topics for easy content scanning and relevance.
-import { Box, css, Layer, SupportedThemes, View, WebGen } from "webgen/mod.ts";
+import { Body, Box, Layer, SupportedThemes, WebGen, css } from "webgen/mod.ts";
 //HIDE-START
 WebGen({
     theme: SupportedThemes.light
@@ -15,11 +15,10 @@ document.adoptedStyleSheets.push(css`
 `);
 //HIDE-END
 
-View(() =>
+Body(
     Box(
         Layer(Box(), 5, "shadow")
             .setBorderRadius("mid")
             .setId("box")
     )
-
-).appendOn(document.body);
+);

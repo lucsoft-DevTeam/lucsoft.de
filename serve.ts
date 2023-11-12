@@ -23,6 +23,7 @@ serve({
     pages: {
         "index": "./pages/landing.ts",
         // "account": "./pages/account/mod.ts",
+        "p/demos/ai/whales": "./pages/demos/ai/whales.ts",
         "p/imprint": "./pages/imprint.ts",
         "p/docs": "./pages/docs/index.ts",
         "games/nonogramm/index": "./pages/games/nonogramm.ts",

@@ -147,7 +147,7 @@ class StackingSheetsComponent extends Component {
     constructor(private activeSheetIndex: Pointer<number>, layers: SheetComponent[]) {
         super();
         this.onClick(() => {
-            activeSheetIndex.setValue(1 - activeSheetIndex.getValue());
+            activeSheetIndex.setValue(activeSheetIndex.getValue() - 1);
         });
         this.addClass("wstacking-sheets");
         this.addClass(isMobile.map(it => it ? "mobile-variant" : "desktop-variant"));

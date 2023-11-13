@@ -1,4 +1,4 @@
-import { Body, Box, Button, ButtonStyle, Color, Component, Content, Entry, Flow, Grid, Label, Pointer, WebGen, asPointer, css, isMobile } from "webgen/mod.ts";
+import { Body, Box, Button, ButtonStyle, Color, Component, Content, Entry, Flow, Grid, Label, Pointer, WebGen, asPointer, css, isMobile, refMerge } from "webgen/mod.ts";
 
 WebGen();
 
@@ -24,12 +24,12 @@ class SheetComponent extends Component {
     }
 
     setWidth(size: string): this {
-        this.wrapper.style.setProperty("--sheet-width", size);
+        this.wrapper.style.setProperty("--sheet-desktop-width", size);
         return this;
     }
 
     setHeight(size: string): this {
-        this.wrapper.style.setProperty("--sheet-height", size);
+        this.wrapper.style.setProperty("--sheet-desktop-height", size);
         return this;
     }
 }
@@ -38,7 +38,7 @@ class SheetComponent extends Component {
 document.adoptedStyleSheets.push(css`
     .wstacking-sheets {
         display: grid;
-        grid-template: 1fr / 1fr;
+        grid-template: 100% / 100%;
         place-items: center;
         overflow: hidden;
     }
@@ -53,17 +53,17 @@ document.adoptedStyleSheets.push(css`
         --sheet-opacity: calc(1 - calc(var(--sheet-reverse-index) * 0.3));
         --sheet-scale: calc(1 - calc(calc(var(--sheet-reverse-index)) * 0.03));
         transform: scale(var(--sheet-scale)) translate(0, calc(var(--sheet-index) * 30px));
-    }
-
-
-    .wstacking-sheets.mobile-variant .wsheet {
-        width: 100%;
-        height: 100%;
+        margin-bottom: calc(var(--sheet-index) * 30px);
+        width: var(--sheet-width, 100%);
+        height: calc(var(--sheet-height, 100%) - calc(var(--sheet-index) * 30px));
+        display: grid;
+        grid-template-columns: 1fr;
+        overflow: auto;
     }
 
     .wstacking-sheets.desktop-variant .wsheet {
-        width: var(--sheet-width, 100%);
-        height: var(--sheet-height, 100%);
+        --sheet-width: var(--sheet-desktop-width, 100%);
+        --sheet-height: var(--sheet-desktop-height, 100%);
     }
 
     .wsheet.hidden {
@@ -81,6 +81,7 @@ document.adoptedStyleSheets.push(css`
 
     .wsheet:not(.on-top) {
         pointer-events: none;
+        overflow: hidden;
     }
 
     .wsheet:not(:first-child).shown {
@@ -136,6 +137,9 @@ document.adoptedStyleSheets.push(css`
         }
     }
 
+    .wscrollable {
+        overflow: auto;
+    }
 `);
 
 // TODO: Convert this Component to be Pointer based and only use the last layer as active layer
@@ -157,9 +161,11 @@ class StackingSheetsComponent extends Component {
             layer.addClass(layerVisible.map(it => it ? "shown" : "hidden"));
             layer.addClass(layerIsOnTop.map(it => it ? "on-top" : "not-on-top"));
 
-            layer.addClass(activeSheetIndex.map(it => it > 0 ? "background" : "no-background"));
+            layer.addClass(refMerge({ activeSheetIndex, isMobile }).map(({ isMobile, activeSheetIndex }) => activeSheetIndex > 0 || isMobile ? "background" : "no-background"));
 
-            sheet.style.setProperty("--sheet-index", `${index}`);
+            isMobile.map(mobile => {
+                sheet.style.setProperty("--sheet-index", `${index > 0 && !mobile ? index - 1 : index}`);
+            });
 
             layer.onClick((ev) => {
                 ev.stopPropagation();
@@ -178,6 +184,17 @@ class StackingSheetsComponent extends Component {
 }
 
 export const StackingSheets = (index: Pointer<number>, ...layers: SheetComponent[]) => new StackingSheetsComponent(index, layers);
+
+export class ScrollableComponent extends Component {
+    constructor(private readonly content: Component[]) {
+        super();
+        this.addClass("wscrollable");
+        this.wrapper.append(...content.map(it => it.draw()));
+    }
+}
+
+export const Scrollable = (...content: Component[]) => new ScrollableComponent(content);
+
 
 Body(
     StackingSheets(
@@ -203,6 +220,43 @@ Body(
                         activeSheetIndex.setValue(1);
                         sheetType.setValue(SheetType.SETTINGS);
                     }),
+                    Entry({
+                        title: "Credits"
+                    }).onClick(() => {
+                        activeSheetIndex.setValue(1);
+                        sheetType.setValue(SheetType.SETTINGS);
+                    }),
+                    Entry({
+                        title: "About"
+                    }).onClick(() => {
+                        activeSheetIndex.setValue(1);
+                        sheetType.setValue(SheetType.SETTINGS);
+                    }),
+                    Entry({
+                        title: "Help"
+                    }).onClick(() => {
+                        activeSheetIndex.setValue(1);
+                        sheetType.setValue(SheetType.SETTINGS);
+                    }),
+                    Entry({
+                        title: "Support"
+                    }).onClick(() => {
+                        activeSheetIndex.setValue(1);
+                        sheetType.setValue(SheetType.SETTINGS);
+                    }),
+                    Entry({
+                        title: "Feedback"
+                    }).onClick(() => {
+                        activeSheetIndex.setValue(1);
+                        sheetType.setValue(SheetType.SETTINGS);
+                    }),
+                    Entry({
+                        title: "Privacy"
+                    }).onClick(() => {
+                        activeSheetIndex.setValue(1);
+                        sheetType.setValue(SheetType.SETTINGS);
+                    }),
+
                 )
             ).setMargin("1rem 0")
         )
@@ -294,6 +348,36 @@ Body(
                         .onClick(() => { }),
                     Entry({
                         title: "Easter Egg!"
+                    })
+                        .addClass(isMobile.map(it => it ? "small" : "large"))
+                        .onClick(() => { }),
+                    Entry({
+                        title: "Don't click me!"
+                    })
+                        .addClass(isMobile.map(it => it ? "small" : "large"))
+                        .onClick(() => { }),
+                    Entry({
+                        title: "I said don't click me!"
+                    })
+                        .addClass(isMobile.map(it => it ? "small" : "large"))
+                        .onClick(() => { }),
+                    Entry({
+                        title: "I'm warning you!"
+                    })
+                        .addClass(isMobile.map(it => it ? "small" : "large"))
+                        .onClick(() => { }),
+                    Entry({
+                        title: "I'm warning you! Last time!"
+                    })
+                        .addClass(isMobile.map(it => it ? "small" : "large"))
+                        .onClick(() => { }),
+                    Entry({
+                        title: "I'm warning you! Last time! I'm serious!"
+                    })
+                        .addClass(isMobile.map(it => it ? "small" : "large"))
+                        .onClick(() => { }),
+                    Entry({
+                        title: "I'm warning you! Last time! I'm serious! Don't click me!"
                     })
                         .addClass(isMobile.map(it => it ? "small" : "large"))
                         .onClick(() => { }),

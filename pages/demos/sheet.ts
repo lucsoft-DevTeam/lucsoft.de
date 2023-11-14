@@ -1,5 +1,5 @@
 import { deferred } from "https://deno.land/std@0.206.0/async/deferred.ts";
-import { Body, Box, Button, ButtonStyle, Color, Component, Content, Entry, Flow, Grid, Label, Pointer, WebGen, asPointer, css, isMobile, refMerge } from "webgen/mod.ts";
+import { Body, Button, ButtonStyle, Color, Component, Content, Entry, Flow, Grid, Label, Pointer, WebGen, asPointer, css, isMobile, refMerge } from "webgen/mod.ts";
 
 WebGen();
 
@@ -50,9 +50,9 @@ document.adoptedStyleSheets.push(css`
         overflow: auto;
     }
 
-    .wstacking-sheets.desktop-variant .wsheet {
-        --sheet-width: var(--sheet-desktop-width, 100%);
-        --sheet-height: var(--sheet-desktop-height, 100%);
+    .wstacking-sheets.desktop-variant .wsheet:not(:first-child) {
+        --sheet-width: var(--sheet-desktop-width, min(calc(100% - 15px)));
+        --sheet-height: var(--sheet-desktop-height, min(calc(100% - 15px)));
     }
 
     .wsheet.background {
@@ -148,13 +148,13 @@ class SheetsComponent extends Component {
         const element = sheet.draw();
         element.style.zIndex = `${(index) + 10}`;
 
-
+        const sheetVisible = this.sheets.map(it => it.includes(sheet));
         const sheetOnTop = this.sheets.map(it => it.at(-1) === sheet);
 
-        sheet.addClass(this.sheets.map(it => it.includes(sheet) ? "shown" : "hidden"));
+        sheet.addClass(sheetVisible.map(it => it ? "shown" : "hidden"));
         sheet.addClass(sheetOnTop.map(it => it ? "on-top" : "not-on-top"));
 
-        sheet.addClass(refMerge({ sheets: this.sheets, isMobile }).map(({ isMobile, sheets }) => sheets.length > 1 || isMobile ? "background" : "no-background"));
+        sheet.addClass(refMerge({ sheets: this.sheets }).map(({ sheets }) => (sheets.length - 1) > 0 ? "background" : "no-background"));
 
         isMobile.map(mobile => {
             element.style.setProperty("--sheet-index", `${index > 0 && !mobile ? index - 1 : index}`);
@@ -164,9 +164,9 @@ class SheetsComponent extends Component {
             ev.stopPropagation();
         });
 
-        this.sheets.listen(it => {
-            if (it && it.length > 1) {
-                element.style.setProperty("--sheet-reverse-index", `${it.length - index}`);
+        this.sheets.map(it => it.length).listen(it => {
+            if (it && it > 0) {
+                element.style.setProperty("--sheet-reverse-index", `${it - index - 1}`);
             }
             else
                 element.style.setProperty("--sheet-reverse-index", `0`);
@@ -189,6 +189,16 @@ class SheetsComponent extends Component {
 
         this.wrapper.children[ index ].remove();
 
+        return this;
+    }
+
+    setSheetWidth(size: string): this {
+        this.wrapper.style.setProperty("--sheet-desktop-width", size);
+        return this;
+    }
+
+    setSheetHeight(size: string): this {
+        this.wrapper.style.setProperty("--sheet-desktop-height", size);
         return this;
     }
 }
@@ -257,41 +267,39 @@ const sheets = Sheets(
 
         )
     ).setMargin("1rem 0")
-);
-
+)
+    .setSheetWidth("min(calc(100% - 15px), 50rem)")
+    .setSheetHeight("min(calc(100% - 15px), 70rem)");
 
 const storage = Sheet(
-    Box(
-        Flow(
-            Content(
-                Grid(
-                    Label("Storage")
-                        .setTextSize("3xl")
-                        .setFontWeight("bold"),
-                    Button("Done")
-                        .setStyle(ButtonStyle.Inline)
-                        .setColor(Color.Colored)
-                        .onClick(() => {
-                            sheets.remove(storage);
-                        })
-                )
-                    .setMargin("3rem 0 0")
-                    .setAlign("center")
-                    .setRawColumns("auto max-content"),
-
-                Entry({
-                    title: "Advanced Options"
-                })
-                    .addClass(isMobile.map(it => it ? "small" : "large"))
+    Flow(
+        Content(
+            Grid(
+                Label("Storage")
+                    .setTextSize("3xl")
+                    .setFontWeight("bold"),
+                Button("Done")
+                    .setStyle(ButtonStyle.Inline)
+                    .setColor(Color.Colored)
                     .onClick(() => {
-                        sheets.add(advancedOptions);
+                        sheets.remove(storage);
                     })
             )
+                .setMargin("3rem 0 0")
+                .setAlign("center")
+                .setRawColumns("auto max-content"),
+
+            Entry({
+                title: "Advanced Options"
+            })
+                .addClass(isMobile.map(it => it ? "small" : "large"))
+                .onClick(() => {
+                    sheets.add(advancedOptions);
+                })
         )
+            .setMaxWidth("80rem")
     )
-)
-    .setWidth("min(calc(100% - 15px), 50rem)")
-    .setHeight("min(calc(100% - 15px), 50rem)");
+);
 
 const settings = Sheet(
     Flow(
@@ -312,9 +320,7 @@ const settings = Sheet(
                 .setRawColumns("auto max-content")
         )
     )
-)
-    .setWidth("min(calc(100% - 15px), 50rem)")
-    .setHeight("min(calc(100% - 15px), 50rem)");
+);
 
 const advancedOptions = Sheet(
     Flow(
@@ -381,8 +387,6 @@ const advancedOptions = Sheet(
                 .onClick(() => { }),
         )
     )
-)
-    .setWidth("min(calc(100% - 15px), 50rem)")
-    .setHeight("min(calc(100% - 15px), 50rem)");
+);
 
 Body(sheets.setHeight("100vh"));

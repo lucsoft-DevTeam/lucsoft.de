@@ -1,18 +1,7 @@
+import { deferred } from "https://deno.land/std@0.206.0/async/deferred.ts";
 import { Body, Box, Button, ButtonStyle, Color, Component, Content, Entry, Flow, Grid, Label, Pointer, WebGen, asPointer, css, isMobile, refMerge } from "webgen/mod.ts";
 
 WebGen();
-
-
-const activeSheetIndex = asPointer(0);
-
-enum SheetType {
-    STORAGE,
-    SETTINGS
-}
-
-const sheetType = asPointer(SheetType.STORAGE);
-const sheetOffset = asPointer(0);
-
 
 class SheetComponent extends Component {
     // Has Offset
@@ -64,10 +53,6 @@ document.adoptedStyleSheets.push(css`
     .wstacking-sheets.desktop-variant .wsheet {
         --sheet-width: var(--sheet-desktop-width, 100%);
         --sheet-height: var(--sheet-desktop-height, 100%);
-    }
-
-    .wsheet.hidden {
-        display: none;
     }
 
     .wsheet.background {
@@ -142,48 +127,73 @@ document.adoptedStyleSheets.push(css`
     }
 `);
 
-// TODO: Convert this Component to be Pointer based and only use the last layer as active layer
-class StackingSheetsComponent extends Component {
-    constructor(private activeSheetIndex: Pointer<number>, layers: SheetComponent[]) {
+class SheetsComponent extends Component {
+    private readonly sheets: Pointer<SheetComponent[]> = asPointer([]);
+
+    constructor(component: Component) {
         super();
         this.onClick(() => {
-            activeSheetIndex.setValue(activeSheetIndex.getValue() - 1);
+            this.remove(this.sheets.getValue().at(-1)!);
         });
         this.addClass("wstacking-sheets");
         this.addClass(isMobile.map(it => it ? "mobile-variant" : "desktop-variant"));
-        for (const [ index, layer ] of layers.entries()) {
-            const sheet = layer.draw();
-            sheet.style.zIndex = `${(index) + 10}`;
 
-            const layerVisible = this.activeSheetIndex.map(it => index <= it);
-            const layerIsOnTop = this.activeSheetIndex.map(it => index === it);
+        this.add(new SheetComponent(asPointer(0), component));
+    }
 
-            layer.addClass(layerVisible.map(it => it ? "shown" : "hidden"));
-            layer.addClass(layerIsOnTop.map(it => it ? "on-top" : "not-on-top"));
+    add(sheet: SheetComponent) {
+        this.sheets.setValue([ ...this.sheets.getValue(), sheet ]);
+        const index = this.sheets.getValue().length - 1;
 
-            layer.addClass(refMerge({ activeSheetIndex, isMobile }).map(({ isMobile, activeSheetIndex }) => activeSheetIndex > 0 || isMobile ? "background" : "no-background"));
+        const element = sheet.draw();
+        element.style.zIndex = `${(index) + 10}`;
 
-            isMobile.map(mobile => {
-                sheet.style.setProperty("--sheet-index", `${index > 0 && !mobile ? index - 1 : index}`);
-            });
 
-            layer.onClick((ev) => {
-                ev.stopPropagation();
-            });
-            activeSheetIndex.listen(it => {
-                if (it && it > 0) {
-                    sheet.style.setProperty("--sheet-reverse-index", `${it - index}`);
-                }
-                else
-                    sheet.style.setProperty("--sheet-reverse-index", `0`);
-            });
+        const sheetOnTop = this.sheets.map(it => it.at(-1) === sheet);
 
-            this.wrapper.append(sheet);
-        }
+        sheet.addClass(this.sheets.map(it => it.includes(sheet) ? "shown" : "hidden"));
+        sheet.addClass(sheetOnTop.map(it => it ? "on-top" : "not-on-top"));
+
+        sheet.addClass(refMerge({ sheets: this.sheets, isMobile }).map(({ isMobile, sheets }) => sheets.length > 1 || isMobile ? "background" : "no-background"));
+
+        isMobile.map(mobile => {
+            element.style.setProperty("--sheet-index", `${index > 0 && !mobile ? index - 1 : index}`);
+        });
+
+        sheet.onClick((ev) => {
+            ev.stopPropagation();
+        });
+
+        this.sheets.listen(it => {
+            if (it && it.length > 1) {
+                element.style.setProperty("--sheet-reverse-index", `${it.length - index}`);
+            }
+            else
+                element.style.setProperty("--sheet-reverse-index", `0`);
+        });
+
+        this.wrapper.append(element);
+        return this;
+    }
+
+    async remove(sheet: SheetComponent) {
+        // find index
+        const index = this.sheets.getValue().indexOf(sheet);
+        const animationEnded = deferred();
+
+        this.wrapper.children[ index ].addEventListener("animationend", () => animationEnded.resolve());
+
+        this.sheets.setValue(this.sheets.getValue().filter(it => it !== sheet));
+
+        await animationEnded;
+
+        this.wrapper.children[ index ].remove();
+
+        return this;
     }
 }
 
-export const StackingSheets = (index: Pointer<number>, ...layers: SheetComponent[]) => new StackingSheetsComponent(index, layers);
+export const Sheets = (sheet: Component) => new SheetsComponent(sheet);
 
 export class ScrollableComponent extends Component {
     constructor(private readonly content: Component[]) {
@@ -195,196 +205,184 @@ export class ScrollableComponent extends Component {
 
 export const Scrollable = (...content: Component[]) => new ScrollableComponent(content);
 
+export const Sheet = (content: Component) => new SheetComponent(asPointer(0), content);
 
-Body(
-    StackingSheets(
-        activeSheetIndex,
-        // Sheet Index two
-        new SheetComponent(
-            asPointer(0),
-            Flow(
-                Content(
-                    Label("Sheets demo!")
+const sheets = Sheets(
+    Flow(
+        Content(
+            Label("Sheets demo!")
+                .setTextSize("3xl")
+                .setFontWeight("bold"),
+            Label("This is a demo of the sheets component!"),
+            Entry({
+                title: "Storage"
+            }).onClick(() => {
+                sheets.add(storage);
+            }),
+            Entry({
+                title: "Settings"
+            }).onClick(() => {
+                sheets.add(settings);
+            }),
+            Entry({
+                title: "Credits"
+            }).onClick(() => {
+                sheets.add(storage);
+            }),
+            Entry({
+                title: "About"
+            }).onClick(() => {
+                sheets.add(storage);
+            }),
+            Entry({
+                title: "Help"
+            }).onClick(() => {
+                sheets.add(storage);
+            }),
+            Entry({
+                title: "Support"
+            }).onClick(() => {
+                sheets.add(storage);
+            }),
+            Entry({
+                title: "Feedback"
+            }).onClick(() => {
+                sheets.add(storage);
+            }),
+            Entry({
+                title: "Privacy"
+            }).onClick(() => {
+                sheets.add(storage);
+            }),
+
+        )
+    ).setMargin("1rem 0")
+);
+
+
+const storage = Sheet(
+    Box(
+        Flow(
+            Content(
+                Grid(
+                    Label("Storage")
                         .setTextSize("3xl")
                         .setFontWeight("bold"),
-                    Label("This is a demo of the sheets component!"),
-                    Entry({
-                        title: "Storage"
-                    }).onClick(() => {
-                        activeSheetIndex.setValue(1);
-                        sheetType.setValue(SheetType.STORAGE);
-                    }),
-                    Entry({
-                        title: "Settings"
-                    }).onClick(() => {
-                        activeSheetIndex.setValue(1);
-                        sheetType.setValue(SheetType.SETTINGS);
-                    }),
-                    Entry({
-                        title: "Credits"
-                    }).onClick(() => {
-                        activeSheetIndex.setValue(1);
-                        sheetType.setValue(SheetType.SETTINGS);
-                    }),
-                    Entry({
-                        title: "About"
-                    }).onClick(() => {
-                        activeSheetIndex.setValue(1);
-                        sheetType.setValue(SheetType.SETTINGS);
-                    }),
-                    Entry({
-                        title: "Help"
-                    }).onClick(() => {
-                        activeSheetIndex.setValue(1);
-                        sheetType.setValue(SheetType.SETTINGS);
-                    }),
-                    Entry({
-                        title: "Support"
-                    }).onClick(() => {
-                        activeSheetIndex.setValue(1);
-                        sheetType.setValue(SheetType.SETTINGS);
-                    }),
-                    Entry({
-                        title: "Feedback"
-                    }).onClick(() => {
-                        activeSheetIndex.setValue(1);
-                        sheetType.setValue(SheetType.SETTINGS);
-                    }),
-                    Entry({
-                        title: "Privacy"
-                    }).onClick(() => {
-                        activeSheetIndex.setValue(1);
-                        sheetType.setValue(SheetType.SETTINGS);
-                    }),
-
+                    Button("Done")
+                        .setStyle(ButtonStyle.Inline)
+                        .setColor(Color.Colored)
+                        .onClick(() => {
+                            sheets.remove(storage);
+                        })
                 )
-            ).setMargin("1rem 0")
-        )
-            .setWidth("100%")
-            .setHeight("100%"),
-        new SheetComponent(
-            sheetOffset,
-            sheetType.map(it => it === SheetType.STORAGE
-                ? Box(
-                    Flow(
-                        Content(
-                            Grid(
-                                Label("Storage")
-                                    .setTextSize("3xl")
-                                    .setFontWeight("bold"),
-                                Button("Done")
-                                    .setStyle(ButtonStyle.Inline)
-                                    .setColor(Color.Colored)
-                                    .onClick(() => {
-                                        activeSheetIndex.setValue(0);
-                                    })
-                            )
-                                .setMargin("3rem 0 0")
-                                .setAlign("center")
-                                .setRawColumns("auto max-content"),
+                    .setMargin("3rem 0 0")
+                    .setAlign("center")
+                    .setRawColumns("auto max-content"),
 
-                            Entry({
-                                title: "Advanced Options"
-                            })
-                                .addClass(isMobile.map(it => it ? "small" : "large"))
-                                .onClick(() => {
-                                    activeSheetIndex.setValue(2);
-                                })
-                        )
-                    )
-                ).addClass("sheet")
-                : Box(
-                    Flow(
-                        Content(
-                            Grid(
-                                Label("Settings")
-                                    .setTextSize("3xl")
-                                    .setFontWeight("bold"),
-                                Button("Done")
-                                    .setStyle(ButtonStyle.Inline)
-                                    .setColor(Color.Colored)
-                                    .onClick(() => {
-                                        activeSheetIndex.setValue(0);
-                                    })
-                            )
-                                .setMargin("3rem 0 0")
-                                .setAlign("center")
-                                .setRawColumns("auto max-content")
-                        )
-                    )
-                )
-            ).asRefComponent()
-        )
-            .setWidth("min(calc(100% - 15px), 50rem)")
-            .setHeight("min(calc(100% - 15px), 50rem)"),
-        new SheetComponent(
-            asPointer(0),
-            Flow(
-                Content(
-                    Grid(
-                        Label("Advanced Options")
-                            .setTextSize("3xl")
-                            .setFontWeight("bold"),
-                        Button("Done")
-                            .setStyle(ButtonStyle.Inline)
-                            .setColor(Color.Colored)
-                            .onClick(() => {
-                                activeSheetIndex.setValue(1);
-                            })
-                    )
-                        .setMargin("3rem 0 0")
-                        .setAlign("center")
-                        .setRawColumns("auto max-content"),
-                    Entry({
-                        title: "Omg, this is so advanced!"
+                Entry({
+                    title: "Advanced Options"
+                })
+                    .addClass(isMobile.map(it => it ? "small" : "large"))
+                    .onClick(() => {
+                        sheets.add(advancedOptions);
                     })
-                        .addClass(isMobile.map(it => it ? "small" : "large"))
-                        .onClick(() => { }),
-                    Entry({
-                        title: "Even more advanced!"
-                    })
-                        .addClass(isMobile.map(it => it ? "small" : "large"))
-
-                        .onClick(() => { }),
-                    Entry({
-                        title: "Easter Egg!"
-                    })
-                        .addClass(isMobile.map(it => it ? "small" : "large"))
-                        .onClick(() => { }),
-                    Entry({
-                        title: "Don't click me!"
-                    })
-                        .addClass(isMobile.map(it => it ? "small" : "large"))
-                        .onClick(() => { }),
-                    Entry({
-                        title: "I said don't click me!"
-                    })
-                        .addClass(isMobile.map(it => it ? "small" : "large"))
-                        .onClick(() => { }),
-                    Entry({
-                        title: "I'm warning you!"
-                    })
-                        .addClass(isMobile.map(it => it ? "small" : "large"))
-                        .onClick(() => { }),
-                    Entry({
-                        title: "I'm warning you! Last time!"
-                    })
-                        .addClass(isMobile.map(it => it ? "small" : "large"))
-                        .onClick(() => { }),
-                    Entry({
-                        title: "I'm warning you! Last time! I'm serious!"
-                    })
-                        .addClass(isMobile.map(it => it ? "small" : "large"))
-                        .onClick(() => { }),
-                    Entry({
-                        title: "I'm warning you! Last time! I'm serious! Don't click me!"
-                    })
-                        .addClass(isMobile.map(it => it ? "small" : "large"))
-                        .onClick(() => { }),
-                )
             )
         )
-            .setWidth("min(calc(100% - 15px), 50rem)")
-            .setHeight("min(calc(100% - 15px), 50rem)")
-    ).setHeight("100vh")
-);
+    )
+)
+    .setWidth("min(calc(100% - 15px), 50rem)")
+    .setHeight("min(calc(100% - 15px), 50rem)");
+
+const settings = Sheet(
+    Flow(
+        Content(
+            Grid(
+                Label("Settings")
+                    .setTextSize("3xl")
+                    .setFontWeight("bold"),
+                Button("Done")
+                    .setStyle(ButtonStyle.Inline)
+                    .setColor(Color.Colored)
+                    .onClick(() => {
+                        sheets.remove(settings);
+                    })
+            )
+                .setMargin("3rem 0 0")
+                .setAlign("center")
+                .setRawColumns("auto max-content")
+        )
+    )
+)
+    .setWidth("min(calc(100% - 15px), 50rem)")
+    .setHeight("min(calc(100% - 15px), 50rem)");
+
+const advancedOptions = Sheet(
+    Flow(
+        Content(
+            Grid(
+                Label("Advanced Options")
+                    .setTextSize("3xl")
+                    .setFontWeight("bold"),
+                Button("Done")
+                    .setStyle(ButtonStyle.Inline)
+                    .setColor(Color.Colored)
+                    .onClick(() => {
+                        sheets.remove(advancedOptions);
+                    })
+            )
+                .setMargin("3rem 0 0")
+                .setAlign("center")
+                .setRawColumns("auto max-content"),
+            Entry({
+                title: "Omg, this is so advanced!"
+            })
+                .addClass(isMobile.map(it => it ? "small" : "large"))
+                .onClick(() => { }),
+            Entry({
+                title: "Even more advanced!"
+            })
+                .addClass(isMobile.map(it => it ? "small" : "large"))
+
+                .onClick(() => { }),
+            Entry({
+                title: "Easter Egg!"
+            })
+                .addClass(isMobile.map(it => it ? "small" : "large"))
+                .onClick(() => { }),
+            Entry({
+                title: "Don't click me!"
+            })
+                .addClass(isMobile.map(it => it ? "small" : "large"))
+                .onClick(() => { }),
+            Entry({
+                title: "I said don't click me!"
+            })
+                .addClass(isMobile.map(it => it ? "small" : "large"))
+                .onClick(() => { }),
+            Entry({
+                title: "I'm warning you!"
+            })
+                .addClass(isMobile.map(it => it ? "small" : "large"))
+                .onClick(() => { }),
+            Entry({
+                title: "I'm warning you! Last time!"
+            })
+                .addClass(isMobile.map(it => it ? "small" : "large"))
+                .onClick(() => { }),
+            Entry({
+                title: "I'm warning you! Last time! I'm serious!"
+            })
+                .addClass(isMobile.map(it => it ? "small" : "large"))
+                .onClick(() => { }),
+            Entry({
+                title: "I'm warning you! Last time! I'm serious! Don't click me!"
+            })
+                .addClass(isMobile.map(it => it ? "small" : "large"))
+                .onClick(() => { }),
+        )
+    )
+)
+    .setWidth("min(calc(100% - 15px), 50rem)")
+    .setHeight("min(calc(100% - 15px), 50rem)");
+
+Body(sheets.setHeight("100vh"));

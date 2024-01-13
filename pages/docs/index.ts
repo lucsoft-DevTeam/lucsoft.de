@@ -45,37 +45,39 @@ Body(
             TextInput("text", "Search for Components...")
                 .sync(state, "filter")
         ).addClass("header"),
-        state.$filter.map(search =>
-            Box(
-                ...searchables
-                    .filter(it =>
-                        it.description.toLowerCase().includes(search.toLowerCase())
-                        || it.title.toLowerCase().includes(search.toLowerCase())
-                    )
-                    .map(it => {
-                        return Box(
-                            Grid(
-                                Label(it.title).addClass("title"),
-                                Label(it.description).addClass("description"),
-                                Box(
-
-                                    Cache(it.title,
-                                        () => load(it),
-                                        (type, val) => type == "loaded"
-                                            ?
-                                            val!
-                                            : Box(Custom(loadingWheel() as Element as HTMLElement)).addClass("loading"))
-                                        .removeFromLayout()
-                                ).addClass("holder"),
-
-                            ),
-                            CodeBlock(it.code.replaceAll(/((\/\/HIDE-START\n)(.|\n)*?(\/\/HIDE-END)\n?)/g, ""))
+        Box(
+            state.$filter.map(search =>
+                Box(
+                    ...searchables
+                        .filter(it =>
+                            it.description.toLowerCase().includes(search.toLowerCase())
+                            || it.title.toLowerCase().includes(search.toLowerCase())
                         )
-                            .addClass("item");
-                    }
-                    )
-            ).addClass("searchables")
-        ).asRefComponent(),
+                        .map(it => {
+                            return Box(
+                                Grid(
+                                    Label(it.title).addClass("title"),
+                                    Label(it.description).addClass("description"),
+                                    Box(
+
+                                        Cache(it.title,
+                                            () => load(it),
+                                            (type, val) => type == "loaded"
+                                                ?
+                                                val!
+                                                : Box(Custom(loadingWheel() as Element as HTMLElement)).addClass("loading"))
+                                            .removeFromLayout()
+                                    ).addClass("holder"),
+
+                                ),
+                                CodeBlock(it.code.replaceAll(/((\/\/HIDE-START\n)(.|\n)*?(\/\/HIDE-END)\n?)/g, ""))
+                            )
+                                .addClass("item");
+                        }
+                        )
+                ).addClass("searchables")
+            ).asRefComponent(),
+        )
     )
         .setMaxWidth("1630px")
 );

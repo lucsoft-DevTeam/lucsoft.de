@@ -1,60 +1,59 @@
-import { Body, Button, ButtonStyle, Color, Content, Entry, Flow, Grid, Label, Sheet, Sheets, WebGen, isMobile } from "webgen/mod.ts";
+import { Body, Button, ButtonStyle, Color, Content, Entry, Flow, Grid, Label, Sheet, SheetsStack, WebGen, isMobile } from "webgen/mod.ts";
 
 WebGen();
 
-const sheets = Sheets(
-    Flow(
-        Content(
-            Label("Sheets demo!")
-                .setTextSize("3xl")
-                .setFontWeight("bold"),
-            Label("This is a demo of the sheets component!"),
-            Entry({
-                title: "Storage"
-            }).onClick(() => {
-                sheets.add(storage);
-            }),
-            Entry({
-                title: "Settings"
-            }).onClick(() => {
-                sheets.add(settings);
-            }),
-            Entry({
-                title: "Credits"
-            }).onClick(() => {
-                sheets.add(storage);
-            }),
-            Entry({
-                title: "About"
-            }).onClick(() => {
-                sheets.add(storage);
-            }),
-            Entry({
-                title: "Help"
-            }).onClick(() => {
-                sheets.add(storage);
-            }),
-            Entry({
-                title: "Support"
-            }).onClick(() => {
-                sheets.add(storage);
-            }),
-            Entry({
-                title: "Feedback"
-            }).onClick(() => {
-                sheets.add(storage);
-            }),
-            Entry({
-                title: "Privacy"
-            }).onClick(() => {
-                sheets.add(storage);
-            }),
-
-        )
-    ).setMargin("1rem 0")
-)
+const sheets = SheetsStack()
     .setSheetWidth("min(calc(100% - 15px), 50rem)")
     .setSheetHeight("min(calc(100% - 15px), 70rem)");
+
+sheets.setDefault(Flow(
+    Content(
+        Label("Sheets demo!")
+            .setTextSize("3xl")
+            .setFontWeight("bold"),
+        Label("This is a demo of the sheets component!"),
+        Entry({
+            title: "Storage"
+        }).onClick(() => {
+            sheets.add(storage);
+        }),
+        Entry({
+            title: "Settings"
+        }).onClick(() => {
+            sheets.add(settings);
+        }),
+        Entry({
+            title: "Credits"
+        }).onClick(() => {
+            sheets.add(storage);
+        }),
+        Entry({
+            title: "About"
+        }).onClick(() => {
+            sheets.add(storage);
+        }),
+        Entry({
+            title: "Help"
+        }).onClick(() => {
+            sheets.add(storage);
+        }),
+        Entry({
+            title: "Support"
+        }).onClick(() => {
+            sheets.add(storage);
+        }),
+        Entry({
+            title: "Feedback"
+        }).onClick(() => {
+            sheets.add(storage);
+        }),
+        Entry({
+            title: "Privacy"
+        }).onClick(() => {
+            sheets.add(storage);
+        }),
+    )
+).setMargin("1rem 0"));
 
 const storage = Sheet(
     Flow(

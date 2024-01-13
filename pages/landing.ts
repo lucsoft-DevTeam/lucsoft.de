@@ -1,4 +1,4 @@
-import { BIcon, Body, Button, ButtonStyle, Content, createElement, Custom, Horizontal, IconButton, Image, ImageComponent, Label, Spacer, SupportedThemes, Vertical, WebGen } from "webgen/mod.ts";
+import { BIcon, Body, ButtonStyle, Content, Custom, Horizontal, IconButton, Image, ImageComponent, Label, LinkButton, Spacer, SupportedThemes, Vertical, WebGen, createElement } from "webgen/mod.ts";
 import background from "../assets/background.svg";
 import backgroundWhite from "../assets/background_white.svg";
 import hmsys from "../assets/hmsys.webp";
@@ -32,8 +32,7 @@ Body(
                     // Button("LOGIN")
                     //     .asLinkButton("/account.html")
                     //     .setStyle(ButtonStyle.Secondary),
-                    Button("DOCUMENTATION")
-                        .asLinkButton("/p/docs")
+                    LinkButton("DOCUMENTATION", "/p/docs")
                         .setStyle(ButtonStyle.Secondary),
                     IconButton(BIcon("github"), "GitHub")
                         .asLinkButton("https://github.com/lucsoft"),
@@ -57,21 +56,17 @@ Body(
                 Spacer(),
             ).addClass("main-projects", "themed", "section"),
             Horizontal(
-                Button("DataStoreDB")
-                    .setStyle(ButtonStyle.Inline)
-                    .asLinkButton("https://github.com/lucsoft/datastoredb-gui"),
+                LinkButton("DataStoreDB", "https://github.com/lucsoft/datastoredb-gui")
+                    .setStyle(ButtonStyle.Inline),
                 Spacer(),
-                Button("web_bson")
-                    .setStyle(ButtonStyle.Inline)
-                    .asLinkButton("https://github.com/lucsoft/deno_bson/"),
+                LinkButton("web_bson", "https://github.com/lucsoft/deno_bson/")
+                    .setStyle(ButtonStyle.Inline),
                 Spacer(),
-                Button("bbn.one")
-                    .setStyle(ButtonStyle.Inline)
-                    .asLinkButton("https://bbn.one/"),
+                LinkButton("bbn.one", "https://bbn.one/")
+                    .setStyle(ButtonStyle.Inline),
                 Spacer(),
-                Button("remod.dev")
-                    .setStyle(ButtonStyle.Inline)
-                    .asLinkButton("https://remod.dev/"),
+                LinkButton("remod.dev", "https://remod.dev/")
+                    .setStyle(ButtonStyle.Inline),
             ).addClass("side-projects"),
             Horizontal(
                 Label("Skills", "h2"),

@@ -1,5 +1,5 @@
 import { delay } from "https://deno.land/std@0.191.0/async/delay.ts";
-import { Body, Box, Button, Component, Content, Flow, Grid, Items, Label, RouteRegistry, StartRouting, WebGen, activeRoute, asRef, createRoute, ref } from "webgen/mod.ts";
+import { Body, Box, Button, Component, Content, Flow, Grid, Items, Label, NavigationRegistry, RouteRegistry, StartRouting, WebGen, activeRoute, asRef, createRoute, ref } from "webgen/mod.ts";
 
 WebGen();
 
@@ -18,18 +18,29 @@ const routeTwo = createRoute({
     }
 });
 
+NavigationRegistry.addItem({
+    weight: -1,
+    intercept: (url, route) => {
+        console.log(url, route);
+        if (route.destination.sameDocument)
+            return false;
+    }
+});
+
 const routeThree = createRoute({
     path: "/p/demos/pages?wow&test",
     events: {
         onActive: () => {
             if (!isAdmin.getValue())
-                logout.navigate({});
+                homePage.navigate({}, {
+                    history: "replace"
+                });
         }
     }
 });
 
-const logout = createRoute({
-    path: "/logout"
+const homePage = createRoute({
+    path: "/?"
 });
 
 Body(

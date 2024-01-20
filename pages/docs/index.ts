@@ -8,7 +8,7 @@ import hljs from "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/es/
 import "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/es/languages/javascript.min.js";
 import "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/es/languages/typescript.min.js";
 import "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/codepen-embed.min.css";
-import searchables from "./searchables/index.json" assert { type: "json" };
+import searchables from "./searchables/index.json" with { type: "json" };
 WebGen({
     theme: SupportedThemes.dark
 });

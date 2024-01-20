@@ -3,7 +3,7 @@ import { asPointer, Body, createElement, Custom, Label, Vertical, WebGen } from 
 import '../../assets/nonogramm.css';
 import { createNormilizer, rotatedNormalIndexArray, rotateMatrixN90D } from "../../helper/matrixMath.ts";
 import { getDefault } from "../../helper/rendering.ts";
-import games from "./games.json" assert { type: "json" };
+import games from "./games.json" with { type: "json" };
 
 const wg = WebGen();
 // deno-fmt-ignore

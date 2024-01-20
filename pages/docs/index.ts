@@ -1,5 +1,3 @@
-import { deferred } from "https://deno.land/std@0.194.0/async/deferred.ts";
-
 import { Body, Box, Cache, Component, Content, Custom, Grid, Image, Label, State, SupportedThemes, TextInput, WebGen, createElement, loadingWheel } from "webgen/mod.ts";
 import webgen from "../../assets/webgen.svg";
 import './index.css';
@@ -14,14 +12,14 @@ WebGen({
 });
 
 async function load(item: typeof searchables[ number ]) {
-    const defer = deferred<Component>();
+    const { resolve, promise } = Promise.withResolvers<Component>();
     const sandbox = createElement("iframe");
 
     sandbox.src = "/searchables/" + item.id;
 
     sandbox.style.display = "none";
     sandbox.onload = () => {
-        defer.resolve(Custom(sandbox.contentDocument?.querySelector("article")!).removeFromLayout());
+        resolve(Custom(sandbox.contentDocument?.querySelector("article")!).removeFromLayout());
         document.adoptedStyleSheets.push(...sandbox.contentDocument?.adoptedStyleSheets.map(it => {
             const sheet = new CSSStyleSheet();
             Array.from(it.cssRules).map(it => sheet.insertRule(it.cssText));
@@ -31,7 +29,7 @@ async function load(item: typeof searchables[ number ]) {
 
     document.body.append(sandbox);
 
-    return await defer;
+    return await promise;
 }
 
 const state = State({

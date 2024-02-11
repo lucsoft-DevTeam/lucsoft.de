@@ -1,5 +1,5 @@
-import { sortBy } from "https://deno.land/std@0.214.0/collections/sort_by.ts";
-import { walkSync } from "https://deno.land/std@0.214.0/fs/mod.ts";
+import { sortBy } from "https://deno.land/std@0.215.0/collections/sort_by.ts";
+import { walkSync } from "https://deno.land/std@0.215.0/fs/mod.ts";
 import { serve } from "https://deno.land/x/esbuild_serve@1.3.4/mod.ts";
 
 

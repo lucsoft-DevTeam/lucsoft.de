@@ -29,5 +29,5 @@ function urlUpdate(update: (data: Partial<ViewState>) => void, change: Partial<V
         url.searchParams.set(name, value.toString());
 
     }
-    history.pushState({}, '', url);
+    history.pushasState({}, '', url);
 }

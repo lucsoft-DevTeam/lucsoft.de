@@ -1,8 +1,8 @@
 //# Pointers
 //> Pointers are box values that can have event listeners, mappers, getters and setters for your values.
-import { Body, Button, ButtonStyle, Grid, Label, asPointer, ref } from "webgen/mod.ts";
+import { Body, Button, ButtonStyle, Grid, Label, asRef, ref } from "webgen/mod.ts";
 
-const value = asPointer(0);
+const value = asRef(0);
 
 Body(
     Grid(

@@ -1,4 +1,4 @@
-import { BIcon, Body, ButtonStyle, Content, Custom, Horizontal, IconButton, Image, ImageComponent, Label, LinkButton, Spacer, SupportedThemes, Vertical, WebGen, createElement } from "webgen/mod.ts";
+import { BIcon, Body, Box, ButtonStyle, Content, Custom, DropDownInput, Horizontal, IconButton, Image, ImageComponent, Label, LinkButton, Spacer, SupportedThemes, Vertical, WebGen, createElement } from "webgen/mod.ts";
 import background from "../assets/background.svg";
 import backgroundWhite from "../assets/background_white.svg";
 import hmsys from "../assets/hmsys.webp";
@@ -38,6 +38,9 @@ Body(
                         .asLinkButton("https://github.com/lucsoft"),
                 ).setGap("0.5rem"),
             ).setMargin("2rem 1rem 0"),
+            Box(
+                DropDownInput("Hey", Array.from({ length: 30 }, (_, i) => `Item with the number ${i + 1}`))
+            ),
             Horizontal(
                 Vertical(
                     Label("lucsoft", "h1"),

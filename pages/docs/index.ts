@@ -1,4 +1,4 @@
-import { Body, Box, Cache, Component, Content, Custom, Grid, Image, Label, State, SupportedThemes, TextInput, WebGen, createElement, loadingWheel } from "webgen/mod.ts";
+import { Body, Box, Cache, Component, Content, Custom, Grid, Image, Label, SupportedThemes, TextInput, WebGen, createElement, loadingWheel } from "webgen/mod.ts";
 import webgen from "../../assets/webgen.svg";
 import './index.css';
 // @deno-types="https://esm.sh/v128/highlight.js@11.8.0/types/index.d.ts"
@@ -32,7 +32,7 @@ async function load(item: typeof searchables[ number ]) {
     return await promise;
 }
 
-const state = State({
+const state = asState({
     filter: ""
 });
 Body(

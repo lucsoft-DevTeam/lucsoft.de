@@ -1,7 +1,7 @@
 //# Button
 //> Buttons promote efficient and streamlined user workflows by enabling quick decision-making.
 import { sample } from "https://deno.land/std@0.215.0/collections/sample.ts";
-import { Body, Button, ButtonStyle, asPointer } from "webgen/mod.ts";
+import { Body, Button, ButtonStyle, asRef } from "webgen/mod.ts";
 
 const styles = [
     ButtonStyle.Inline,
@@ -9,7 +9,7 @@ const styles = [
     ButtonStyle.Secondary,
     ButtonStyle.Spinner,
 ];
-const style = asPointer(sample(styles)!);
+const style = asRef(sample(styles)!);
 setInterval(() => style.setValue(sample(styles)!), 1000);
 
 Body(

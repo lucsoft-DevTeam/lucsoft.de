@@ -3,19 +3,19 @@
     "id": "0.state",
     "title": "State",
     "description": "A object allows you to pass a recursively proxied object, where values can also be backed by an pointer. (Powered by ArrowJS)",
-    "code": "import { Body, Button, State, ref } from \"webgen/mod.ts\";\n\nconst state = State({\n    value: 0\n});\n\nBody(\n    Button(ref`Clicked: ${state.$value}`)\n        .onClick(() => {\n            state.value += 1;\n        })\n);"
+    "code": "import { Body, Button, asState, ref } from \"webgen/mod.ts\";\n\nconst state = asState({\n    value: 0\n});\n\nBody(\n    Button(ref`Clicked: ${state.$value}`)\n        .onClick(() => {\n            state.value += 1;\n        })\n);"
   },
   {
     "id": "1.button",
     "title": "Button",
     "description": "Buttons promote efficient and streamlined user workflows by enabling quick decision-making.",
-    "code": "import { sample } from \"https://deno.land/std@0.215.0/collections/sample.ts\";\nimport { Body, Button, ButtonStyle, asPointer } from \"webgen/mod.ts\";\n\nconst styles = [\n    ButtonStyle.Inline,\n    ButtonStyle.Normal,\n    ButtonStyle.Secondary,\n    ButtonStyle.Spinner,\n];\nconst style = asPointer(sample(styles)!);\nsetInterval(() => style.setValue(sample(styles)!), 1000);\n\nBody(\n    Button(\"BUTTON\")\n        .setStyle(style)\n);"
+    "code": "import { sample } from \"https://deno.land/std@0.215.0/collections/sample.ts\";\nimport { Body, Button, ButtonStyle, asRef } from \"webgen/mod.ts\";\n\nconst styles = [\n    ButtonStyle.Inline,\n    ButtonStyle.Normal,\n    ButtonStyle.Secondary,\n    ButtonStyle.Spinner,\n];\nconst style = asRef(sample(styles)!);\nsetInterval(() => style.setValue(sample(styles)!), 1000);\n\nBody(\n    Button(\"BUTTON\")\n        .setStyle(style)\n);"
   },
   {
     "id": "2.switch",
     "title": "Switch",
     "description": "Tags visually represent categories/topics for easy content scanning and relevance.",
-    "code": "import { delay } from \"https://deno.land/std@0.215.0/async/delay.ts\";\nimport { Body, Switch, asPointer } from \"webgen/mod.ts\";\n\nconst selected = asPointer(false);\n\nBody(\n    Switch(selected)\n        .onPromiseClick(async () => {\n            await delay(800);\n            selected.setValue(!selected.getValue());\n        })\n);"
+    "code": "import { delay } from \"https://deno.land/std@0.215.0/async/delay.ts\";\nimport { Body, Switch, asRef } from \"webgen/mod.ts\";\n\nconst selected = asRef(false);\n\nBody(\n    Switch(selected)\n        .onPromiseClick(async () => {\n            await delay(800);\n            selected.setValue(!selected.getValue());\n        })\n);"
   },
   {
     "id": "basicLabel",
@@ -45,18 +45,18 @@
     "id": "taglist",
     "title": "Taglist",
     "description": "Tags visually represent categories/topics for easy content scanning and relevance.",
-    "code": "import { Body, Taglist, asPointer, css } from \"webgen/mod.ts\";\n\n//HIDE-START\ndocument.adoptedStyleSheets.push(css`\n    #taglist {\n        --color-colored-lightness: 100%;\n        --color-colored-font: #000000;\n        width: unset;\n    }\n`);\n//HIDE-END\n\nconst selected = asPointer(0);\n\nBody(\n    Taglist([\n        \"ACTION\",\n        \"ACTION\"\n    ], selected)\n        .setId(\"taglist\")\n);"
+    "code": "import { Body, Taglist, asRef, css } from \"webgen/mod.ts\";\n\n//HIDE-START\ndocument.adoptedStyleSheets.push(css`\n    #taglist {\n        --color-colored-lightness: 100%;\n        --color-colored-font: #000000;\n        width: unset;\n    }\n`);\n//HIDE-END\n\nconst selected = asRef(0);\n\nBody(\n    Taglist([\n        \"ACTION\",\n        \"ACTION\"\n    ], selected)\n        .setId(\"taglist\")\n);"
   },
   {
     "id": "textinput",
     "title": "TextInput",
     "description": "TextInputs provide flexibility for users to enter variable-length input, such as short phrases or long paragraphs.",
-    "code": "import { Body, Label, State, TextInput, Vertical, ref } from \"webgen/mod.ts\";\n\nconst data = State({\n    example: \"\"\n});\n\nBody(\n    Vertical(\n        TextInput(\"text\", \"Placeholder\")\n            .sync(data, \"example\"),\n        Label(ref`Length: ${data.$example.map(it => it.length)}`)\n    ).setGap(\"0.5rem\")\n);"
+    "code": "import { Body, Label, TextInput, Vertical, ref } from \"webgen/mod.ts\";\n\nconst data = asState({\n    example: \"\"\n});\n\nBody(\n    Vertical(\n        TextInput(\"text\", \"Placeholder\")\n            .sync(data, \"example\"),\n        Label(ref`Length: ${data.$example.map(it => it.length)}`)\n    ).setGap(\"0.5rem\")\n);"
   },
   {
     "id": "z.pointers",
     "title": "Pointers",
     "description": "Pointers are box values that can have event listeners, mappers, getters and setters for your values.",
-    "code": "import { Body, Button, ButtonStyle, Grid, Label, asPointer, ref } from \"webgen/mod.ts\";\n\nconst value = asPointer(0);\n\nBody(\n    Grid(\n        Label(\"You clicked the Button this many times:\")\n            .setTextSize(\"sm\")\n            .setAlign(\"center\"),\n        Label(ref`${value}`)\n            .setTextSize(\"5xl\")\n            .setFontWeight(\"bold\"),\n        Button(\"Add one\")\n            .setStyle(ButtonStyle.Secondary)\n            .onClick(() => {\n                value.setValue(value.getValue() + 1);\n            })\n    )\n        .setGap(\"0.5rem\")\n        .setJustify(\"center\")\n        .setEvenColumns(1)\n);"
+    "code": "import { Body, Button, ButtonStyle, Grid, Label, asRef, ref } from \"webgen/mod.ts\";\n\nconst value = asRef(0);\n\nBody(\n    Grid(\n        Label(\"You clicked the Button this many times:\")\n            .setTextSize(\"sm\")\n            .setAlign(\"center\"),\n        Label(ref`${value}`)\n            .setTextSize(\"5xl\")\n            .setFontWeight(\"bold\"),\n        Button(\"Add one\")\n            .setStyle(ButtonStyle.Secondary)\n            .onClick(() => {\n                value.setValue(value.getValue() + 1);\n            })\n    )\n        .setGap(\"0.5rem\")\n        .setJustify(\"center\")\n        .setEvenColumns(1)\n);"
   }
 ]

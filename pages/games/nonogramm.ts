@@ -1,4 +1,4 @@
-import { chunk } from "https://deno.land/std@0.218.2/collections/chunk.ts";
+import { chunk } from "https://deno.land/std@0.219.0/collections/chunk.ts";
 import { asRef, Body, createElement, Custom, Label, Vertical, WebGen } from "webgen/mod.ts";
 import '../../assets/nonogramm.css';
 import { createNormilizer, rotatedNormalIndexArray, rotateMatrixN90D } from "../../helper/matrixMath.ts";

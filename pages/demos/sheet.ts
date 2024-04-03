@@ -70,7 +70,7 @@ const storage = Sheet(
                     })
             )
                 .setMargin("3rem 0 0")
-                .setAlign("center")
+                .setAlignItems("center")
                 .setRawColumns("auto max-content"),
 
             Entry({
@@ -100,7 +100,7 @@ const settings = Sheet(
                     })
             )
                 .setMargin("3rem 0 0")
-                .setAlign("center")
+                .setAlignItems("center")
                 .setRawColumns("auto max-content")
         )
     )
@@ -121,7 +121,7 @@ const advancedOptions = Sheet(
                     })
             )
                 .setMargin("3rem 0 0")
-                .setAlign("center")
+                .setAlignItems("center")
                 .setRawColumns("auto max-content"),
             Entry({
                 title: "Omg, this is so advanced!"

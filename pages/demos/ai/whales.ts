@@ -13,20 +13,20 @@ Body(
                 Grid(
                     Button("Home")
                         .setStyle(ButtonStyle.Inline)
-                        .setJustify("center"),
+                        .setJustifyItems("center"),
                     Button("Videos")
                         .setStyle(ButtonStyle.Inline)
-                        .setJustify("center"),
+                        .setJustifyItems("center"),
                     Button("More")
                         .setStyle(ButtonStyle.Inline)
-                        .setJustify("center"),
+                        .setJustifyItems("center"),
                 )
                     .setGap("0.5rem")
                     .setEvenColumns(3)
             )
                 .setMargin("1rem 0 0")
                 .setRawColumns("auto max-content")
-                .setAlign("center")
+                .setAlignItems("center")
         ),
         Flow(
             Content(

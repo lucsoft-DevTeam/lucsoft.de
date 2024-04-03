@@ -1,4 +1,4 @@
-import { Body, Box, Cache, Component, Content, Custom, Grid, Image, Label, SupportedThemes, TextInput, WebGen, createElement, loadingWheel } from "webgen/mod.ts";
+import { Body, Box, Cache, Component, Content, Custom, Grid, Image, Label, SupportedThemes, TextInput, WebGen, asState, createElement, loadingWheel } from "webgen/mod.ts";
 import webgen from "../../assets/webgen.svg";
 import './index.css';
 // @deno-types="https://esm.sh/v128/highlight.js@11.8.0/types/index.d.ts"

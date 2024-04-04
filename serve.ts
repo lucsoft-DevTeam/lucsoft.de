@@ -33,7 +33,6 @@ serve({
     },
     poylfills: [
         "https://unpkg.com/construct-style-sheets-polyfill",
-        "https://esm.sh/object.hasown/auto.js",
         "https://raw.githubusercontent.com/ungap/with-resolvers/main/index.js"
     ],
     defaultTemplate(name) {

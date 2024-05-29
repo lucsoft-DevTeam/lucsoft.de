@@ -1,5 +1,5 @@
-import { chunk } from "https://deno.land/std@0.221.0/collections/chunk.ts";
-import { union } from "https://deno.land/std@0.221.0/collections/union.ts";
+import { chunk } from "https://deno.land/std@0.224.0/collections/chunk.ts";
+import { union } from "https://deno.land/std@0.224.0/collections/union.ts";
 
 export function rotateMatrixN90D(matrix: number[][]) {
     return matrix[0].map((_, index) => matrix.map((row) => row[index]));

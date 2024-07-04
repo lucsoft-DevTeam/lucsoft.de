@@ -8,7 +8,7 @@ Body(
     Grid(
         Label("You clicked the Button this many times:")
             .setTextSize("sm")
-            .setAlign("center"),
+            .setAlignSelf("center"),
         Label(ref`${value}`)
             .setTextSize("5xl")
             .setFontWeight("bold"),
@@ -19,6 +19,6 @@ Body(
             })
     )
         .setGap("0.5rem")
-        .setJustify("center")
+        .setJustifyItems("center")
         .setEvenColumns(1)
 );

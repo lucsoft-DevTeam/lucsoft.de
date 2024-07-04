@@ -1,6 +1,6 @@
 //# TextInput
 //> TextInputs provide flexibility for users to enter variable-length input, such as short phrases or long paragraphs.
-import { Body, Label, TextInput, Vertical, ref } from "webgen/mod.ts";
+import { Body, Label, TextInput, Vertical, asState, ref } from "webgen/mod.ts";
 
 const data = asState({
     example: ""

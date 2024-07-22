@@ -54,9 +54,9 @@
     "code": "import { Body, Label, TextInput, Vertical, asState, ref } from \"webgen/mod.ts\";\n\nconst data = asState({\n    example: \"\"\n});\n\nBody(\n    Vertical(\n        TextInput(\"text\", \"Placeholder\")\n            .sync(data, \"example\"),\n        Label(ref`Length: ${data.$example.map(it => it.length)}`)\n    ).setGap(\"0.5rem\")\n);"
   },
   {
-    "id": "z.pointers",
-    "title": "Pointers",
-    "description": "Pointers are box values that can have event listeners, mappers, getters and setters for your values.",
+    "id": "z.reference",
+    "title": "References",
+    "description": "A Reference is at core a signal, but with more convenience. So reactive values that can be listened, mapped, changed and replaced.",
     "code": "import { Body, Button, ButtonStyle, Grid, Label, asRef, ref } from \"webgen/mod.ts\";\n\nconst value = asRef(0);\n\nBody(\n    Grid(\n        Label(\"You clicked the Button this many times:\")\n            .setTextSize(\"sm\")\n            .setAlignSelf(\"center\"),\n        Label(ref`${value}`)\n            .setTextSize(\"5xl\")\n            .setFontWeight(\"bold\"),\n        Button(\"Add one\")\n            .setStyle(ButtonStyle.Secondary)\n            .onClick(() => {\n                value.setValue(value.getValue() + 1);\n            })\n    )\n        .setGap(\"0.5rem\")\n        .setJustifyItems(\"center\")\n        .setEvenColumns(1)\n);"
   }
 ]

@@ -1,5 +1,5 @@
-//# Pointers
-//> Pointers are box values that can have event listeners, mappers, getters and setters for your values.
+//# References
+//> A Reference is at core a signal, but with more convenience. So reactive values that can be listened, mapped, changed and replaced.
 import { Body, Button, ButtonStyle, Grid, Label, asRef, ref } from "webgen/mod.ts";
 
 const value = asRef(0);

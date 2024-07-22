@@ -3,37 +3,43 @@
     "id": "0.state",
     "title": "State",
     "description": "A object allows you to pass a recursively proxied object, where values can also be backed by an pointer. (Powered by ArrowJS)",
-    "code": "import { Body, Button, asState, ref } from \"webgen/mod.ts\";\n\nconst state = asState({\n    value: 0\n});\n\nBody(\n    Button(ref`Clicked: ${state.$value}`)\n        .onClick(() => {\n            state.value += 1;\n        })\n);"
+    "code": "import { Body, Button, WebGen, asState, ref } from \"webgen/mod.ts\";\n\nWebGen();\n\nconst state = asState({\n    value: 0\n});\n\nBody(\n    Button(ref`Clicked: ${state.$value}`)\n        .onClick(() => {\n            state.value += 1;\n        })\n);"
   },
   {
     "id": "1.button",
     "title": "Button",
     "description": "Buttons promote efficient and streamlined user workflows by enabling quick decision-making.",
-    "code": "import { sample } from \"https://deno.land/std@0.224.0/collections/sample.ts\";\nimport { Body, Button, ButtonStyle, asRef } from \"webgen/mod.ts\";\n\nconst styles = [\n    ButtonStyle.Inline,\n    ButtonStyle.Normal,\n    ButtonStyle.Secondary,\n    ButtonStyle.Spinner,\n];\nconst style = asRef(sample(styles)!);\nsetInterval(() => style.setValue(sample(styles)!), 1000);\n\nBody(\n    Button(\"BUTTON\")\n        .setStyle(style)\n);"
+    "code": "import { sample } from \"https://deno.land/std@0.224.0/collections/sample.ts\";\nimport { Body, Button, ButtonStyle, WebGen, asRef } from \"webgen/mod.ts\";\n\nWebGen();\n\nconst styles = [\n    ButtonStyle.Inline,\n    ButtonStyle.Normal,\n    ButtonStyle.Secondary,\n    ButtonStyle.Spinner,\n];\nconst style = asRef(sample(styles)!);\nsetInterval(() => style.setValue(sample(styles)!), 1000);\n\nBody(\n    Button(\"BUTTON\")\n        .setStyle(style)\n);"
   },
   {
     "id": "2.switch",
     "title": "Switch",
     "description": "Switch visually represent a direct action, like turning on or off a setting.",
-    "code": "import { delay } from \"https://deno.land/std@0.224.0/async/delay.ts\";\nimport { Body, Switch, asRef } from \"webgen/mod.ts\";\n\nconst selected = asRef(false);\n\nBody(\n    Switch(selected)\n        .onPromiseClick(async () => {\n            await delay(800);\n            selected.setValue(!selected.getValue());\n        })\n);"
+    "code": "import { delay } from \"https://deno.land/std@0.224.0/async/delay.ts\";\nimport { Body, Switch, WebGen, asRef } from \"webgen/mod.ts\";\n\nWebGen();\n\nconst selected = asRef(false);\n\nBody(\n    Switch(selected)\n        .onPromiseClick(async () => {\n            await delay(800);\n            selected.setValue(!selected.getValue());\n        })\n);"
   },
   {
     "id": "basicLabel",
     "title": "BasicLabel",
     "description": "Radios simplify decision-making by offering distinct and exclusive options.",
-    "code": "import { BasicLabel, Body, css } from \"webgen/mod.ts\";\n//HIDE-START\ndocument.adoptedStyleSheets.push(css`\n    #basic-label {\n        width: 2rem;\n        height: 2rem;\n    }\n`);\n//HIDE-END\n\nBody(\n    BasicLabel({\n        title: \"Hello World\",\n        subtitle: \"This is some loooong text.\"\n    })\n//HIDE-START\n        .addClass(\"small\")\n        .setWidth(\"10rem\")\n    //HIDE-END\n);"
+    "code": "import { BasicLabel, Body, css, WebGen } from \"webgen/mod.ts\";\n//HIDE-START\ndocument.adoptedStyleSheets.push(css`\n    #basic-label {\n        width: 2rem;\n        height: 2rem;\n    }\n`);\n//HIDE-END\n\nWebGen();\n\nBody(\n    BasicLabel({\n        title: \"Hello World\",\n        subtitle: \"This is some loooong text.\"\n    })\n//HIDE-START\n        .addClass(\"small\")\n        .setWidth(\"10rem\")\n//HIDE-END\n);"
   },
   {
     "id": "checkbox",
     "title": "Checkbox",
     "description": "Checkboxes offer granular control over non-direct actions or conditional behaviors.",
-    "code": "import { Body, Checkbox } from \"webgen/mod.ts\";\n\nBody(\n    Checkbox(true)\n        .onClick(() => {\n            console.log(\"Clicked\");\n        })\n);"
+    "code": "import { Body, Checkbox, WebGen } from \"webgen/mod.ts\";\n\nWebGen();\n\nBody(\n    Checkbox(true)\n        .onClick(() => {\n            console.log(\"Clicked\");\n        })\n);"
+  },
+  {
+    "id": "dropdown",
+    "title": "Dropdown",
+    "description": "Dropdowns are a way to present a list of options to the user in a way that takes up minimal space. They should be used when the user has to select one option from a long list.",
+    "code": "import { Body, DropDownInput, Grid, WebGen } from \"webgen/mod.ts\";\n\nWebGen();\n\nconst options = [\n    \"Option 1\",\n    \"Option 2\",\n    \"Option 3\",\n    \"Option 4\",\n    \"Option 5\",\n    \"Option 6\",\n    \"Option 7\",\n    \"Option 8\",\n    // ...\n//HIDE-START\n    ...Array.from({ length: 20 - 9 }, (_, i) => `Option ${i + 9}`),\n//HIDE-END\n    \"Option 20\"\n];\n\nBody(\n    Grid(\n        DropDownInput(\"Select an option\", options)\n            .setMargin(\"1rem 0 0\")\n    )\n        .setHeight(\"100vh\")\n);\n//HIDE-START\nrequestAnimationFrame(() => document.querySelector('button')?.click());\n//HIDE-END\n"
   },
   {
     "id": "entries",
     "title": "Entry",
     "description": "Entry are rich row elements used for lists.",
-    "code": "import { Body, Entry, Grid } from \"webgen/mod.ts\";\n\nBody(\n    Grid(\n        Entry({\n            title: \"Rich Rows\"\n        })\n            .addClass(\"small\")\n            .onClick(() => alert(\"You did it!\")),\n        Entry({\n            title: \"With titles\",\n            subtitle: \"And subtitles\"\n        })\n            .addClass(\"small\")\n            .onClick(() => alert(\"You did it!\")),\n    )\n        .setWidth(\"100%\")\n        .setGap()\n\n);"
+    "code": "import { Body, Entry, Grid, WebGen } from \"webgen/mod.ts\";\n\nWebGen();\n\nBody(\n//HIDE-START\n    Grid(\n//HIDE-END\n    Entry({\n        title: \"Rich Rows\"\n    })\n        .addClass(\"small\")\n        .onClick(() => alert(\"You did it!\")),\n    Entry({\n        title: \"With titles\",\n        subtitle: \"And subtitles\"\n    })\n        .addClass(\"small\")\n        .onClick(() => alert(\"You did it!\")),\n//HIDE-START\n    )\n        .setWidth(\"100vw\")\n        .setGap()\n//HIDE-END\n);"
   },
   {
     "id": "layer",
@@ -45,18 +51,18 @@
     "id": "taglist",
     "title": "Taglist",
     "description": "Tags visually represent categories/topics for easy content scanning and relevance.",
-    "code": "import { Body, Taglist, asRef, css } from \"webgen/mod.ts\";\n\n//HIDE-START\ndocument.adoptedStyleSheets.push(css`\n    #taglist {\n        --color-colored-lightness: 100%;\n        --color-colored-font: #000000;\n        width: unset;\n    }\n`);\n//HIDE-END\n\nconst selected = asRef(0);\n\nBody(\n    Taglist([\n        \"ACTION\",\n        \"ACTION\"\n    ], selected)\n        .setId(\"taglist\")\n);"
+    "code": "import { Body, Taglist, WebGen, asRef, css } from \"webgen/mod.ts\";\n\nWebGen();\n\n//HIDE-START\ndocument.adoptedStyleSheets.push(css`\n    #taglist {\n        --color-colored-lightness: 100%;\n        --color-colored-font: #000000;\n        width: unset;\n    }\n`);\n//HIDE-END\n\nconst selected = asRef(0);\n\nBody(\n    Taglist([\n        \"ACTION\",\n        \"ACTION\"\n    ], selected)\n        .setId(\"taglist\")\n);"
   },
   {
     "id": "textinput",
     "title": "TextInput",
     "description": "TextInputs provide flexibility for users to enter variable-length input, such as short phrases or long paragraphs.",
-    "code": "import { Body, Label, TextInput, Vertical, asRef, ref } from \"webgen/mod.ts\";\n\nconst value = asRef(\"Hello\");\n\nBody(\n    Vertical(\n        TextInput(\"text\", \"Placeholder\")\n            .ref(value),\n        Label(ref`Length: ${value.map(it => it.length)}`)\n    ).setGap(\"0.5rem\"),\n);"
+    "code": "import { Body, Label, TextInput, Vertical, WebGen, asRef, ref } from \"webgen/mod.ts\";\n\nWebGen();\n\nconst value = asRef(\"Hello\");\n\nBody(\n    Vertical(\n        TextInput(\"text\", \"Placeholder\")\n            .ref(value),\n        Label(ref`Length: ${value.map(it => it.length)}`)\n    ).setGap(\"0.5rem\"),\n);"
   },
   {
     "id": "z.reference",
     "title": "References",
     "description": "A Reference is at core a signal, but with more convenience. So reactive values that can be listened, mapped, changed and replaced.",
-    "code": "import { Body, Button, ButtonStyle, Grid, Label, asRef, ref } from \"webgen/mod.ts\";\n\nconst value = asRef(0);\n\nBody(\n    Grid(\n        Label(\"You clicked the Button this many times:\")\n            .setTextSize(\"sm\")\n            .setAlignSelf(\"center\"),\n        Label(ref`${value}`)\n            .setTextSize(\"5xl\")\n            .setFontWeight(\"bold\"),\n        Button(\"Add one\")\n            .setStyle(ButtonStyle.Secondary)\n            .onClick(() => {\n                value.setValue(value.getValue() + 1);\n            })\n    )\n        .setGap(\"0.5rem\")\n        .setJustifyItems(\"center\")\n        .setEvenColumns(1)\n);"
+    "code": "import { Body, Button, ButtonStyle, Grid, Label, WebGen, asRef, ref } from \"webgen/mod.ts\";\n\nWebGen();\n\nconst value = asRef(0);\n\nBody(\n    Grid(\n        Label(\"You clicked the Button this many times:\")\n            .setTextSize(\"sm\")\n            .setAlignSelf(\"center\"),\n        Label(ref`${value}`)\n            .setTextSize(\"5xl\")\n            .setFontWeight(\"bold\"),\n        Button(\"Add one\")\n            .setStyle(ButtonStyle.Secondary)\n            .onClick(() => {\n                value.setValue(value.getValue() + 1);\n            })\n    )\n        .setGap(\"0.5rem\")\n        .setJustifyItems(\"center\")\n        .setEvenColumns(1)\n);"
   }
 ]

@@ -1,6 +1,8 @@
 //# References
 //> A Reference is at core a signal, but with more convenience. So reactive values that can be listened, mapped, changed and replaced.
-import { Body, Button, ButtonStyle, Grid, Label, asRef, ref } from "webgen/mod.ts";
+import { Body, Button, ButtonStyle, Grid, Label, WebGen, asRef, ref } from "webgen/mod.ts";
+
+WebGen();
 
 const value = asRef(0);
 

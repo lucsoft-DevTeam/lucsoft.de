@@ -1,6 +1,8 @@
 //# Taglist
 //> Tags visually represent categories/topics for easy content scanning and relevance.
-import { Body, Taglist, asRef, css } from "webgen/mod.ts";
+import { Body, Taglist, WebGen, asRef, css } from "webgen/mod.ts";
+
+WebGen();
 
 //HIDE-START
 document.adoptedStyleSheets.push(css`

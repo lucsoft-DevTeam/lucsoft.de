@@ -1,22 +1,27 @@
 //# Entry
 //> Entry are rich row elements used for lists.
-import { Body, Entry, Grid } from "webgen/mod.ts";
+import { Body, Entry, Grid, WebGen } from "webgen/mod.ts";
+
+WebGen();
 
 Body(
+//HIDE-START
     Grid(
-        Entry({
-            title: "Rich Rows"
-        })
-            .addClass("small")
-            .onClick(() => alert("You did it!")),
-        Entry({
-            title: "With titles",
-            subtitle: "And subtitles"
-        })
-            .addClass("small")
-            .onClick(() => alert("You did it!")),
+//HIDE-END
+    Entry({
+        title: "Rich Rows"
+    })
+        .addClass("small")
+        .onClick(() => alert("You did it!")),
+    Entry({
+        title: "With titles",
+        subtitle: "And subtitles"
+    })
+        .addClass("small")
+        .onClick(() => alert("You did it!")),
+//HIDE-START
     )
-        .setWidth("100%")
+        .setWidth("100vw")
         .setGap()
-
+//HIDE-END
 );

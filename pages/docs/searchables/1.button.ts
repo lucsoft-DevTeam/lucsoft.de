@@ -1,7 +1,9 @@
 //# Button
 //> Buttons promote efficient and streamlined user workflows by enabling quick decision-making.
 import { sample } from "https://deno.land/std@0.224.0/collections/sample.ts";
-import { Body, Button, ButtonStyle, asRef } from "webgen/mod.ts";
+import { Body, Button, ButtonStyle, WebGen, asRef } from "webgen/mod.ts";
+
+WebGen();
 
 const styles = [
     ButtonStyle.Inline,

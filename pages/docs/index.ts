@@ -18,13 +18,24 @@ async function load(item: typeof searchables[ number ]) {
     sandbox.src = "/searchables/" + item.id;
 
     sandbox.style.display = "none";
+
     sandbox.onload = () => {
-        resolve(Custom(sandbox.contentDocument?.querySelector("article")!).removeFromLayout());
-        document.adoptedStyleSheets.push(...sandbox.contentDocument?.adoptedStyleSheets.map(it => {
-            const sheet = new CSSStyleSheet();
-            Array.from(it.cssRules).map(it => sheet.insertRule(it.cssText));
-            return sheet;
-        }) ?? []);
+        sandbox.contentDocument!.body.style.background = "transparent";
+        sandbox.contentDocument!.body.style.display = "grid";
+        sandbox.contentDocument!.body.style.placeItems = "center";
+        sandbox.contentDocument!.body.style.minHeight = "100vh";
+        sandbox.style.height = "100%";
+        sandbox.style.width = "100%";
+        sandbox.style.display = "block";
+        setTimeout(() => {
+            resolve(Custom(sandbox));
+        });
+        // resolve(Custom(sandbox.contentDocument?.querySelector("article")!).removeFromLayout());
+        //     document.adoptedStyleSheets.push(...sandbox.contentDocument?.adoptedStyleSheets.map(it => {
+        //         const sheet = new CSSStyleSheet();
+        //         Array.from(it.cssRules).map(it => sheet.insertRule(it.cssText));
+        //         return sheet;
+        //     }) ?? []);
     };
 
     document.body.append(sandbox);

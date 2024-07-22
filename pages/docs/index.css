@@ -90,3 +90,7 @@ body {
         grid-column: 2 span;
     }
 }
+
+iframe {
+    border: none;
+}

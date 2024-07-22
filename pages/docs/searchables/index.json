@@ -51,7 +51,7 @@
     "id": "textinput",
     "title": "TextInput",
     "description": "TextInputs provide flexibility for users to enter variable-length input, such as short phrases or long paragraphs.",
-    "code": "import { Body, Label, TextInput, Vertical, asState, ref } from \"webgen/mod.ts\";\n\nconst data = asState({\n    example: \"\"\n});\n\nBody(\n    Vertical(\n        TextInput(\"text\", \"Placeholder\")\n            .sync(data, \"example\"),\n        Label(ref`Length: ${data.$example.map(it => it.length)}`)\n    ).setGap(\"0.5rem\")\n);"
+    "code": "import { Body, Label, TextInput, Vertical, asRef, ref } from \"webgen/mod.ts\";\n\nconst value = asRef(\"Hello\");\n\nBody(\n    Vertical(\n        TextInput(\"text\", \"Placeholder\")\n            .ref(value),\n        Label(ref`Length: ${value.map(it => it.length)}`)\n    ).setGap(\"0.5rem\"),\n);"
   },
   {
     "id": "z.reference",

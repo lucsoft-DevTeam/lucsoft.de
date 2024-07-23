@@ -1,11 +1,11 @@
 import { Body, Box, Cache, Component, Content, Custom, Grid, Image, Label, SupportedThemes, TextInput, WebGen, asState, createElement, loadingWheel } from "webgen/mod.ts";
 import webgen from "../../assets/webgen.svg";
 import './index.css';
-// @deno-types="https://esm.sh/v128/highlight.js@11.8.0/types/index.d.ts"
-import hljs from "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/es/highlight.min.js";
-import "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/es/languages/javascript.min.js";
-import "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/es/languages/typescript.min.js";
-import "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/codepen-embed.min.css";
+// @deno-types="https://esm.sh/v128/highlight.js@11.10.0/types/index.d.ts"
+import hljs from "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/es/highlight.min.js";
+import "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/es/languages/javascript.min.js";
+import "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/es/languages/typescript.min.js";
+import "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/codepen-embed.min.css";
 import searchables from "./searchables/index.json" with { type: "json" };
 WebGen({
     theme: SupportedThemes.dark

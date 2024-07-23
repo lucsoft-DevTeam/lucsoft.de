@@ -9,13 +9,13 @@
     "id": "1.button",
     "title": "Button",
     "description": "Buttons promote efficient and streamlined user workflows by enabling quick decision-making.",
-    "code": "import { sample } from \"https://deno.land/std@0.224.0/collections/sample.ts\";\nimport { Body, Button, ButtonStyle, WebGen, asRef } from \"webgen/mod.ts\";\n\nWebGen();\n\nconst styles = [\n    ButtonStyle.Inline,\n    ButtonStyle.Normal,\n    ButtonStyle.Secondary,\n    ButtonStyle.Spinner,\n];\nconst style = asRef(sample(styles)!);\nsetInterval(() => style.setValue(sample(styles)!), 1000);\n\nBody(\n    Button(\"BUTTON\")\n        .setStyle(style)\n);"
+    "code": "import { sample } from \"jsr:@std/collections\";\nimport { Body, Button, ButtonStyle, WebGen, asRef } from \"webgen/mod.ts\";\n\nWebGen();\n\nconst styles = [\n    ButtonStyle.Inline,\n    ButtonStyle.Normal,\n    ButtonStyle.Secondary,\n    ButtonStyle.Spinner,\n];\nconst style = asRef(sample(styles)!);\nsetInterval(() => style.setValue(sample(styles)!), 1000);\n\nBody(\n    Button(\"BUTTON\")\n        .setStyle(style)\n);"
   },
   {
     "id": "2.switch",
     "title": "Switch",
     "description": "Switch visually represent a direct action, like turning on or off a setting.",
-    "code": "import { delay } from \"https://deno.land/std@0.224.0/async/delay.ts\";\nimport { Body, Switch, WebGen, asRef } from \"webgen/mod.ts\";\n\nWebGen();\n\nconst selected = asRef(false);\n\nBody(\n    Switch(selected)\n        .onPromiseClick(async () => {\n            await delay(800);\n            selected.setValue(!selected.getValue());\n        })\n);"
+    "code": "import { delay } from \"jsr:@std/async\";\nimport { Body, Switch, WebGen, asRef } from \"webgen/mod.ts\";\n\nWebGen();\n\nconst selected = asRef(false);\n\nBody(\n    Switch(selected)\n        .onPromiseClick(async () => {\n            await delay(800);\n            selected.setValue(!selected.getValue());\n        })\n);"
   },
   {
     "id": "basicLabel",

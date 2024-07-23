@@ -1,7 +1,7 @@
-import { sortBy } from "https://deno.land/std@0.224.0/collections/sort_by.ts";
-import { walkSync } from "https://deno.land/std@0.224.0/fs/mod.ts";
-// import { serve } from "https://deno.land/x/esbuild_serve@1.3.4/mod.ts";
-import { serve } from "../esbuild_serve/mod.ts";
+import { sortBy } from "jsr:@std/collections";
+import { walkSync } from "jsr:@std/fs";
+import { serve } from "https://deno.land/x/esbuild_serve@1.4.1/mod.ts";
+// import { serve } from "../esbuild_serve/mod.ts";
 
 const items = Array.from(walkSync("./pages/docs/searchables", { includeDirs: false, exts: [ ".ts" ] }));
 
@@ -33,7 +33,6 @@ serve({
     },
     poylfills: [
         "https://unpkg.com/construct-style-sheets-polyfill",
-        "https://raw.githubusercontent.com/ungap/with-resolvers/main/index.js"
     ],
     defaultTemplate(name) {
         return `
@@ -61,7 +60,7 @@ serve({
                 <meta name="robots" content="index, follow">
                 <meta name="google-site-verification" content="WQFLHyWhtvJGwM5ebNzMmjnkjpcsAGiHA0xPN7gXYBM" />
                 <meta name="msvalidate.01" content="F08399C994EFE24C0FA95C42AB2B94AE" />
-                <script type="application/ld+json">{"@context":"http://schema.org","@type":"Corporation","name":"lucsoft","url":"https://lucsoft.de","logo":"https://lucsoft.de/img/3D_dark_lucsoft.png","sameAs":["https://twitter.com/lucsoft","https://instagram.com/lucsoft_/","https://youtube.com/lucsoft","https://github.com/lucsoft/"]}</script>
+                <script type="application/ld+json">{"@context":"http://schema.org","@type":"Corporation","name":"lucsoft","url":"https://lucsoft.de","logo":"https://lucsoft.de/img/3D_dark_lucsoft.png","sameAs":["https://x.com/lucsoft","https://instagram.com/lucsoft_/","https://youtube.com/lucsoft","https://github.com/lucsoft/"]}</script>
                 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB9WNYVBT2"></script>
                 <script>
                     window.dataLayer = window.dataLayer || [];

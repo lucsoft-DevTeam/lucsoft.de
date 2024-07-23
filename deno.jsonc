@@ -1,7 +1,9 @@
 {
     "imports": {
-        "webgen/": "https://raw.githubusercontent.com/lucsoft/WebGen/f3657bb/",
-        // "webgen/": "../webgen/"
+        "@std/async": "jsr:@std/async@^1.0.0",
+        "@std/collections": "jsr:@std/collections@^1.0.5",
+        "@std/fs": "jsr:@std/fs@^0.229.3",
+        "webgen/": "https://raw.githubusercontent.com/lucsoft/WebGen/f3657bb/"
     },
     "compilerOptions": {
         "lib": [

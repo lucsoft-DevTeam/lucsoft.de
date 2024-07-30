@@ -17,7 +17,7 @@ document.adoptedStyleSheets.push(css`
 
 Body(
     Box(
-        Layer(Box(), 5, "shadow")
+        Layer(Box(), 5)
             .setBorderRadius("mid")
             .setId("box")
     )

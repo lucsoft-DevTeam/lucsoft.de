@@ -45,7 +45,7 @@
     "id": "layer",
     "title": "Layers",
     "description": "Tags visually represent categories/topics for easy content scanning and relevance.",
-    "code": "import { Body, Box, Layer, SupportedThemes, WebGen, css } from \"webgen/mod.ts\";\n//HIDE-START\nWebGen({\n    theme: SupportedThemes.light\n});\ndocument.adoptedStyleSheets.push(css`\n    #box {\n        width: 4rem;\n        height: 4rem;\n        --color-overlay: 0;\n        --layer-shadow: 0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.3);\n    }\n`);\n//HIDE-END\n\nBody(\n    Box(\n        Layer(Box(), 5, \"shadow\")\n            .setBorderRadius(\"mid\")\n            .setId(\"box\")\n    )\n);"
+    "code": "import { Body, Box, Layer, SupportedThemes, WebGen, css } from \"webgen/mod.ts\";\n//HIDE-START\nWebGen({\n    theme: SupportedThemes.light\n});\ndocument.adoptedStyleSheets.push(css`\n    #box {\n        width: 4rem;\n        height: 4rem;\n        --color-overlay: 0;\n        --layer-shadow: 0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.3);\n    }\n`);\n//HIDE-END\n\nBody(\n    Box(\n        Layer(Box(), 5)\n            .setBorderRadius(\"mid\")\n            .setId(\"box\")\n    )\n);"
   },
   {
     "id": "taglist",

@@ -1,6 +1,6 @@
 import { sortBy } from "jsr:@std/collections";
 import { walkSync } from "jsr:@std/fs";
-import { serve } from "https://deno.land/x/esbuild_serve@1.4.1/mod.ts";
+import { serve } from "https://deno.land/x/esbuild_serve@1.5.0/mod.ts";
 // import { serve } from "../esbuild_serve/mod.ts";
 
 const items = Array.from(walkSync("./pages/docs/searchables", { includeDirs: false, exts: [ ".ts" ] }));

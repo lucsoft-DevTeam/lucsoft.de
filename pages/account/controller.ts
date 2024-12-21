@@ -1,4 +1,4 @@
-import { IsometricCanvas, IsometricCanvasProps, IsometricRectangle, IsometricRectangleProps, PlaneView } from "https://cdn.jsdelivr.net/npm/@elchininet/isometric@3.10.0/esm/index.js";
+import { IsometricCanvas, IsometricCanvasProps, IsometricRectangle, IsometricRectangleProps, PlaneView } from "https://cdn.jsdelivr.net/npm/@elchininet/isometric@3.10.1/esm/index.js";
 import { Card, Component, createElement, Custom, Grid, Spacer, Vertical, View } from "webgen/mod.ts";
 import { SmallCard } from "../../components/Card.ts";
 import { bytes, timeSince } from "../../helper/convert.ts";

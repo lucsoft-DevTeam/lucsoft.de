@@ -1,5 +1,5 @@
-// import esbuildwasm from 'https://deno.land/x/esbuild@v0.25.12/esbuild.wasm';
-// import * as esbuild from 'https://deno.land/x/esbuild@v0.25.12/wasm.js';
+// import esbuildwasm from 'https://deno.land/x/esbuild@v0.27.0/esbuild.wasm';
+// import * as esbuild from 'https://deno.land/x/esbuild@v0.27.0/wasm.js';
 // import { httpImports } from "https://deno.land/x/esbuild_serve@1.5.0/features/httpImports.ts";
 
 // await esbuild.initialize({

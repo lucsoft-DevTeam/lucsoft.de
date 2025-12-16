@@ -62,11 +62,9 @@ Body(
                 LinkButton("web_bson", "https://github.com/lucsoft/deno_bson/")
                     .setStyle(ButtonStyle.Inline),
                 Spacer(),
-                LinkButton("bbn.one", "https://bbn.one/")
-                    .setStyle(ButtonStyle.Inline),
-                Spacer(),
                 LinkButton("remod.dev", "https://remod.dev/")
                     .setStyle(ButtonStyle.Inline),
+                Spacer()
             ).addClass("side-projects"),
             Horizontal(
                 Label("Skills", "h2"),

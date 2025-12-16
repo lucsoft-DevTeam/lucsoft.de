@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lucsoft-de
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lucsoft-de
+  template:
+    metadata:
+      labels:
+        app: lucsoft-de
+    spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+      containers:
+        - name: lucsoft-de
+          image: ghcr.io/lucsoft/website:latest
+          imagePullPolicy: Always
+          securityContext:
+            seccompProfile:
+              type: RuntimeDefault
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lucsoft-de
+spec:
+  selector:
+    app: lucsoft-de
+  ports:
+    - port: 80
+      targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lucsoft-de
+  annotations:
+    cert-manager.io/cluster-issuer: lucsoft-allinkl
+spec:
+  tls:
+    - hosts:
+        - "*.lucsoft.de"
+        - lucsoft.de
+      secretName: lucsoft-tls
+  rules:
+    - host: lucsoft.de
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: lucsoft-de
+                port:
+                  number: 80
